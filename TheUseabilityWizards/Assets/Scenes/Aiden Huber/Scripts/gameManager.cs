@@ -11,11 +11,21 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
 
+    public Image playerHP;
+    public Image playerST;
+    public Image playerMA;
+    // ^ Normally serialized, will fix these later. This is also my reminder to do that.
+
+    public GameObject player;
+    public playerController playerScript;
+
     public bool isPaused;
     // Start is called before the first frame update
     void Awake()
     {
-            
+        instance = this;
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerController>();
     }
 
     // Update is called once per frame
