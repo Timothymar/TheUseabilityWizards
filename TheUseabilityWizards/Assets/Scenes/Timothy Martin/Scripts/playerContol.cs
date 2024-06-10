@@ -13,6 +13,10 @@ public class playerContol : MonoBehaviour
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
+    [SerializeField] int shootDamage;
+    [SerializeField] float shootRate;
+    [SerializeField] int shootDistance;
+
     [SerializeField] GameObject arrow;
 
     bool isShooting;
@@ -27,14 +31,19 @@ public class playerContol : MonoBehaviour
     void Start()
     {
         HPOriginal = HP;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.blue);
+
         Movement();
         Sprint();
+
+        if (Input.GetButton("Fire1") && !isShooting)
+        StartCoroutine(shoot());
     }
 
     void Movement()
@@ -42,7 +51,7 @@ public class playerContol : MonoBehaviour
         if (controller.isGrounded)
         {
             jumpCount = 0;
-            playerVelocity = Vector3.zero; 
+            playerVelocity = Vector3.zero;
         }
 
         moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
@@ -69,5 +78,32 @@ public class playerContol : MonoBehaviour
         {
             speed /= sprintMod;
         }
+    }
+
+    IEnumerator shoot()
+    {
+        isShooting = true;
+
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance))
+        {
+            Debug.Log(hit.transform.name);
+
+            IDamage damage = hit.collider.GetComponent<IDamage>();
+
+            if (damage != null && hit.transform != transform)
+            {
+                Instantiate(arrow, hit.point, Quaternion.identity);
+                damage.takeDamage(shootDamage);
+            }
+            else if(damage == null)
+            {
+                Instantiate(arrow, hit.point, Quaternion.identity);
+                //damage.takeDamage(0);
+            }
+        }
+
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
     }
 }
