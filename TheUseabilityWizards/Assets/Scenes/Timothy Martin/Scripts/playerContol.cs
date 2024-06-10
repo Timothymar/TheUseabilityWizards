@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class playerContol : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
 
+    //[SerializeField] Transform playerShootPos;
+
     [SerializeField] int HP;
+    [SerializeField] int Stamina;
+    [SerializeField] int maxStamina;
+    [SerializeField] float staminaRecovery;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
-    [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
-    [SerializeField] int shootDistance;
+ 
 
     [SerializeField] GameObject arrow;
 
@@ -31,19 +36,29 @@ public class playerContol : MonoBehaviour
     void Start()
     {
         HPOriginal = HP;
-
+        Stamina = maxStamina;
+        StartCoroutine(RecoverStamina());
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.blue);
+        
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 15, Color.blue);
 
         Movement();
         Sprint();
 
-        if (Input.GetButton("Fire1") && !isShooting)
-        StartCoroutine(shoot());
+        if (Input.GetButtonDown("Fire1") && !isShooting && Stamina > 0)
+        {
+            StartCoroutine(shoot());
+            --Stamina;
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(shoot());
+        }
+        
     }
 
     void Movement()
@@ -82,28 +97,26 @@ public class playerContol : MonoBehaviour
 
     IEnumerator shoot()
     {
+
         isShooting = true;
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance))
-        {
-            Debug.Log(hit.transform.name);
-
-            IDamage damage = hit.collider.GetComponent<IDamage>();
-
-            if (damage != null && hit.transform != transform)
-            {
-                Instantiate(arrow, hit.point, Quaternion.identity);
-                damage.takeDamage(shootDamage);
-            }
-            else if(damage == null)
-            {
-                Instantiate(arrow, hit.point, Quaternion.identity);
-                //damage.takeDamage(0);
-            }
-        }
+        Instantiate(arrow, Camera.main.transform.position, Camera.main.transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    IEnumerator RecoverStamina()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(staminaRecovery);
+            if (Stamina < maxStamina)
+            {
+                Stamina += 1;
+                Debug.Log("Stamina recovered:" + Stamina);
+            }
+            
+        }
     }
 }
