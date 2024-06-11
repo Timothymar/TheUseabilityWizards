@@ -13,11 +13,10 @@ public class gameManager : MonoBehaviour
 
     public Image playerHP;
     public Image playerST;
-    public Image playerMA;
     // ^ Normally serialized, will fix these later. This is also my reminder to do that.
 
     public GameObject player;
-    public playerController playerScript;
+    public playerContol playerScript;
 
     public bool isPaused;
     // Start is called before the first frame update
@@ -25,7 +24,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
+        playerScript = player.GetComponent<playerContol>();
     }
 
     // Update is called once per frame
