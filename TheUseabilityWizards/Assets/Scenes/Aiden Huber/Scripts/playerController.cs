@@ -10,6 +10,8 @@ public class playerController : MonoBehaviour
     // Status bars.
     [SerializeField] int HP;        // Health
     [SerializeField] int ST;        // Stamina
+    [SerializeField] int maxHP;
+    [SerializeField] int maxST;
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -23,17 +25,14 @@ public class playerController : MonoBehaviour
 
     bool isShooting;
 
-    int HPOrig;
-    int STOrig;
-
     Vector3 moveDir;
     Vector3 playerVel;
 
     // Start is called before the first frame update
     void Start()
     {
-        HPOrig = HP;
-        STOrig = ST;
+        maxHP = HP;
+        maxST = ST;
         updatePlayerUI();
         // Make cursor invisible and lock it to the frame.
         Cursor.visible = false;
@@ -112,7 +111,7 @@ public class playerController : MonoBehaviour
 
     void updatePlayerUI()
     {
-        gameManager.instance.playerHP.fillAmount = (float)HP/HPOrig;
-        gameManager.instance.playerST.fillAmount = (float)ST/STOrig;
+        gameManager.instance.playerHP.fillAmount = (float)HP/maxHP;
+        gameManager.instance.playerST.fillAmount = (float)ST/maxST;
     }
 }

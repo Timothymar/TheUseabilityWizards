@@ -1336,6 +1336,8 @@ MonoBehaviour:
   controller: {fileID: 589924355}
   HP: 10
   ST: 10
+  maxHP: 10
+  maxST: 10
   speed: 8
   sprintMod: 8
   jumpMax: 2
@@ -1476,8 +1478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuActive: {fileID: 0}
   menuPause: {fileID: 1871968024}
-  playerHP: {fileID: 1744541224}
-  playerST: {fileID: 243317183}
+  playerHP: {fileID: 2009097566}
+  playerST: {fileID: 213522811}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   isPaused: 0
