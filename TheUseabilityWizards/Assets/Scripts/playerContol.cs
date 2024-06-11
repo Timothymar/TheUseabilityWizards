@@ -11,9 +11,10 @@ public class playerContol : MonoBehaviour
     // Stats
     [SerializeField] int HP;
     [SerializeField] int maxHP;
-    [SerializeField] int Stamina;
+    [SerializeField] float Stamina;
     [SerializeField] int maxStamina;
-    [SerializeField] float staminaRecovery;
+    [SerializeField] float staminaRecoveryAmount;
+    [SerializeField] float staminaRecoverySpeed;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
 
@@ -116,10 +117,10 @@ public class playerContol : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(staminaRecovery);
-            if (Stamina < maxStamina)
+            yield return new WaitForSeconds(staminaRecoverySpeed);
+            if (!isShooting && Stamina < maxStamina)
             {
-                Stamina += 1;
+                Stamina += staminaRecoveryAmount;
                 updatePlayerStaminaUI();
                 Debug.Log("Stamina recovered:" + Stamina);
             }
