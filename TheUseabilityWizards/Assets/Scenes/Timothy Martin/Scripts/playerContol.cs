@@ -5,22 +5,24 @@ using UnityEngine.AI;
 
 public class playerContol : MonoBehaviour
 {
+    // Collision
     [SerializeField] CharacterController controller;
 
-    //[SerializeField] Transform playerShootPos;
-
+    // Stats
     [SerializeField] int HP;
+    [SerializeField] int maxHP;
     [SerializeField] int Stamina;
     [SerializeField] int maxStamina;
     [SerializeField] float staminaRecovery;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
+
+    // Jump controls
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
     [SerializeField] float shootRate;
- 
 
     [SerializeField] GameObject arrow;
 
@@ -35,30 +37,34 @@ public class playerContol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HPOriginal = HP;
+        // Sets stamina and health and has a recovery for stamina
+        HP = maxHP;
         Stamina = maxStamina;
         StartCoroutine(RecoverStamina());
+        updatePlayerHeathUI();
+        updatePlayerStaminaUI();
+        // Make cursor invisible and lock it to the frame.
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Line for people to check while they shoot
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 15, Color.blue);
 
+        // Movement Controls
         Movement();
         Sprint();
 
-        if (Input.GetButtonDown("Fire1") && !isShooting && Stamina > 0)
+        // Fire controls
+        if (Input.GetButton("Fire1") && !isShooting && Stamina > 0)
         {
             StartCoroutine(shoot());
             --Stamina;
-        }
-        else if (Input.GetButtonUp("Fire1"))
-        {
-            StopCoroutine(shoot());
-        }
-        
+            updatePlayerStaminaUI();
+        } 
     }
 
     void Movement()
@@ -114,9 +120,29 @@ public class playerContol : MonoBehaviour
             if (Stamina < maxStamina)
             {
                 Stamina += 1;
+                updatePlayerStaminaUI();
                 Debug.Log("Stamina recovered:" + Stamina);
             }
             
         }
+    }
+    public void takeDamage(int amt)
+    {
+        HP -= amt;
+        updatePlayerHeathUI();
+
+        //if (HP <= 0)
+        //{
+        //    gameManager.instance.youLose();
+        //}
+    }
+
+    void updatePlayerHeathUI()
+    {
+        gameManager.instance.playerHP.fillAmount = (float)HP / maxHP;
+    }
+    void updatePlayerStaminaUI()
+    {
+        gameManager.instance.playerST.fillAmount = (float)Stamina / maxStamina;
     }
 }

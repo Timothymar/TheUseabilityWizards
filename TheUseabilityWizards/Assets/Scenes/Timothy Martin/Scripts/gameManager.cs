@@ -18,7 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerContol playerScript;
 
-    public bool isPaused;
+    public bool isPaused = false;
     // Start is called before the first frame update
     void Awake()
     {
