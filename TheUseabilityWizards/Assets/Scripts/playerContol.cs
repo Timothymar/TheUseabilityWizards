@@ -8,26 +8,34 @@ public class playerContol : MonoBehaviour
     // Collision
     [SerializeField] CharacterController controller;
 
-    // Stats
+    // HP
     [SerializeField] int HP;
     [SerializeField] int maxHP;
+
+    // Stamina
     [SerializeField] float Stamina;
     [SerializeField] int maxStamina;
     [SerializeField] float staminaRecoveryAmount;
     [SerializeField] float staminaRecoverySpeed;
+    [SerializeField] float staminaSprintDegen;
+    [SerializeField] float staminaRecoveryDelay;
+    bool staminaRecoveryDelayActive;
+
+    // Speed
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
+    bool isSprinting;
 
     // Jump controls
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
+    // Shoot mech
     [SerializeField] float shootRate;
-
     [SerializeField] GameObject arrow;
-
     bool isShooting;
+    
 
     int jumpCount;
     int HPOriginal;
@@ -63,9 +71,19 @@ public class playerContol : MonoBehaviour
         if (Input.GetButton("Fire1") && !isShooting && Stamina > 0)
         {
             StartCoroutine(shoot());
-            --Stamina;
+            StartCoroutine(StaminaRecoverDelay());
+        }
+
+        if (isSprinting)
+        {
+            Stamina -= staminaSprintDegen * Time.deltaTime;
+            if (Stamina <= 0)
+            {
+                Stamina = 0;
+                stopSprinting();
+            }
             updatePlayerStaminaUI();
-        } 
+        }
     }
 
     void Movement()
@@ -82,8 +100,13 @@ public class playerContol : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            jumpCount++;
-            playerVelocity.y = jumpSpeed;
+            if (Stamina > 1)
+            {
+                jumpCount++;
+                playerVelocity.y = jumpSpeed;
+                Stamina -= 1;
+                updatePlayerStaminaUI();
+            }
         }
 
         playerVelocity.y -= gravity * Time.deltaTime;
@@ -92,14 +115,24 @@ public class playerContol : MonoBehaviour
 
     void Sprint()
     {
+
         if (Input.GetButtonDown("Sprint"))
         {
             speed *= sprintMod;
+            isSprinting = true;
+            StartCoroutine(StaminaRecoverDelay());
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            speed /= sprintMod;
+            stopSprinting();
         }
+
+    }
+    void stopSprinting()
+    {
+        speed /= sprintMod;
+        isSprinting = false;
+        StartCoroutine(StaminaRecoverDelay());
     }
 
     IEnumerator shoot()
@@ -118,15 +151,22 @@ public class playerContol : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(staminaRecoverySpeed);
-            if (!isShooting && Stamina < maxStamina)
+            if (!isSprinting && !isShooting && !staminaRecoveryDelayActive && Stamina < maxStamina)
             {
                 Stamina += staminaRecoveryAmount;
                 updatePlayerStaminaUI();
                 Debug.Log("Stamina recovered:" + Stamina);
             }
-            
         }
     }
+    
+    IEnumerator StaminaRecoverDelay()
+    {
+        staminaRecoveryDelayActive = true;
+        yield return new WaitForSeconds(staminaRecoveryDelay);
+        staminaRecoveryDelayActive = false;
+    }
+
     public void takeDamage(int amt)
     {
         HP -= amt;

@@ -1655,12 +1655,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: staminaSprintDegen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: staminaRecoveryDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: staminaRecoverySpeed
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: staminaRecoveryAmount
       value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919842465490878329, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: sensitivity
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 4655501174142827024, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: m_LocalPosition.x
