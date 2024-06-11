@@ -623,37 +623,6 @@ Transform:
   - {fileID: 7111431483334545171}
   m_Father: {fileID: 1773300981885517960}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3681697212299505784
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 287156154627745395}
-  m_Layer: 0
-  m_Name: playerShootPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &287156154627745395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3681697212299505784}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 1.35, z: 0.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4655501174142827024}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3963163434136464749
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +912,7 @@ GameObject:
   - component: {fileID: 7135857837000190061}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -957,7 +926,7 @@ Transform:
   m_GameObject: {fileID: 5561365397905173029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -966,7 +935,6 @@ Transform:
   - {fileID: 2173633951208862624}
   - {fileID: 1513754100423146960}
   - {fileID: 6258074510041636990}
-  - {fileID: 287156154627745395}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5386252737243288419
@@ -1003,19 +971,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7135857837000190061}
-  playerShootPos: {fileID: 287156154627745395}
   HP: 10
+  maxHP: 10
   Stamina: 0
-  maxStamina: 5
-  staminaRecovery: 1
-  speed: 10
+  maxStamina: 10
+  staminaRecovery: 2
+  speed: 5
   sprintMod: 2
   jumpMax: 2
   jumpSpeed: 10
   gravity: 20
-  shootDamage: 0
   shootRate: 0.5
-  shootDistance: 15
   arrow: {fileID: 4707544412447893661, guid: 05a79959495d69145a9b740208f45d3d, type: 3}
 --- !u!143 &7135857837000190061
 CharacterController:
@@ -1037,7 +1003,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -1361,7 +1327,7 @@ Transform:
   m_GameObject: {fileID: 7359711039625084571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
