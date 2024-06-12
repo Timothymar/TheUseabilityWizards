@@ -35,7 +35,7 @@ public class playerContol : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] GameObject arrow;
     bool isShooting;
-    
+
 
     int jumpCount;
     int HPOriginal;
@@ -130,9 +130,12 @@ public class playerContol : MonoBehaviour
     }
     void stopSprinting()
     {
-        speed /= sprintMod;
-        isSprinting = false;
-        StartCoroutine(StaminaRecoverDelay());
+        if (isSprinting)
+        {
+            speed /= sprintMod;
+            isSprinting = false;
+            StartCoroutine(StaminaRecoverDelay());
+        }
     }
 
     IEnumerator shoot()
@@ -159,7 +162,7 @@ public class playerContol : MonoBehaviour
             }
         }
     }
-    
+
     IEnumerator StaminaRecoverDelay()
     {
         staminaRecoveryDelayActive = true;
