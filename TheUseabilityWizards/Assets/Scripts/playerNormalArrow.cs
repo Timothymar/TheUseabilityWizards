@@ -31,7 +31,7 @@ public class playerNormalArrow : MonoBehaviour
         }
         else if (dmg == null)
         {
-            rb.velocity = transform.forward/speed;
+            rb.velocity = Vector3.zero;
             Destroy(gameObject, destroyTime);
         }
     }
