@@ -77,24 +77,24 @@ public class FlyingENemy : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        anim.SetTrigger("Shoot");
+        //anim.SetTrigger("Shoot");
 
         Instantiate(projectile, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
 
-    IEnumerator flashDamage()
-    {
-        Model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        Model.material.color = Color.white;
-    }
+    //IEnumerator flashDamage()
+    //{
+    //    Model.material.color = Color.red;
+    //    yield return new WaitForSeconds(0.1f);
+    //    Model.material.color = Color.white;
+    //}
 
     public void takeDamage(int amount)
     {
         HP -= amount;
-        StartCoroutine(flashDamage());
+       // StartCoroutine(flashDamage());
         enemyAgent.SetDestination(gameManager.instance.player.transform.position);
 
         if (HP <= 0)
