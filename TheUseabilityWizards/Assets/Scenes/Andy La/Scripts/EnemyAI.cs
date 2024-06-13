@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour
             if (agent.remainingDistance < agent.stoppingDistance)
             {
                 faceTarget();
+                StartCoroutine(attack());
             }
         }
     }
@@ -53,12 +54,18 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        isPlayerInRange = true;
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInRange = true;
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        isPlayerInRange = false;
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInRange = false;
+        }
     }
 
     public void takeDamage(int amount)
@@ -73,14 +80,14 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    //IEnumerator attack(int amount)
-    //{
-    //    isAttacking = true;
-    //    animator.SetTrigger("Attack");
+    IEnumerator attack()
+    {
+        isAttacking = true;
+        animator.SetTrigger("Attack");
 
-    //    yield return new WaitForSeconds(attackRate);
-    //    isAttacking = false;
-    //}
+        yield return new WaitForSeconds(attackRate);
+        isAttacking = false;
+    }
 
     IEnumerator flashDamage()
     {
