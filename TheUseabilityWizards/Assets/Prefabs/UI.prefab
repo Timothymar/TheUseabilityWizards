@@ -1678,7 +1678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -45.77234, y: 28.515625}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1648490064796876439
@@ -2996,7 +2996,7 @@ MonoBehaviour:
   menuPause: {fileID: 8955906566876496458}
   menuWin: {fileID: 3501543216091904520}
   menuLose: {fileID: 1940208070671600619}
-  enemyCounter: {fileID: 2696330875873700453}
+  enemyCounter: {fileID: 7130701761207968002}
   playerHP: {fileID: 9013508817856004903}
   playerST: {fileID: 7975025300407313489}
   player: {fileID: 0}
