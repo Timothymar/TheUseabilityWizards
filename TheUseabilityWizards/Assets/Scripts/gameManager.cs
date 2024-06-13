@@ -10,6 +10,10 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
+
+    [SerializeField] TMP_Text enemyCounter;
 
     public Image playerHP;
     public Image playerST;
@@ -17,6 +21,8 @@ public class gameManager : MonoBehaviour
 
     public GameObject player;
     public playerContol playerScript;
+
+    int enemyCount;
 
     public bool isPaused = false;
     // Start is called before the first frame update
@@ -63,4 +69,25 @@ public class gameManager : MonoBehaviour
         menuActive.SetActive(isPaused);
         menuActive = null;
     }
+
+    public void updateGameGoal(int amount)
+    {
+        enemyCount += amount;
+        enemyCounter.text = enemyCount.ToString("F0");
+
+        if (enemyCount <= 0)
+        {
+            statePause();
+            menuActive = menuWin;
+            menuActive.SetActive(isPaused);
+        }
+    }
+
+    public void LoseScreen()
+    {
+        statePause();
+        menuActive = menuLose;
+        menuActive.SetActive(isPaused);
+    }
+
 }
