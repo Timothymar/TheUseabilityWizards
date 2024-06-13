@@ -41,7 +41,10 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
             if (agent.remainingDistance < agent.stoppingDistance)
             {
                 faceTarget();
-                StartCoroutine(attack());
+                if (!isAttacking)
+                {
+                    StartCoroutine(attack());
+                }
             }
         }
     }
