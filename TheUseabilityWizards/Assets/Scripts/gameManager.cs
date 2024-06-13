@@ -74,13 +74,14 @@ public class gameManager : MonoBehaviour
     {
         enemyCount += amount;
         enemyCounter.text = enemyCount.ToString("F0");
+    }
 
-        if (enemyCount <= 0)
-        {
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(isPaused);
-        }
+    public void WinScreen()
+    {
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(isPaused);
+
     }
 
     public void LoseScreen()
