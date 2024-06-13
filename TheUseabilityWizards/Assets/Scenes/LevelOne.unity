@@ -581,7 +581,7 @@ MonoBehaviour:
   animTransitionSpeed: 6
   playerTargetSpeed: 10
   shootRate: 1
-  arrow: {fileID: 4707544412447893661, guid: 05a79959495d69145a9b740208f45d3d, type: 3}
+  arrow: {fileID: 4707544412447893661, guid: 392470ba727ce2a49a6a27b4d4160fc5, type: 3}
 --- !u!195 &103556108
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1771,7 +1771,7 @@ Transform:
   m_GameObject: {fileID: 730199082}
   serializedVersion: 2
   m_LocalRotation: {x: -7.105428e-15, y: -0.00000026822093, z: 1, w: 0.00000013315805}
-  m_LocalPosition: {x: 0.000085, y: -0.002591, z: 0.004162}
+  m_LocalPosition: {x: 0.000085, y: -0.003633693, z: 0.0037985044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
