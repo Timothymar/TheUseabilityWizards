@@ -34,7 +34,7 @@ public class FlyingENemy : MonoBehaviour, IDamage
         playerDirect = gameManager.instance.player.transform.position - transform.position;
 
         float agentSpeed = enemyAgent.velocity.normalized.magnitude;
-        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTransitionSpeed));
+        //anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTransitionSpeed));
 
         if (playerInRange)
         {
