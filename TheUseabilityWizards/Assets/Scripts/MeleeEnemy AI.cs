@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MeleeEnemyAI : MonoBehaviour
+public class MeleeEnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] int HP;
-
     [SerializeField] Animator animator;
+
+    [SerializeField] int HP;
     [SerializeField] int animatorTranSpeed;
     [SerializeField] int faceTargetSpeed;
 
@@ -41,7 +41,7 @@ public class MeleeEnemyAI : MonoBehaviour
             if (agent.remainingDistance < agent.stoppingDistance)
             {
                 faceTarget();
-                StartCoroutine(attack());
+                
             }
         }
     }

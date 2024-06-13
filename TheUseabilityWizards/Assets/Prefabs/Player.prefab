@@ -925,8 +925,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5561365397905173029}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -60, y: 0.25, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -936,7 +936,7 @@ Transform:
   - {fileID: 1513754100423146960}
   - {fileID: 6258074510041636990}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!95 &5386252737243288419
 Animator:
   serializedVersion: 5
@@ -975,12 +975,15 @@ MonoBehaviour:
   maxHP: 10
   Stamina: 0
   maxStamina: 10
-  staminaRecovery: 2
+  staminaRecoveryAmount: 0.025
+  staminaRecoverySpeed: 0.01
+  staminaSprintDegen: 1
+  staminaRecoveryDelay: 5
   speed: 5
   sprintMod: 2
   jumpMax: 2
-  jumpSpeed: 10
-  gravity: 20
+  jumpSpeed: 5
+  gravity: 10
   shootRate: 0.5
   arrow: {fileID: 4707544412447893661, guid: 05a79959495d69145a9b740208f45d3d, type: 3}
 --- !u!143 &7135857837000190061
@@ -1327,7 +1330,7 @@ Transform:
   m_GameObject: {fileID: 7359711039625084571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.25}
+  m_LocalPosition: {x: 0.000000014901161, y: 1.9, z: -0.0000015124679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1364,7 +1367,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0

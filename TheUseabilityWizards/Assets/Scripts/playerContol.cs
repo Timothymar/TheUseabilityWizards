@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class playerContol : MonoBehaviour
+public class playerContol : MonoBehaviour, IDamage
 {
     // Collision
     [SerializeField] CharacterController controller;

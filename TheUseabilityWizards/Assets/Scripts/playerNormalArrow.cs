@@ -24,6 +24,9 @@ public class playerNormalArrow : MonoBehaviour
     {
         IDamage dmg = other.GetComponent<IDamage>();
 
+        if (other.isTrigger)
+            return;
+
         if (dmg != null)
         {
             dmg.takeDamage(damage);
