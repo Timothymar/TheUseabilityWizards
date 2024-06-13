@@ -74,6 +74,10 @@ public class gameManager : MonoBehaviour
     {
         enemyCount += amount;
         enemyCounter.text = enemyCount.ToString("F0");
+        if (enemyCount <= 0)
+        {
+            DestroyWall.instance.DestroyThisWall();
+        }
     }
 
     public void WinScreen()

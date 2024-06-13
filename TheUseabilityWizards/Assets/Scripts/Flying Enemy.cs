@@ -84,17 +84,17 @@ public class FlyingENemy : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    //IEnumerator flashDamage()
-    //{
-    //    Model.material.color = Color.red;
-    //    yield return new WaitForSeconds(0.1f);
-    //    Model.material.color = Color.white;
-    //}
+    IEnumerator flashDamage()
+    {
+        Model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        Model.material.color = Color.white;
+    }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
-       // StartCoroutine(flashDamage());
+        //StartCoroutine(flashDamage());
         enemyAgent.SetDestination(gameManager.instance.player.transform.position);
 
         if (HP <= 0)

@@ -175,10 +175,10 @@ public class playerContol : MonoBehaviour, IDamage
         HP -= amt;
         updatePlayerHeathUI();
 
-        //if (HP <= 0)
-        //{
-        //    gameManager.instance.youLose();
-        //}
+        if (HP <= 0)
+        {
+            gameManager.instance.LoseScreen();
+        }
     }
 
     void updatePlayerHeathUI()
