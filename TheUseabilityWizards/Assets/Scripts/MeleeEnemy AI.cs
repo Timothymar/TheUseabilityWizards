@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class MeleeEnemyAI : MonoBehaviour
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameManager.instance.updateGameGoal(1);
+        gameManager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -75,7 +75,7 @@ public class EnemyAI : MonoBehaviour
 
         if (HP <= 0)
         {
-            //gameManager.instance.updateGameGoals(-1);
+            gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
     }
