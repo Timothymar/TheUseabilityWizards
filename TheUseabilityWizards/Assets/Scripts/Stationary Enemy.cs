@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StationaryEnemy : MonoBehaviour
+public class StationaryEnemy : MonoBehaviour, IDamage
 {
 
     [SerializeField] Renderer Model;
