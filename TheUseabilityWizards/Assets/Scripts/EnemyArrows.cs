@@ -17,7 +17,7 @@ public class EnemyArrows : MonoBehaviour
         Destroy(gameObject, destroyTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.isTrigger)
         {
@@ -25,13 +25,12 @@ public class EnemyArrows : MonoBehaviour
         }
 
         IDamage dmg = other.GetComponent<IDamage>();
+
         if (dmg != null)
         {
             dmg.takeDamage(damage);
         }
-
         Destroy(gameObject);
-
     }
 
 }
