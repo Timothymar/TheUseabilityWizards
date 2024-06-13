@@ -25,7 +25,7 @@ public class StationaryEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //update game goal code here
+        gameManager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -93,8 +93,7 @@ public class StationaryEnemy : MonoBehaviour
 
         if(HP <= 0)
         {
-            //game goal update here
-
+            gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
 
