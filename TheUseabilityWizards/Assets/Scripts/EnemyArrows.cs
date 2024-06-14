@@ -10,10 +10,12 @@ public class EnemyArrows : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
 
+    Vector3 directionTowardsPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        arrowbody.velocity = transform.forward * speed;
+        directionTowardsPlayer = (gameManager.instance.player.transform.position - transform.position).normalized;
+        arrowbody.velocity = directionTowardsPlayer * speed;
         Destroy(gameObject, destroyTime);
     }
 
