@@ -24,7 +24,5 @@ public class DeathZone : MonoBehaviour
         {
             dmg.takeDamage(damage);
         }
-        Destroy(gameObject);
-
     }
 }
