@@ -142,6 +142,7 @@ public class playerContol : MonoBehaviour, IDamage
     {
 
         isShooting = true;
+        gameManager.instance.updateArrowCount(-1);
 
         Instantiate(arrow, Camera.main.transform.position, Camera.main.transform.rotation);
 

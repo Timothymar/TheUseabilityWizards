@@ -15,6 +15,11 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] TMP_Text enemyCounter;
 
+    // Arrow supply
+    [SerializeField] TMP_Text arrowSupply;
+    [SerializeField] TMP_Text arrowMaxCount;
+    [SerializeField] int arrowMax;
+
     public Image playerHP;
     public Image playerST;
     // ^ Normally serialized, will fix these later. This is also my reminder to do that.
@@ -23,6 +28,7 @@ public class gameManager : MonoBehaviour
     public playerContol playerScript;
 
     int enemyCount;
+    int arrowCount;
 
     public bool isPaused = false;
     // Start is called before the first frame update
@@ -31,6 +37,8 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerContol>();
+        arrowMaxCount.text = arrowMax.ToString("F0");
+        updateArrowCount(arrowMax);
     }
 
     // Update is called once per frame
@@ -78,6 +86,12 @@ public class gameManager : MonoBehaviour
         {
             DestroyWall.instance.DestroyThisWall();
         }
+    }
+
+    public void updateArrowCount(int amount)
+    {
+        arrowCount += amount;
+        arrowSupply.text = arrowCount.ToString("F0");
     }
 
     public void WinScreen()
