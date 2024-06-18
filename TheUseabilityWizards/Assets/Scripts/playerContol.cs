@@ -36,6 +36,13 @@ public class playerContol : MonoBehaviour, IDamage
     [SerializeField] GameObject arrow;
     bool isShooting;
 
+    // Arrow Count
+    [SerializeField] int arrowsToShoot;
+    [SerializeField] int arrowsShootMax;
+    [SerializeField] int arrowsQuiver;
+    [SerializeField] int arrowsQuiverMax;
+    [SerializeField] float reloadArrowsSpeed;
+
 
     int jumpCount;
     int HPOriginal;
@@ -68,10 +75,15 @@ public class playerContol : MonoBehaviour, IDamage
         Sprint();
 
         // Fire controls
-        if (Input.GetButton("Fire1") && !isShooting && Stamina > 0)
+        if (Input.GetButton("Fire1") && !isShooting && Stamina > 0 && !gameManager.instance.isPaused)
         {
             StartCoroutine(shoot());
             StartCoroutine(StaminaRecoverDelay());
+        }
+
+        if (Input.GetButtonDown("Reload"))
+        {
+            ReloadArrows();
         }
 
         if (isSprinting)
@@ -140,14 +152,17 @@ public class playerContol : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
+        if (arrowsToShoot > 0)
+        {
+            isShooting = true;
+            arrowsToShoot--;
+            updateArrowCountUI();
 
-        isShooting = true;
-        gameManager.instance.updateArrowCount(-1);
+            Instantiate(arrow, Camera.main.transform.position, Camera.main.transform.rotation);
 
-        Instantiate(arrow, Camera.main.transform.position, Camera.main.transform.rotation);
-
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
     }
 
     IEnumerator RecoverStamina()
@@ -189,5 +204,44 @@ public class playerContol : MonoBehaviour, IDamage
     void updatePlayerStaminaUI()
     {
         gameManager.instance.playerST.fillAmount = (float)Stamina / maxStamina;
+    }
+    void ArrowsPickUP()
+    { }
+    void ReloadArrows()
+    {
+        StartCoroutine(ReloadArrowsCoroutine());
+    }
+
+    IEnumerator ReloadArrowsCoroutine()
+    {
+        while (arrowsToShoot < arrowsShootMax && arrowsQuiver > 0)
+        {
+            arrowsToShoot++;
+            arrowsQuiver--;
+            updateArrowCountUI();
+            updateQuiverCountUI();
+            yield return new WaitForSeconds(reloadArrowsSpeed);
+        }
+        
+    }
+
+    public int GetArrowsToShoot()
+    {
+        return arrowsToShoot;
+    }
+
+    public int GetArrowsQuiver()
+    {
+        return arrowsQuiver;
+    }
+
+    void updateArrowCountUI()
+    {
+        gameManager.instance.updateArrowCount(arrowsToShoot);
+    }
+
+    void updateQuiverCountUI()
+    {
+        gameManager.instance.updateQuiverCount(arrowsQuiver);
     }
 }

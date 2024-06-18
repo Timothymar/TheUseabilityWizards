@@ -17,8 +17,8 @@ public class gameManager : MonoBehaviour
 
     // Arrow supply
     [SerializeField] TMP_Text arrowSupply;
-    [SerializeField] TMP_Text arrowMaxCount;
-    [SerializeField] int arrowMax;
+    [SerializeField] TMP_Text arrowInQuiver;
+    
 
     public Image playerHP;
     public Image playerST;
@@ -37,8 +37,9 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerContol>();
-        arrowMaxCount.text = arrowMax.ToString("F0");
-        updateArrowCount(arrowMax);
+
+        updateArrowCount(playerScript.GetArrowsToShoot());
+        updateQuiverCount(playerScript.GetArrowsQuiver());
     }
 
     // Update is called once per frame
@@ -88,10 +89,16 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void updateArrowCount(int amount)
+    public void updateArrowCount(int arrowCount)
     {
-        arrowCount += amount;
+        arrowCount = playerScript.GetArrowsToShoot();
         arrowSupply.text = arrowCount.ToString("F0");
+    }
+
+    public void updateQuiverCount(int quiverCount)
+    {
+        quiverCount = playerScript.GetArrowsQuiver();
+        arrowInQuiver.text = quiverCount.ToString("F0");
     }
 
     public void WinScreen()
