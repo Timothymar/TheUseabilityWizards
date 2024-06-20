@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5087955572907560268}
   - component: {fileID: 3203154418435727780}
   - component: {fileID: -5118089052845241424}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VenomProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

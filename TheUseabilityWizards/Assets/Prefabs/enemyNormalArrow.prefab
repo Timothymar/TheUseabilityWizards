@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3781207074044905558}
   - component: {fileID: 509424848306393351}
   - component: {fileID: 5981544083215573176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: enemyNormalArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,6 @@ MonoBehaviour:
   damage: 1
   speed: 15
   destroyTime: 3
-  heightHelp: 0.5
 --- !u!96 &5981544083215573176
 TrailRenderer:
   serializedVersion: 3
