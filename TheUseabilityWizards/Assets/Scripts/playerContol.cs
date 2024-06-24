@@ -46,6 +46,7 @@ public class playerContol : MonoBehaviour, IDamage
 
     int jumpCount;
     int HPOriginal;
+    potions potion;
 
     Vector3 moveDirection;
     Vector3 playerVelocity;
@@ -244,4 +245,43 @@ public class playerContol : MonoBehaviour, IDamage
     {
         gameManager.instance.updateQuiverCount(arrowsQuiver);
     }
+
+    public int getPotionType()
+    {
+        return potion.potionType;
+    }
+    public int getCurHP()
+    {
+        return HP;
+    }
+    public int getMaxHP()
+    {
+        return maxHP;
+    }
+    public int getCurStamina()
+    {
+        return (int)Stamina;
+    }
+    public int getMaxStamina()
+    {
+        return (int)maxStamina;
+    }
+
+    //public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
+    //{
+    //    type = potion.potionType;
+    //    if(type == 1 && HP != maxHP)
+    //    {
+    //        HP = (int)(HP + (maxHP * potion.fillAmt));
+    //        return HP;
+    //    }
+    //    else if(type == 2 && Stamina != maxStamina)
+    //    {
+    //        Stamina = (int)(Stamina + (maxStamina * potion.fillAmt));
+    //        return (int)Stamina;
+    //    }
+    //    return 0;
+    //}
+    
+
 }
