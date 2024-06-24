@@ -79,6 +79,11 @@ public class MageEnemyAI : MonoBehaviour
         isCasting = false;
     }
 
+    public void createFireBall()
+    {
+        Instantiate(fireBall, CastPos.position, transform.rotation);
+    }
+
     public void takeDamage(int amount)
     {
         HP -= amount;
