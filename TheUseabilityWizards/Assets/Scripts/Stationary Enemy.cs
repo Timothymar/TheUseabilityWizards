@@ -10,15 +10,21 @@ public class StationaryEnemy : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent enemyAgent;
     [SerializeField] Animator anim;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
 
     [SerializeField] int HP;
     [SerializeField] int animTransitionSpeed;
     [SerializeField] int playerTargetSpeed;
+    [SerializeField] int viewAngle;
 
     bool isShooting;
     bool playerInRange;
 
+    Vector3 playerDirec;
+    float angleToPlayer;
+
     [SerializeField] float shootRate;
+    [SerializeField] int shootAngle;
     [SerializeField] GameObject arrow;
 
     Vector3 playerDirect;
@@ -44,6 +50,30 @@ public class StationaryEnemy : MonoBehaviour, IDamage
             }
         }
     }
+
+    bool canSeePlayer()
+    {
+        playerDirec = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDirec.x, playerDirec.y + 1, playerDirec.z), transform.forward);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDirec, out hit))
+        {
+            if(hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                //stationary enemy will just shooot
+                faceTarget();
+
+                if(!isShooting && angleToPlayer <= shootAngle)
+                {
+                    StartCoroutine(shoot());
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     void faceTarget()
     {
