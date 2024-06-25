@@ -2866,6 +2866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster_Bat_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1625221395402176, guid: c9951ca0f61167b4593ffe21b0a089c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4085869397129016, guid: c9951ca0f61167b4593ffe21b0a089c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.25
@@ -3577,6 +3581,37 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &1357231214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357231215}
+  m_Layer: 0
+  m_Name: Head Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357231215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357231214}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0.00006, y: -0.00165, z: 0.0049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1514648742}
+  m_LocalEulerAnglesHint: {x: 180, y: 90, z: 0}
 --- !u!1001 &1380010860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3720,6 +3755,10 @@ PrefabInstance:
     - target: {fileID: 5561365397905173029, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5561365397905173029, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7135857837000190061, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: m_Radius
@@ -3971,6 +4010,11 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!4 &1514648742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4824465534449853296, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
+  m_PrefabInstance: {fileID: 6123172851505951410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1557037430 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6969229571171539449, guid: 4084869b85198d34196d039adf4ed1ae, type: 3}
@@ -4623,6 +4667,10 @@ PrefabInstance:
     - target: {fileID: 8241822001215629623, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
       propertyPath: m_Name
       value: MeleeGoblinEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241822001215629623, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8394526254146449519, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6229,9 +6277,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1965661977945561596, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
+      propertyPath: m_Radius
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596035838444680644, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
+      propertyPath: headPos
+      value: 
+      objectReference: {fileID: 1357231215}
+    - target: {fileID: 3596035838444680644, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
+      propertyPath: viewAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596035838444680644, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
+      propertyPath: shootAngle
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4498291592632118759, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
       propertyPath: m_Name
       value: Goblin Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498291592632118759, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4728362055893985503, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6275,7 +6343,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4824465534449853296, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1357231215}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786aec2e8754b0a448383b7ce891c822, type: 3}
 --- !u!1001 &8214507755217700619

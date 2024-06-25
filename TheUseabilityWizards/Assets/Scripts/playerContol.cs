@@ -52,6 +52,7 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
 
     int jumpCount;
     int HPOriginal;
+    potions potion;
 
     Vector3 moveDirection;
     Vector3 playerVelocity;
@@ -251,30 +252,42 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
         gameManager.instance.updateQuiverCount(arrowsQuiver);
     }
 
-    public void applyBurnDamage(int damage, float duration, float interval)
+    public int getPotionType()
     {
-        fireballHits += 1;
-
-        // Start Burning if the player was hit enough times with fireball
-        if(fireballHits >= burningThreshold && !isBurning)
-        {
-            StartCoroutine(applyBurnDamageOverTime(damage, duration, interval));
-        }
+        return potion.potionType;
+    }
+    public int getCurHP()
+    {
+        return HP;
+    }
+    public int getMaxHP()
+    {
+        return maxHP;
+    }
+    public int getCurStamina()
+    {
+        return (int)Stamina;
+    }
+    public int getMaxStamina()
+    {
+        return (int)maxStamina;
     }
 
-    private IEnumerator applyBurnDamageOverTime(int damage, float duration, float interval)
-    {
-        isBurning = true;
-        float timeElapsed = 0f;
+    //public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
+    //{
+    //    type = potion.potionType;
+    //    if(type == 1 && HP != maxHP)
+    //    {
+    //        HP = (int)(HP + (maxHP * potion.fillAmt));
+    //        return HP;
+    //    }
+    //    else if(type == 2 && Stamina != maxStamina)
+    //    {
+    //        Stamina = (int)(Stamina + (maxStamina * potion.fillAmt));
+    //        return (int)Stamina;
+    //    }
+    //    return 0;
+    //}
+    
 
-        while (timeElapsed < duration)
-        {
-            takeDamage(damage);
-            timeElapsed += interval;
-            yield return new WaitForSeconds(interval);
-        }
-
-        isBurning = false;
-        fireballHits = 0; // Reset fireball hits after burning ends
-    }
 }

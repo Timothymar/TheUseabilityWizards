@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
 
     int enemyCount;
     int arrowCount;
+    potions potionPickup;
 
     public bool isPaused = false;
     // Start is called before the first frame update
@@ -99,6 +100,41 @@ public class gameManager : MonoBehaviour
     {
         quiverCount = playerScript.GetArrowsQuiver();
         arrowInQuiver.text = quiverCount.ToString("F0");
+    }
+
+    //public void updateStatBars(int type)
+    //{
+    //    int current;
+    //    current = playerScript.getStatBarCurrent(type);
+
+    //    if (current == )
+    //}
+
+
+    public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
+    {
+        type = gameManager.instance.playerScript.getPotionType();
+        if (type == 1)
+        {
+            int curHP = gameManager.instance.playerScript.getCurHP();
+            int maxHP = gameManager.instance.playerScript.getMaxHP();
+            if (curHP != maxHP)
+            {
+                curHP = (int)(curHP + (maxHP * potionPickup.fillAmt));
+                return curHP;
+            }
+        }
+        else if (type == 2)
+        {
+            int curStam = gameManager.instance.playerScript.getCurStamina();
+            int maxStam = gameManager.instance.playerScript.getMaxStamina();
+            if (curStam != maxStam)
+            {
+                curStam = (int)(curStam + (maxStam * potionPickup.fillAmt));
+                return curStam;
+            }
+        }
+        return 0;
     }
 
     public void WinScreen()
