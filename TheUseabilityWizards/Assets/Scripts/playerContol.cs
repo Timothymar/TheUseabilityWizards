@@ -61,7 +61,7 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
     void Start()
     {
         // Sets stamina and health and has a recovery for stamina
-        HP = maxHP;
+        //HP = maxHP;
         Stamina = maxStamina;
         StartCoroutine(RecoverStamina());
         updatePlayerHeathUI();
@@ -278,7 +278,7 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
         isBurning = false;
         fireballHits = 0; // Reset fireball hits after burning ends
     }
-    public int getPotionType()
+    public int getPotionType(potions type)
     {
         return potion.potionType;
     }
