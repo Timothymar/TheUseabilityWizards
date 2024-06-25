@@ -252,6 +252,32 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
         gameManager.instance.updateQuiverCount(arrowsQuiver);
     }
 
+    public void applyBurnDamage(int damage, float duration, float interval)
+    {
+        fireballHits += 1;
+
+        // Start Burning if the player was hit enough times with fireball
+        if (fireballHits >= burningThreshold && !isBurning)
+        {
+            StartCoroutine(applyBurnDamageOverTime(damage, duration, interval));
+        }
+    }
+
+    private IEnumerator applyBurnDamageOverTime(int damage, float duration, float interval)
+    {
+        isBurning = true;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < duration)
+        {
+            takeDamage(damage);
+            timeElapsed += interval;
+            yield return new WaitForSeconds(interval);
+        }
+
+        isBurning = false;
+        fireballHits = 0; // Reset fireball hits after burning ends
+    }
     public int getPotionType()
     {
         return potion.potionType;
@@ -288,6 +314,4 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
     //    }
     //    return 0;
     //}
-    
-
 }
