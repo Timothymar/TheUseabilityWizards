@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class playerContol : MonoBehaviour, IDamage
+public class playerContol : MonoBehaviour, IDamage , IBurnDamage
 {
     // Collision
     [SerializeField] CharacterController controller;
@@ -43,6 +43,12 @@ public class playerContol : MonoBehaviour, IDamage
     [SerializeField] int arrowsQuiverMax;
     [SerializeField] float reloadArrowsSpeed;
 
+    [SerializeField] private float burnDuration;
+    [SerializeField] private float burnInterval;
+    [SerializeField] private int burnDamage;
+    [SerializeField] private int fireballHits;
+    [SerializeField] private int burningThreshold;
+    private bool isBurning = false;
 
     int jumpCount;
     int HPOriginal;
@@ -243,5 +249,32 @@ public class playerContol : MonoBehaviour, IDamage
     void updateQuiverCountUI()
     {
         gameManager.instance.updateQuiverCount(arrowsQuiver);
+    }
+
+    public void applyBurnDamage(int damage, float duration, float interval)
+    {
+        fireballHits += 1;
+
+        // Start Burning if the player was hit enough times with fireball
+        if(fireballHits >= burningThreshold && !isBurning)
+        {
+            StartCoroutine(applyBurnDamageOverTime(damage, duration, interval));
+        }
+    }
+
+    private IEnumerator applyBurnDamageOverTime(int damage, float duration, float interval)
+    {
+        isBurning = true;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < duration)
+        {
+            takeDamage(damage);
+            timeElapsed += interval;
+            yield return new WaitForSeconds(interval);
+        }
+
+        isBurning = false;
+        fireballHits = 0; // Reset fireball hits after burning ends
     }
 }

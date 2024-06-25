@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] int hitDamage;
+    [SerializeField] int burningDamage;
+    [SerializeField] float burnDuration;
+    [SerializeField] float burnInterval;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            IDamage damageable = other.GetComponent<IDamage>();
+            IBurnDamage burnable = other.GetComponent<IBurnDamage>();
+            if (damageable != null)
+            {
+                damageable.takeDamage(hitDamage); // Inital hit damage
+            }
+            if (burnable != null)
+            {
+                // Apply Burn Damage
+                burnable.applyBurnDamage(burningDamage, burnDuration, burnInterval);
+            }
+
+            // Destroy the fireball after hitting the player
+            Destroy(gameObject);
+        }
     }
 }
