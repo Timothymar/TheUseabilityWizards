@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     [SerializeField] GameObject menuActive;
+    [SerializeField] GameObject menuTitle;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -41,6 +42,7 @@ public class gameManager : MonoBehaviour
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
+        //TitleScreen();
     }
 
     // Update is called once per frame
@@ -102,15 +104,6 @@ public class gameManager : MonoBehaviour
         arrowInQuiver.text = quiverCount.ToString("F0");
     }
 
-    //public void updateStatBars(int type)
-    //{
-    //    int current;
-    //    current = playerScript.getStatBarCurrent(type);
-
-    //    if (current == )
-    //}
-
-
     public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
     {
         type = gameManager.instance.playerScript.getPotionType(potionPickup);
@@ -136,6 +129,13 @@ public class gameManager : MonoBehaviour
             }
         }
         return 0;
+    }
+
+    public void TitleScreen()
+    {
+        statePause();
+        menuActive = menuTitle;
+        menuActive.SetActive(isPaused);
     }
 
     public void WinScreen()

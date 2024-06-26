@@ -16,7 +16,6 @@ public class pickupItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))         // Doing this as an interface is a better way to do this.
         {
-            gameManager.instance.playerScript.getPotionType(item);
             gameManager.instance.potionUsed(item.potionType);
             
             Destroy(gameObject);
