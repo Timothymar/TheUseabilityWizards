@@ -37,24 +37,27 @@ public class StationaryEnemy : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        playerDirect = gameManager.instance.player.transform.position - transform.position;
+        playerDirec = gameManager.instance.player.transform.position - transform.position;
+        faceTarget();
 
-        if (playerInRange)
+        if (playerInRange && !canSeePlayer() && !isShooting)
         {
-
-            faceTarget();
-
-            if (!isShooting)
-            {
-                StartCoroutine(shoot());
-            }
+            
+            StartCoroutine(shoot());
         }
+        
+        
     }
 
     bool canSeePlayer()
     {
         playerDirec = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirec.x, playerDirec.y + 1, playerDirec.z), transform.forward);
+
+        Debug.Log(angleToPlayer);
+
+        Debug.DrawRay(headPos.position, new Vector3(playerDirec.x, playerDirec.y + 1, playerDirec.z));
+
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDirec, out hit))
@@ -92,7 +95,7 @@ public class StationaryEnemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
+            playerInRange = false;
         }
     }
 

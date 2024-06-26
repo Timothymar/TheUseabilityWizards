@@ -64,7 +64,7 @@ public class FlyingENemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
+            playerInRange = false;
         }
     }
 
