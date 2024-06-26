@@ -13,19 +13,30 @@ public class FlyingENemy : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int animTransitionSpeed;
     [SerializeField] int playerTargetSpeed;
+    [SerializeField] int viewAngle;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamTimer;
 
     [SerializeField] float shootRate;
+    [SerializeField] float shootAngle;
     [SerializeField] GameObject projectile;
 
     bool isShooting;
     bool playerInRange;
+    bool destChosen;
+
     Vector3 playerDirect;
+    Vector3 startingPos;
+
+    float angleToPlayer;
+    float stopDistOrig;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager.instance.updateGameGoal(1);
-
+        startingPos = transform.position;
+        stopDistOrig = enemyAgent.stoppingDistance;
     }
 
     // Update is called once per frame
@@ -36,21 +47,73 @@ public class FlyingENemy : MonoBehaviour, IDamage
         float agentSpeed = enemyAgent.velocity.normalized.magnitude;
         //anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTransitionSpeed));
 
-        if (playerInRange)
+        if(playerInRange && !canSeePlayer())
         {
-            enemyAgent.SetDestination(gameManager.instance.player.transform.position);
-
-            if(enemyAgent.remainingDistance < enemyAgent.stoppingDistance)
-            {
-                faceTarget();
-            }
-
-            if (!isShooting)
-            {
-                StartCoroutine(shoot());
-            }
+            StartCoroutine(roam());
+        }
+        else if (!playerInRange)
+        {
+            StartCoroutine(roam());
         }
     }
+
+    IEnumerator roam()
+    {
+        if (!destChosen && enemyAgent.remainingDistance < 0.05f)
+        {
+            destChosen = true;
+            yield return new WaitForSeconds(roamTimer);
+
+            enemyAgent.stoppingDistance = 0;
+
+            Vector3 randomPos = Random.insideUnitSphere * roamDist;
+            randomPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
+            enemyAgent.SetDestination(hit.position);
+
+            destChosen = false;
+        }
+    }
+
+    bool canSeePlayer()
+    {
+        playerDirect = gameManager.instance.player.transform.position - shootPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z), transform.forward);
+
+        //see the angle
+        Debug.Log(angleToPlayer);
+
+        Debug.DrawRay(shootPos.position, new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z));
+
+        RaycastHit hit;
+        if (Physics.Raycast(shootPos.position, playerDirect, out hit))
+        {
+            //if can see player
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                enemyAgent.stoppingDistance = stopDistOrig;
+                enemyAgent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (enemyAgent.remainingDistance < enemyAgent.stoppingDistance)
+                {
+                    faceTarget();
+                }
+
+                if (!isShooting && angleToPlayer <= shootAngle)
+                {
+                    StartCoroutine(shoot());
+                }
+
+                return true;
+            }
+        }
+
+        enemyAgent.stoppingDistance = 0;
+        return false;
+    }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -64,7 +127,7 @@ public class FlyingENemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
+            playerInRange = false;
         }
     }
 
