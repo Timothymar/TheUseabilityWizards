@@ -18,7 +18,7 @@ public class pickupItem : MonoBehaviour
         {
             gameManager.instance.playerScript.getPotionType(item);
             gameManager.instance.potionUsed(item.potionType);
-            //gameManager.instance.playerScript.;            // Cheaper to use than 'get component' which is pricey memory wise
+            
             Destroy(gameObject);
         }
     }

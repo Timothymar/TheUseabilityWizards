@@ -113,6 +113,8 @@ public class gameManager : MonoBehaviour
 
     public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
     {
+        type = gameManager.instance.playerScript.getPotionType(potionPickup);
+
         if (type == 1)
         {
             int curHP = gameManager.instance.playerScript.getCurHP();
