@@ -20,7 +20,7 @@ public class StationaryEnemy : MonoBehaviour, IDamage
     bool isShooting;
     bool playerInRange;
 
-    Vector3 playerDirec;
+    
     float angleToPlayer;
 
     [SerializeField] float shootRate;
@@ -37,12 +37,11 @@ public class StationaryEnemy : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        playerDirec = gameManager.instance.player.transform.position - transform.position;
-        faceTarget();
+        playerDirect = gameManager.instance.player.transform.position - transform.position;
+        
 
         if (playerInRange && !canSeePlayer() && !isShooting)
         {
-            
             StartCoroutine(shoot());
         }
         
@@ -51,16 +50,16 @@ public class StationaryEnemy : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
-        playerDirec = gameManager.instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDirec.x, playerDirec.y + 1, playerDirec.z), transform.forward);
+        playerDirect = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z), transform.forward);
 
         Debug.Log(angleToPlayer);
 
-        Debug.DrawRay(headPos.position, new Vector3(playerDirec.x, playerDirec.y + 1, playerDirec.z));
+        Debug.DrawRay(headPos.position, new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z));
 
 
         RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDirec, out hit))
+        if (Physics.Raycast(headPos.position, playerDirect, out hit))
         {
             if(hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {

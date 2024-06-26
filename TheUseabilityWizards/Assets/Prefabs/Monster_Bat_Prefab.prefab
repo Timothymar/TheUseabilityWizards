@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 8461568492244320385}
   - component: {fileID: 5282083425850299946}
   - component: {fileID: 5080177282155602507}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Monster_Bat_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,14 +203,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7957b6c1d0ec84c9e4d295facc8b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 13700000, guid: bcf471273cc460644bee464d85b13464, type: 3}
+  Model: {fileID: 13700000, guid: 389bf68e76b0b4a46a72c2d48aa1b9da, type: 3}
   enemyAgent: {fileID: 3398137720573451537}
   anim: {fileID: 8461568492244320385}
   shootPos: {fileID: 874491555850325018}
   HP: 3
   animTransitionSpeed: 8
   playerTargetSpeed: 10
+  viewAngle: 45
+  roamDist: 15
+  roamTimer: 5
   shootRate: 3
+  shootAngle: 45
   projectile: {fileID: 1055461039258938437, guid: 5e3b7249c99b4624e99830c09955e191, type: 3}
 --- !u!195 &3398137720573451537
 NavMeshAgent:
