@@ -207,7 +207,7 @@ MonoBehaviour:
   enemyAgent: {fileID: 3398137720573451537}
   anim: {fileID: 8461568492244320385}
   shootPos: {fileID: 874491555850325018}
-  HP: 3
+  HP: 1
   animTransitionSpeed: 8
   playerTargetSpeed: 10
   viewAngle: 75

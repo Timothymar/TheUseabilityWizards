@@ -1443,9 +1443,9 @@ MonoBehaviour:
   HP: 5
   animTransitionSpeed: 6
   playerTargetSpeed: 10
-  viewAngle: 60
+  viewAngle: 75
   shootRate: 1
-  shootAngle: 60
+  shootAngle: 75
   arrow: {fileID: 4707544412447893661, guid: 392470ba727ce2a49a6a27b4d4160fc5, type: 3}
 --- !u!95 &7717891434975400242
 Animator:
@@ -1510,7 +1510,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &3184122085800386518
 NavMeshAgent:
