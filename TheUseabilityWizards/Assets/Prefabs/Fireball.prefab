@@ -14311,7 +14311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1f0c2e022307d4d9cafaff88e17b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDamage: 0
-  burningDamage: 0
-  burnDuration: 0
-  burnInterval: 0
+  hitDamage: 1
+  burningDamage: 2
+  burnDuration: 6
+  burnInterval: 1
