@@ -100,7 +100,7 @@ public class FlyingENemy : MonoBehaviour, IDamage
                 {
                     faceTarget();
                 }
-
+                
                 if (!isShooting && angleToPlayer <= shootAngle)
                 {
                     StartCoroutine(shoot());

@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 8694898166749089428}
   - component: {fileID: 1965661977945561596}
   - component: {fileID: 3184122085800386518}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Goblin Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,10 +1439,13 @@ MonoBehaviour:
   enemyAgent: {fileID: 3184122085800386518}
   anim: {fileID: 7717891434975400242}
   shootPos: {fileID: 276564602841194508}
+  headPos: {fileID: 7007200512145130603}
   HP: 5
   animTransitionSpeed: 6
   playerTargetSpeed: 10
+  viewAngle: 60
   shootRate: 1
+  shootAngle: 60
   arrow: {fileID: 4707544412447893661, guid: 392470ba727ce2a49a6a27b4d4160fc5, type: 3}
 --- !u!95 &7717891434975400242
 Animator:

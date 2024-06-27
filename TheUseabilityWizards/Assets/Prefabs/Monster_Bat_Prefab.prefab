@@ -182,7 +182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625221395402176}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029802318}
+  m_LocalRotation: {x: -0, y: -1, z: 0, w: -0.0000001872535}
   m_LocalPosition: {x: -60.05, y: 1.16, z: 3.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -210,11 +210,11 @@ MonoBehaviour:
   HP: 3
   animTransitionSpeed: 8
   playerTargetSpeed: 10
-  viewAngle: 45
+  viewAngle: 75
   roamDist: 15
   roamTimer: 5
   shootRate: 3
-  shootAngle: 45
+  shootAngle: 75
   projectile: {fileID: 1055461039258938437, guid: 5e3b7249c99b4624e99830c09955e191, type: 3}
 --- !u!195 &3398137720573451537
 NavMeshAgent:
@@ -225,7 +225,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1625221395402176}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.5
+  m_Radius: 0.1
   m_Speed: 3
   m_Acceleration: 30
   avoidancePriority: 50
@@ -235,7 +235,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!95 &8461568492244320385

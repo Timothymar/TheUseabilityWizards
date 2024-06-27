@@ -38,14 +38,12 @@ public class StationaryEnemy : MonoBehaviour, IDamage
     void Update()
     {
         playerDirect = gameManager.instance.player.transform.position - transform.position;
-        
 
-        if (playerInRange && !canSeePlayer() && !isShooting)
+        
+        if (playerInRange && canSeePlayer())
         {
-            StartCoroutine(shoot());
+            faceTarget();
         }
-        
-        
     }
 
     bool canSeePlayer()
@@ -63,16 +61,18 @@ public class StationaryEnemy : MonoBehaviour, IDamage
         {
             if(hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
-                //stationary enemy will just shooot
                 faceTarget();
 
-                if(!isShooting && angleToPlayer <= shootAngle)
+
+                if (!isShooting && angleToPlayer <= shootAngle)
                 {
                     StartCoroutine(shoot());
                 }
                 return true;
             }
         }
+
+        enemyAgent.stoppingDistance = 0;
         return false;
     }
 

@@ -910,7 +910,8 @@ GameObject:
   - component: {fileID: 5386252737243288419}
   - component: {fileID: 3213259404343170847}
   - component: {fileID: 7135857837000190061}
-  m_Layer: 0
+  - component: {fileID: 2499737607142073631}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -979,6 +980,7 @@ MonoBehaviour:
   staminaRecoverySpeed: 0.01
   staminaSprintDegen: 1
   staminaRecoveryDelay: 5
+  potionsHeld: 0
   speed: 5
   sprintMod: 2
   jumpMax: 2
@@ -986,6 +988,16 @@ MonoBehaviour:
   gravity: 10
   shootRate: 0.5
   arrow: {fileID: 4707544412447893661, guid: 05a79959495d69145a9b740208f45d3d, type: 3}
+  arrowsToShoot: 0
+  arrowsShootMax: 0
+  arrowsQuiver: 0
+  arrowsQuiverMax: 0
+  reloadArrowsSpeed: 0
+  burnDuration: 0
+  burnInterval: 0
+  burnDamage: 0
+  fireballHits: 0
+  burningThreshold: 0
 --- !u!143 &7135857837000190061
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1006,12 +1018,35 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.15
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!136 &2499737607142073631
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5561365397905173029}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5768546691414407151
 GameObject:
   m_ObjectHideFlags: 0
