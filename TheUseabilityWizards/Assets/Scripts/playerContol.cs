@@ -38,15 +38,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
-
-    // Shoot mech
-    [Header("----- Shooting -----")]
-    [SerializeField] float shootRate;
-    [SerializeField] GameObject arrow;
-    bool isShooting;
-
-    // Arrow Count
-    [Header("----- Arrow -----")]
+    
+    [Header("----- Weapon -----")]
     [SerializeField] List<weaponStats> weaponList = new List<weaponStats>();
     [SerializeField] GameObject weaponModel;
     [SerializeField] int arrowsToShoot;
@@ -54,6 +47,9 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [SerializeField] int arrowsQuiver;
     [SerializeField] int arrowsQuiverMax;
     [SerializeField] float reloadArrowsSpeed;
+    [SerializeField] float shootRate;
+    [SerializeField] GameObject arrow;
+
 
     [Header("----- Burn Damage -----")]
     [SerializeField] private float burnDuration;
@@ -62,6 +58,9 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [SerializeField] private int fireballHits;
     [SerializeField] private int burningThreshold;
     private bool isBurning = false;
+
+
+    bool isShooting;
 
     int jumpCount;
     int HPOriginal;
@@ -90,14 +89,14 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     // Update is called once per frame
     void Update()
     {
-        
+
         if (!gameManager.instance.isPaused)
         {
             // Line for people to check while they shoot
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 15, Color.blue);
 
             Movement();
-            if (Input.GetButton("Fire1") && !isShooting && Stamina > 0 && weaponList.Count > 0 && weaponList[selectedWeapon].arrowsToShoot > 0)
+            if (Input.GetButton("Fire1") && !isShooting && Stamina > 0 && weaponList.Count > 0 && arrowsToShoot > 0)
             {
                 StartCoroutine(shoot());
                 StartCoroutine(StaminaRecoverDelay());
@@ -118,6 +117,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
                 }
                 updatePlayerStaminaUI();
             }
+
+            selectWeapon();
         }
         Sprint();
         updatePotionCountUI();
@@ -179,11 +180,10 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     {
         isShooting = true;
 
-        weaponList[selectedWeapon].arrowsToShoot--;
-        //isShooting = true;
-        //arrowsToShoot--;
+        arrowsToShoot--;
+        
         updateArrowCountUI();
-
+        updateBoltData();
         Instantiate(weaponList[selectedWeapon].arrowType, Camera.main.transform.position, Camera.main.transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
@@ -242,11 +242,12 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     {
         while (arrowsToShoot < arrowsShootMax && arrowsQuiver > 0)
         {
-            weaponList[selectedWeapon].arrowsToShoot++;
-            weaponList[selectedWeapon].arrowsQuiver--;
+            arrowsToShoot++;
+            arrowsQuiver--;
             updateArrowCountUI();
             updateQuiverCountUI();
-            yield return new WaitForSeconds(weaponList[selectedWeapon].reloadSpeed);
+            updateBoltData();
+            yield return new WaitForSeconds(reloadArrowsSpeed);
         }
 
     }
@@ -256,11 +257,15 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         weaponList.Add(weapon);
         selectedWeapon = weaponList.Count - 1;
 
-        updateArrowCountUI();
-        updateQuiverCountUI();
-
         shootRate = weapon.shootRate;
         reloadArrowsSpeed = weapon.reloadSpeed;
+        arrowsToShoot = weaponList[selectedWeapon].arrowsToShoot;
+        arrowsShootMax = weaponList[selectedWeapon].arrowsShootMax;
+        arrowsQuiver = weaponList[selectedWeapon].arrowsQuiver;
+        arrowsQuiverMax = weaponList[selectedWeapon].arrowsQuiverMax;
+
+        updateArrowCountUI();
+        updateQuiverCountUI();
 
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -282,11 +287,15 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     void changeWeapon()
     {
-        updateArrowCountUI();
-        updateQuiverCountUI();
-
         shootRate = weaponList[selectedWeapon].shootRate;
         reloadArrowsSpeed = weaponList[selectedWeapon].reloadSpeed;
+        arrowsToShoot = weaponList[selectedWeapon].arrowsToShoot;
+        arrowsQuiver = weaponList[selectedWeapon].arrowsQuiver;
+        arrowsQuiver = weaponList[selectedWeapon].arrowsQuiver;
+        arrowsQuiverMax = weaponList[selectedWeapon].arrowsQuiverMax;
+
+        updateArrowCountUI();
+        updateQuiverCountUI();
 
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[selectedWeapon].weaponModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[selectedWeapon].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -314,6 +323,15 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     void updateQuiverCountUI()
     {
         gameManager.instance.updateQuiverCount(arrowsQuiver);
+    }
+
+    void updateBoltData()
+    {
+        
+        weaponList[selectedWeapon].arrowsToShoot = arrowsToShoot;
+        weaponList[selectedWeapon].arrowsQuiver = arrowsQuiver;
+        weaponList[selectedWeapon].arrowsQuiver = arrowsQuiver;
+        weaponList[selectedWeapon].arrowsQuiverMax = arrowsQuiverMax;
     }
 
     void updatePotionCountUI()

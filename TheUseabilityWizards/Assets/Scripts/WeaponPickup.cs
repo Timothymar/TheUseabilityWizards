@@ -10,10 +10,18 @@ public class WeaponPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
+
             weapon.arrowsToShoot = weapon.arrowsShootMax;
             weapon.arrowsQuiver = weapon.arrowsQuiverMax;
+
+            gameManager.instance.playerScript.getWeaponStats(weapon);
+
             gameManager.instance.playerScript.GetArrowsToShoot();
             gameManager.instance.playerScript.GetArrowsQuiver();
+
+            
+
             Destroy(gameObject);
         }
     }

@@ -4,9 +4,8 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class playerNormalArrow : MonoBehaviour
+public class playerCrossBowBolts : MonoBehaviour
 {
-
     [SerializeField] Rigidbody rb;
 
     [SerializeField] int damage;

@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d717535f7bfacf144a276fa25e3c3591, type: 3}
-  m_Name: Weapon - Cross Bow
+  m_Name: Weapon - HeavyCrossBow
   m_EditorClassIdentifier: 
-  weaponModel: {fileID: 1348865229294259237, guid: 440dd3bb4390c9942a516e513a8eeb81, type: 3}
-  arrowType: {fileID: 4707544412447893661, guid: 05a79959495d69145a9b740208f45d3d, type: 3}
-  reloadSpeed: 0
-  shootRate: 0.5
-  arrowsToShoot: 10
+  weaponModel: {fileID: 8459189277918413064, guid: 2671d4f3b0d53514ea724fe040cfd7d2, type: 3}
+  arrowType: {fileID: 8209462377153511069, guid: e620cd603c726a248bbe60da7a50009c, type: 3}
+  reloadSpeed: 1
+  shootRate: 1
+  arrowsToShoot: 9
   arrowsShootMax: 10
-  arrowsQuiver: 50
-  arrowsQuiverMax: 50
+  arrowsQuiver: 5
+  arrowsQuiverMax: 10
+  shootSound: {fileID: 0}
+  shootVol: 0
