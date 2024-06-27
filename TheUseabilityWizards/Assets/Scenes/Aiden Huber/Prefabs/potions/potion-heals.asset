@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7827ff579b9d044be25654dafb2380, type: 3}
   m_Name: potion-heals
   m_EditorClassIdentifier: 
-  potion: {fileID: 0}
-  fillAmt: 0
-  potionType: 0
+  potion: {fileID: 4553744733445344513, guid: 39da2cef3fb7fc04ab0e8c26d0b77044, type: 3}
+  fillAmt: 0.3

@@ -12,13 +12,16 @@ public class pickupItem : MonoBehaviour
         
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))         // Doing this as an interface is a better way to do this.
-    //    {
-    //        gameManager.instance.potionUsed(item.potionType);
-            
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))         // Doing this as an interface is a better way to do this.
+        {
+            playerContol player = other.GetComponent<playerContol>();
+            if (player != null)
+            {
+                player.AddPotion(item);
+                Destroy(gameObject);
+            }
+        }
+    }
 }

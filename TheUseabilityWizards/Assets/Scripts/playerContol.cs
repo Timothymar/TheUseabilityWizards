@@ -26,6 +26,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     // Potions
     [Header("----- Potions -----")]
     [SerializeField] int potionsHeld;
+    List<potions> potionInventory = new List<potions>();
 
     // Speed
     [Header("----- Speed -----")]
@@ -105,6 +106,11 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
             if (Input.GetButtonDown("Reload"))
             {
                 ReloadArrows();
+            }
+
+            if (Input.GetButtonDown("UsePotion"))
+            {
+                UsePotion();
             }
 
             if (isSprinting)
@@ -333,12 +339,6 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         weaponList[selectedWeapon].arrowsQuiver = arrowsQuiver;
         weaponList[selectedWeapon].arrowsQuiverMax = arrowsQuiverMax;
     }
-
-    void updatePotionCountUI()
-    {
-        gameManager.instance.updatePotionCount(potionsHeld);
-    }
-
     public void applyBurnDamage(int damage, float duration, float interval)
     {
         fireballHits += 1;
@@ -365,40 +365,37 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         isBurning = false;
         fireballHits = 0; // Reset fireball hits after burning ends
     }
-    //public int getPotionType(potions type)
-    //{
-    //    return potion.potionType;
-    //}
-    //public int getCurHP()
-    //{
-    //    return HP;
-    //}
-    //public int getMaxHP()
-    //{
-    //    return maxHP;
-    //}
-    //public int getCurStamina()
-    //{
-    //    return (int)Stamina;
-    //}
-    //public int getMaxStamina()
-    //{
-    //    return (int)maxStamina;
-    //}
 
-    //public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
-    //{
-    //    type = potion.potionType;
-    //    if(type == 1 && HP != maxHP)
-    //    {
-    //        HP = (int)(HP + (maxHP * potion.fillAmt));
-    //        return HP;
-    //    }
-    //    else if(type == 2 && Stamina != maxStamina)
-    //    {
-    //        Stamina = (int)(Stamina + (maxStamina * potion.fillAmt));
-    //        return (int)Stamina;
-    //    }
-    //    return 0;
-    //}
+    public void AddPotion(potions potion)
+    {
+        potionInventory.Add(potion);
+        potionsHeld++;
+        updatePotionCountUI();
+    }
+
+    public void UsePotion()
+    {
+        if (potionsHeld > 0)
+        {
+            potions potion = potionInventory[0];
+            HealPlayer(potion.fillAmt);
+            potionInventory.RemoveAt(0);
+            potionsHeld--;
+            updatePotionCountUI();
+        }
+    }
+
+    void HealPlayer(float amount)
+    {
+        HP += (int)(maxHP * amount);
+        if (HP > maxHP)
+        {
+            HP = maxHP;
+        }
+        updatePlayerHeathUI();
+    }
+    void updatePotionCountUI()
+    {
+        gameManager.instance.updatePotionCount(potionsHeld);
+    }
 }
