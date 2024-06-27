@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class playerContol : MonoBehaviour, IDamage , IBurnDamage
+public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 {
-    // Collision
+    [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
 
     // HP
+    [Header("----- HP -----")]
     [SerializeField] int HP;
     [SerializeField] int maxHP;
 
     // Stamina
+    [Header("----- Stamina -----")]
     [SerializeField] float Stamina;
     [SerializeField] int maxStamina;
     [SerializeField] float staminaRecoveryAmount;
@@ -22,30 +24,38 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
     bool staminaRecoveryDelayActive;
 
     // Potions
+    [Header("----- Potions -----")]
     [SerializeField] int potionsHeld;
 
     // Speed
+    [Header("----- Speed -----")]
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     bool isSprinting;
 
     // Jump controls
+    [Header("----- Jumping -----")]
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
     // Shoot mech
+    [Header("----- Shooting -----")]
     [SerializeField] float shootRate;
     [SerializeField] GameObject arrow;
     bool isShooting;
 
     // Arrow Count
+    [Header("----- Arrow -----")]
+    [SerializeField] List<weaponStats> weaponList = new List<weaponStats>();
+    [SerializeField] GameObject weaponModel;
     [SerializeField] int arrowsToShoot;
     [SerializeField] int arrowsShootMax;
     [SerializeField] int arrowsQuiver;
     [SerializeField] int arrowsQuiverMax;
     [SerializeField] float reloadArrowsSpeed;
 
+    [Header("----- Burn Damage -----")]
     [SerializeField] private float burnDuration;
     [SerializeField] private float burnInterval;
     [SerializeField] private int burnDamage;
@@ -55,10 +65,13 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
 
     int jumpCount;
     int HPOriginal;
+    int selectedWeapon;
     potions potion;
 
     Vector3 moveDirection;
     Vector3 playerVelocity;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -77,36 +90,37 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
     // Update is called once per frame
     void Update()
     {
-        // Line for people to check while they shoot
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 15, Color.blue);
+        
+        if (!gameManager.instance.isPaused)
+        {
+            // Line for people to check while they shoot
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 15, Color.blue);
 
-        // Movement Controls
-        Movement();
+            Movement();
+            if (Input.GetButton("Fire1") && !isShooting && Stamina > 0 && weaponList.Count > 0 && weaponList[selectedWeapon].arrowsToShoot > 0)
+            {
+                StartCoroutine(shoot());
+                StartCoroutine(StaminaRecoverDelay());
+            }
+
+            if (Input.GetButtonDown("Reload"))
+            {
+                ReloadArrows();
+            }
+
+            if (isSprinting)
+            {
+                Stamina -= staminaSprintDegen * Time.deltaTime;
+                if (Stamina <= 0)
+                {
+                    Stamina = 0;
+                    stopSprinting();
+                }
+                updatePlayerStaminaUI();
+            }
+        }
         Sprint();
         updatePotionCountUI();
-
-        // Fire controls
-        if (Input.GetButton("Fire1") && !isShooting && Stamina > 0 && !gameManager.instance.isPaused)
-        {
-            StartCoroutine(shoot());
-            StartCoroutine(StaminaRecoverDelay());
-        }
-
-        if (Input.GetButtonDown("Reload"))
-        {
-            ReloadArrows();
-        }
-
-        if (isSprinting)
-        {
-            Stamina -= staminaSprintDegen * Time.deltaTime;
-            if (Stamina <= 0)
-            {
-                Stamina = 0;
-                stopSprinting();
-            }
-            updatePlayerStaminaUI();
-        }
     }
 
     void Movement()
@@ -163,17 +177,18 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
 
     IEnumerator shoot()
     {
-        if (arrowsToShoot > 0)
-        {
-            isShooting = true;
-            arrowsToShoot--;
-            updateArrowCountUI();
+        isShooting = true;
 
-            Instantiate(arrow, Camera.main.transform.position, Camera.main.transform.rotation);
+        weaponList[selectedWeapon].arrowsToShoot--;
+        //isShooting = true;
+        //arrowsToShoot--;
+        updateArrowCountUI();
 
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
+        Instantiate(weaponList[selectedWeapon].arrowType, Camera.main.transform.position, Camera.main.transform.rotation);
+
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
+
     }
 
     IEnumerator RecoverStamina()
@@ -227,15 +242,55 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
     {
         while (arrowsToShoot < arrowsShootMax && arrowsQuiver > 0)
         {
-            arrowsToShoot++;
-            arrowsQuiver--;
+            weaponList[selectedWeapon].arrowsToShoot++;
+            weaponList[selectedWeapon].arrowsQuiver--;
             updateArrowCountUI();
             updateQuiverCountUI();
-            yield return new WaitForSeconds(reloadArrowsSpeed);
+            yield return new WaitForSeconds(weaponList[selectedWeapon].reloadSpeed);
         }
-        
+
     }
 
+    public void getWeaponStats(weaponStats weapon)
+    {
+        weaponList.Add(weapon);
+        selectedWeapon = weaponList.Count - 1;
+
+        updateArrowCountUI();
+        updateQuiverCountUI();
+
+        shootRate = weapon.shootRate;
+        reloadArrowsSpeed = weapon.reloadSpeed;
+
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponModel.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void selectWeapon()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < weaponList.Count - 1)
+        {
+            selectedWeapon++;
+            changeWeapon();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeapon > 0)
+        {
+            selectedWeapon--;
+            changeWeapon();
+        }
+    }
+
+    void changeWeapon()
+    {
+        updateArrowCountUI();
+        updateQuiverCountUI();
+
+        shootRate = weaponList[selectedWeapon].shootRate;
+        reloadArrowsSpeed = weaponList[selectedWeapon].reloadSpeed;
+
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[selectedWeapon].weaponModel.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[selectedWeapon].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
     public int GetArrowsToShoot()
     {
         return arrowsToShoot;
