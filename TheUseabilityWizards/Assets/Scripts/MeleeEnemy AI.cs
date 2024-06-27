@@ -13,6 +13,9 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
     [SerializeField] int animatorTranSpeed;
     [SerializeField] int faceTargetSpeed;
 
+    [SerializeField] Transform attackPos;
+    [SerializeField] Collider weaponCol;
+    [SerializeField] GameObject weaponClub;
     [SerializeField] float attackRate;
 
     bool isAttacking;
@@ -97,5 +100,20 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
+    }
+
+    public void createClub()
+    {
+        Instantiate(weaponClub, attackPos.position, transform.rotation);
+    }
+
+    public void weaponClubOn()
+    {
+        weaponCol.enabled = true;
+    }
+
+    public void weaponClubOff()
+    {
+        weaponCol.enabled = false;
     }
 }
