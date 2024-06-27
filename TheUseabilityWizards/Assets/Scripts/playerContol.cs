@@ -21,6 +21,9 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
     [SerializeField] float staminaRecoveryDelay;
     bool staminaRecoveryDelayActive;
 
+    // Potions
+    [SerializeField] int potionsHeld;
+
     // Speed
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -80,6 +83,7 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
         // Movement Controls
         Movement();
         Sprint();
+        updatePotionCountUI();
 
         // Fire controls
         if (Input.GetButton("Fire1") && !isShooting && Stamina > 0 && !gameManager.instance.isPaused)
@@ -242,6 +246,11 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
         return arrowsQuiver;
     }
 
+    public int GetPotionsHeld()
+    {
+        return potionsHeld;
+    }
+
     void updateArrowCountUI()
     {
         gameManager.instance.updateArrowCount(arrowsToShoot);
@@ -250,6 +259,11 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
     void updateQuiverCountUI()
     {
         gameManager.instance.updateQuiverCount(arrowsQuiver);
+    }
+
+    void updatePotionCountUI()
+    {
+        gameManager.instance.updatePotionCount(potionsHeld);
     }
 
     public void applyBurnDamage(int damage, float duration, float interval)
@@ -278,26 +292,26 @@ public class playerContol : MonoBehaviour, IDamage , IBurnDamage
         isBurning = false;
         fireballHits = 0; // Reset fireball hits after burning ends
     }
-    public int getPotionType(potions type)
-    {
-        return potion.potionType;
-    }
-    public int getCurHP()
-    {
-        return HP;
-    }
-    public int getMaxHP()
-    {
-        return maxHP;
-    }
-    public int getCurStamina()
-    {
-        return (int)Stamina;
-    }
-    public int getMaxStamina()
-    {
-        return (int)maxStamina;
-    }
+    //public int getPotionType(potions type)
+    //{
+    //    return potion.potionType;
+    //}
+    //public int getCurHP()
+    //{
+    //    return HP;
+    //}
+    //public int getMaxHP()
+    //{
+    //    return maxHP;
+    //}
+    //public int getCurStamina()
+    //{
+    //    return (int)Stamina;
+    //}
+    //public int getMaxStamina()
+    //{
+    //    return (int)maxStamina;
+    //}
 
     //public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
     //{

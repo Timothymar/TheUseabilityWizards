@@ -19,7 +19,9 @@ public class gameManager : MonoBehaviour
     // Arrow supply
     [SerializeField] TMP_Text arrowSupply;
     [SerializeField] TMP_Text arrowInQuiver;
-    
+
+    // Potion
+    [SerializeField] TMP_Text potionSupply;
 
     public Image playerHP;
     public Image playerST;
@@ -114,32 +116,38 @@ public class gameManager : MonoBehaviour
         arrowInQuiver.text = quiverCount.ToString("F0");
     }
 
-    public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
+    public void updatePotionCount(int potionCount)
     {
-        type = gameManager.instance.playerScript.getPotionType(potionPickup);
-
-        if (type == 1)
-        {
-            int curHP = gameManager.instance.playerScript.getCurHP();
-            int maxHP = gameManager.instance.playerScript.getMaxHP();
-            if (curHP != maxHP)
-            {
-                curHP = (int)(curHP + (maxHP * potionPickup.fillAmt));
-                return curHP;
-            }
-        }
-        else if (type == 2)
-        {
-            int curStam = gameManager.instance.playerScript.getCurStamina();
-            int maxStam = gameManager.instance.playerScript.getMaxStamina();
-            if (curStam != maxStam)
-            {
-                curStam = (int)(curStam + (maxStam * potionPickup.fillAmt));
-                return curStam;
-            }
-        }
-        return 0;
+        potionCount = playerScript.GetPotionsHeld();
+        potionSupply.text = potionCount.ToString("F0");
     }
+
+    //public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
+    //{
+    //    type = gameManager.instance.playerScript.getPotionType(potionPickup);
+
+    //    if (type == 1)
+    //    {
+    //        int curHP = gameManager.instance.playerScript.getCurHP();
+    //        int maxHP = gameManager.instance.playerScript.getMaxHP();
+    //        if (curHP != maxHP)
+    //        {
+    //            curHP = (int)(curHP + (maxHP * potionPickup.fillAmt));
+    //            return curHP;
+    //        }
+    //    }
+    //    else if (type == 2)
+    //    {
+    //        int curStam = gameManager.instance.playerScript.getCurStamina();
+    //        int maxStam = gameManager.instance.playerScript.getMaxStamina();
+    //        if (curStam != maxStam)
+    //        {
+    //            curStam = (int)(curStam + (maxStam * potionPickup.fillAmt));
+    //            return curStam;
+    //        }
+    //    }
+    //    return 0;
+    //}
 
     public void TitleScreen()
     {
