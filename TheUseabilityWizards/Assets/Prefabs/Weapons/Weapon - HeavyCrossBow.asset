@@ -18,7 +18,7 @@ MonoBehaviour:
   shootRate: 1
   arrowsToShoot: 9
   arrowsShootMax: 10
-  arrowsQuiver: 5
-  arrowsQuiverMax: 10
+  arrowsQuiver: 12
+  arrowsQuiverMax: 20
   shootSound: {fileID: 0}
   shootVol: 0
