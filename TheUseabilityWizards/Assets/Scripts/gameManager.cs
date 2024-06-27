@@ -33,16 +33,22 @@ public class gameManager : MonoBehaviour
     potions potionPickup;
 
     public bool isPaused = false;
+    public bool isStart = false;
     // Start is called before the first frame update
     void Awake()
     {
+        isStart = true;
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerContol>();
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
-        //TitleScreen();
+
+        //if (isStart == true)
+        //{
+        //    TitleScreen();
+        //}
     }
 
     // Update is called once per frame
@@ -74,6 +80,10 @@ public class gameManager : MonoBehaviour
 
     public void stateUnpause()
     {
+        if (isStart == true)
+        {
+            isStart = false;
+        }
         isPaused = !isPaused;
         Time.timeScale = 1;
         Cursor.visible = false;
