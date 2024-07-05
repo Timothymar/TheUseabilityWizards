@@ -25,7 +25,8 @@ public class gameManager : MonoBehaviour
 
     public Image playerHP;
     public Image playerST;
-    // ^ Normally serialized, will fix these later. This is also my reminder to do that.
+    public Image bossHP;
+    // ^ Normally serialized, will fix these later. This is also my reminder to do that.   
 
     public GameObject player;
     public playerContol playerScript;
@@ -36,6 +37,7 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused = false;
     public bool isStart = false;
+    public bool isBoss = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -69,7 +71,6 @@ public class gameManager : MonoBehaviour
                 stateUnpause();
             }
         }
-
     }
 
     public void statePause()
@@ -122,33 +123,6 @@ public class gameManager : MonoBehaviour
         potionSupply.text = potionCount.ToString("F0");
     }
 
-    //public int potionUsed(int type)         // Type is potionType. 1 = HP, 2 = ST
-    //{
-    //    type = gameManager.instance.playerScript.getPotionType(potionPickup);
-
-    //    if (type == 1)
-    //    {
-    //        int curHP = gameManager.instance.playerScript.getCurHP();
-    //        int maxHP = gameManager.instance.playerScript.getMaxHP();
-    //        if (curHP != maxHP)
-    //        {
-    //            curHP = (int)(curHP + (maxHP * potionPickup.fillAmt));
-    //            return curHP;
-    //        }
-    //    }
-    //    else if (type == 2)
-    //    {
-    //        int curStam = gameManager.instance.playerScript.getCurStamina();
-    //        int maxStam = gameManager.instance.playerScript.getMaxStamina();
-    //        if (curStam != maxStam)
-    //        {
-    //            curStam = (int)(curStam + (maxStam * potionPickup.fillAmt));
-    //            return curStam;
-    //        }
-    //    }
-    //    return 0;
-    //}
-
     public void TitleScreen()
     {
         statePause();
@@ -169,6 +143,14 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(isPaused);
+    }
+
+    public void BossHealth()
+    {
+        if (isBoss)
+        {
+
+        }
     }
 
 }
