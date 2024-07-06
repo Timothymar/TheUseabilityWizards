@@ -13,6 +13,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject bossBar;
 
     [SerializeField] TMP_Text enemyCounter;
 
@@ -37,7 +38,7 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused = false;
     public bool isStart = false;
-    public bool isBoss = true;
+    public bool isBoss = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -147,10 +148,7 @@ public class gameManager : MonoBehaviour
 
     public void BossHealth()
     {
-        if (isBoss)
-        {
-
-        }
+        bossBar.SetActive(isBoss);
     }
 
 }

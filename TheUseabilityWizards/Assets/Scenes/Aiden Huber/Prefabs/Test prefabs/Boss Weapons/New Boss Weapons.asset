@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb316e3de2fc9f4dbe97ebbf8847235, type: 3}
+  m_Name: New Boss Weapons
+  m_EditorClassIdentifier: 
+  weaponModel: {fileID: 6882361987550883128, guid: 24e4444869f16bf478152b8797acdb12, type: 3}
+  swingSpeed: 0.1
+  fireSpeed: 0.1
+  DPS: 0.1
+  attackDmg: 0.5
+  useSound: {fileID: 0}
+  useVol: 0
