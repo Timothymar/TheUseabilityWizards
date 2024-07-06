@@ -284,11 +284,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1056806036}
   m_SourcePrefab: {fileID: 100100000, guid: bb450c0b6e644b6488d7259491d016a1, type: 3}
---- !u!65 &484083990 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 2913092124859871423, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-  m_PrefabInstance: {fileID: 1947323109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1056806031 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5630846581948227440, guid: bb450c0b6e644b6488d7259491d016a1, type: 3}
@@ -317,11 +312,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6956541982690706831, guid: 2391f89d516dcbb4cbc95b7fd31834d5, type: 3}
   m_PrefabInstance: {fileID: 6696835735214123460}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1400132219 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7650255779524024143, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-  m_PrefabInstance: {fileID: 1947323109}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1646537701
 PrefabInstance:
@@ -455,25 +445,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 249881596223643237, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-      propertyPath: weaponCol
-      value: 
-      objectReference: {fileID: 484083990}
     - target: {fileID: 1777087598232011954, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
       propertyPath: attackPos
       value: 
-      objectReference: {fileID: 1400132219}
-    - target: {fileID: 1777087598232011954, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-      propertyPath: weaponCol
-      value: 
-      objectReference: {fileID: 484083990}
-    - target: {fileID: 1777087598232011954, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-      propertyPath: weaponClub
-      value: 
-      objectReference: {fileID: 1947323110}
-    - target: {fileID: 2913092124859871423, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8241822001215629623, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
       propertyPath: m_Name
@@ -524,11 +498,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
---- !u!1 &1947323110 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5496210943998105562, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-  m_PrefabInstance: {fileID: 1947323109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5413300722950917984
 PrefabInstance:
   m_ObjectHideFlags: 0
