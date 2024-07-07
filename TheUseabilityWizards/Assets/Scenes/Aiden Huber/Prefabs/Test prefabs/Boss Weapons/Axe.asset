@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbb316e3de2fc9f4dbe97ebbf8847235, type: 3}
-  m_Name: New Boss Weapons
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  weaponModel: {fileID: 6882361987550883128, guid: 24e4444869f16bf478152b8797acdb12, type: 3}
-  swingSpeed: 0.1
+  weaponModel: {fileID: 919132149155446097, guid: d4cbe7f28326a2c4a917378507da0512, type: 3}
+  swingSpeed: 2.48
   fireSpeed: 0.1
   DPS: 0.1
-  attackDmg: 0.5
+  attackDmg: 2
   useSound: {fileID: 0}
   useVol: 0
