@@ -14313,5 +14313,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitDamage: 1
   burningDamage: 2
-  burnDuration: 6
+  burnDuration: 1
   burnInterval: 1
