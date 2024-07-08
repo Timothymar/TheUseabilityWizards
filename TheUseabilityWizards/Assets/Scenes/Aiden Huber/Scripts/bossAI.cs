@@ -13,12 +13,10 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] Collider bodCol;
     [SerializeField] Collider weaponCol;
     [SerializeField] GameObject firedBolt;
-    [SerializeField] GameObject grappleMod;
-    [SerializeField] Collider grappleCol;
 
     [Header("----Movement----")]
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Animator anim;
+    //[SerializeField] Animator anim;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int viewAngle;
     [SerializeField] int roamDist;
@@ -30,8 +28,6 @@ public class bossAI : MonoBehaviour, IDamage
     [Header("----Stats----")]
     [SerializeField] int bHP;
     [SerializeField] int maxBHP;
-    //[SerializeField] int bStam;
-    //[SerializeField] int maxBStam;
 
     [Header("----Weapon----")]
     [SerializeField] float projRange;
@@ -101,10 +97,10 @@ public class bossAI : MonoBehaviour, IDamage
     {
         // Get player position
         playerDir = gameManager.instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y+1, playerDir.z), transform.forward);        // What angle from the enemy is the player? If under a certain angle, player is in the cone.
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y+1, playerDir.z), transform.forward);
 
         // Debug.Log(angleToPlayer);
-        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y+1, playerDir.z));         // Draw a ray where the enemy's head is and move it in the dir of the player. This ray is going to check to see if there's anything between enemy and player.
+        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y+1, playerDir.z), Color.red); 
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
@@ -162,7 +158,7 @@ public class bossAI : MonoBehaviour, IDamage
     IEnumerator ranged()
     {
         isShooting = true;
-        anim.SetTrigger("Shoot");
+        //anim.SetTrigger("Shoot");
         yield return new WaitForSeconds(projRate);
         isShooting = false;
     }
