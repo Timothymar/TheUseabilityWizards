@@ -1636,13 +1636,18 @@ MonoBehaviour:
   model: {fileID: 1454307233156613521}
   agent: {fileID: 6128769875828287293}
   animator: {fileID: 6730578612563072989}
+  headPos: {fileID: 6342858906221553069}
   HP: 5
   animatorTranSpeed: 5
   faceTargetSpeed: 5
-  attackPos: {fileID: 0}
+  visionCone: 45
+  attackPos: {fileID: 262560175375219693}
   weaponCol: {fileID: 6244303381516636205}
   weaponClub: {fileID: 5496210943998105562}
   attackRate: 1
+  attackAngle: 45
+  roamDist: 4
+  roamTimer: 1
 --- !u!95 &6730578612563072989
 Animator:
   serializedVersion: 5

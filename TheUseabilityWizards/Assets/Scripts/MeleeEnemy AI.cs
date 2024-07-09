@@ -8,20 +8,32 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
+    [SerializeField] Transform headPos;
 
     [SerializeField] int HP;
     [SerializeField] int animatorTranSpeed;
     [SerializeField] int faceTargetSpeed;
+    [SerializeField] int visionCone;
 
     [SerializeField] Transform attackPos;
     [SerializeField] Collider weaponCol;
     [SerializeField] GameObject weaponClub;
+   
     [SerializeField] float attackRate;
+    [SerializeField] float attackAngle;
+
+    [SerializeField] int roamDist;
+    [SerializeField] int roamTimer;
 
     bool isAttacking;
     bool isPlayerInRange;
+    bool destChosen;
 
     Vector3 playerDir;
+    Vector3 startingPos;
+
+    float angleToPlayer;
+    float stoppingDistOrig;
 
     // Start is called before the first frame update
     void Start()
@@ -35,20 +47,15 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
         playerDir = gameManager.instance.player.transform.position - transform.position;
 
         float agentSpeed = agent.velocity.normalized.magnitude;
-        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime));
+        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
 
-        if (isPlayerInRange)
+        if (isPlayerInRange && !canSeePlayer())
         {
-            agent.SetDestination(gameManager.instance.player.transform.position);
-
-            if (agent.remainingDistance < agent.stoppingDistance)
-            {
-                faceTarget();
-                if (!isAttacking)
-                {
-                    StartCoroutine(attack());
-                }
-            }
+            StartCoroutine(roam());
+        }
+        else if (!isPlayerInRange)
+        {
+            StartCoroutine(roam());
         }
     }
 
@@ -56,6 +63,41 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+
+    bool canSeePlayer()
+    {
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
+        //Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z));
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            Debug.Log(hit.collider.name);
+
+            // Hey I can see player
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= visionCone)
+            {
+                agent.stoppingDistance = stoppingDistOrig;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    faceTarget();
+                }
+
+                if (!isAttacking && angleToPlayer <= attackAngle)
+                {
+                    StartCoroutine(attack());
+                }
+                return true;
+            }
+        }
+
+        agent.stoppingDistance = 0;
+        return false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -100,6 +142,28 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
+    }
+
+    IEnumerator roam()
+    {
+        if (!destChosen && agent.remainingDistance < 0.05f)
+        {
+            destChosen = true;
+            yield return new WaitForSeconds(roamTimer);
+
+            agent.stoppingDistance = 0;
+
+            // Keep his roam area small
+            Vector3 ranPos = Random.insideUnitSphere * roamDist;
+            ranPos += startingPos;
+
+            // Keeps on the NavMesh
+            NavMeshHit hit;
+            NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+            agent.SetDestination(hit.position);
+
+            destChosen = false;
+        }
     }
 
     public void createClub()

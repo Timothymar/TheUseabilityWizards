@@ -388,10 +388,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1777087598232011954, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-      propertyPath: attackPos
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8241822001215629623, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
       propertyPath: m_Name
       value: MeleeGoblinEnemy
@@ -521,6 +517,14 @@ PrefabInstance:
     - target: {fileID: 1450386038461968549, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
       propertyPath: m_Name
       value: Mage Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450386038461968549, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414360343726592245, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
+      propertyPath: fireBall
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8689382613005362404, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
       propertyPath: m_LocalPosition.x
