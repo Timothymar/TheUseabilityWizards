@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f6018afeadf984995e055dcd36b771, type: 3}
   m_Name: Potion Health
   m_EditorClassIdentifier: 
-  lootGameObject: {fileID: 2084934084347886187, guid: ba9444785a863ca47881cca5fa874378, type: 3}
-  lootName: Crossbow
+  lootGameObject: {fileID: 1000012970591572, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
+  lootName: Potion Health
   dropChance: 100
