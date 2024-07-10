@@ -125,6 +125,7 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
         {
             gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
+            GetComponent<LootBag>().InstantiateLoot(transform.position);
         }
     }
 
