@@ -911,6 +911,7 @@ GameObject:
   - component: {fileID: 3213259404343170847}
   - component: {fileID: 7135857837000190061}
   - component: {fileID: 2499737607142073631}
+  - component: {fileID: 1600186328397796366}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1049,6 +1050,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1600186328397796366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5561365397905173029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bdf3b4e0aaff046b132e6e44bd0b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoisonTickTimers: 
 --- !u!1 &5768546691414407151
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using UnityEngine;
 public class VenomProjectile : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
+
+    [SerializeField] int PoisonDuration;
+    public List<int> PoisonTickTimers = new List<int>();
+
 
     [SerializeField] int damage;
     [SerializeField] int speed;
@@ -30,11 +35,16 @@ public class VenomProjectile : MonoBehaviour
         }
 
         IDamage dmg = other.GetComponent<IDamage>();
-        if(dmg != null)
+        if (other.GetComponent<StatusEffectManager>() != null)
         {
-            dmg.takeDamage(damage);
+            other.GetComponent<StatusEffectManager>().ApplyPoison(PoisonDuration, other);
         }
         Destroy(gameObject);
-
     }
+    
+  
+
+
+
+
 }
