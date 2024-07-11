@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4867043866685821269}
   - component: {fileID: 5402913166822384099}
   - component: {fileID: 9116764306514019768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss PH 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 6246771865746129741}
   - component: {fileID: 2481559485227205228}
   - component: {fileID: 7239244567500024060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 5176392359368424554}
   - component: {fileID: 2583499544703945913}
   - component: {fileID: 2971592244196335111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,9 +499,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 3780899063755380157, guid: 24e4444869f16bf478152b8797acdb12, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689630786228173671, guid: 24e4444869f16bf478152b8797acdb12, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6882361987550883128, guid: 24e4444869f16bf478152b8797acdb12, type: 3}
       propertyPath: m_Name
       value: 2 handed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882361987550883128, guid: 24e4444869f16bf478152b8797acdb12, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6882361987550883128, guid: 24e4444869f16bf478152b8797acdb12, type: 3}
       propertyPath: m_IsActive

@@ -7,6 +7,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] AudioSource aud;
+    []
 
     // HP
     [Header("----- HP -----")]
@@ -59,7 +61,6 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [SerializeField] private int fireballHits;
     [SerializeField] private int burningThreshold;
     private bool isBurning = false;
-
 
     bool isShooting;
 

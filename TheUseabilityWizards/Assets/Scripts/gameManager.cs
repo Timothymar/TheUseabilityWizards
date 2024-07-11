@@ -8,9 +8,27 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
+    [Header("---------Audio---------")]
+    [SerializeField] public AudioClip[] audMaster;
+    [SerializeField] public float audMasterVol;
+
+    
+    [SerializeField] AudioMixer audMixer;
+    [SerializeField] Slider volSlider;
+
+    float volume;
+
+    public void SetMasterVolume()
+    {
+        volume = volSlider.value;
+        audMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
+
+    }
+
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuTitle;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuOptions;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject bossBar;
@@ -39,6 +57,7 @@ public class gameManager : MonoBehaviour
     public bool isPaused = false;
     public bool isStart = false;
     public bool isBoss = false;
+    public bool isOptions = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -128,6 +147,13 @@ public class gameManager : MonoBehaviour
     {
         statePause();
         menuActive = menuTitle;
+        menuActive.SetActive(isPaused);
+    }
+
+    public void OptionsScreen()
+    {
+        statePause();
+        menuActive = menuOptions;
         menuActive.SetActive(isPaused);
     }
 
