@@ -13,7 +13,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public float audMasterVol;
 
     
-    [SerializeField] AudioMixer audMixer;
+    //[SerializeField] AudioMixer audMixer;
     [SerializeField] Slider volSlider;
 
     float volume;
@@ -21,7 +21,7 @@ public class gameManager : MonoBehaviour
     public void SetMasterVolume()
     {
         volume = volSlider.value;
-        audMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
+        //audMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
 
     }
 

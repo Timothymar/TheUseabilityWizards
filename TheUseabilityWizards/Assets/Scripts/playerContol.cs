@@ -8,7 +8,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
-    []
+    
 
     // HP
     [Header("----- HP -----")]
