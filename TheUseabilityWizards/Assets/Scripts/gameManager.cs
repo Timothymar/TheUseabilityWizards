@@ -18,13 +18,6 @@ public class gameManager : MonoBehaviour
 
     float volume;
 
-    public void SetMasterVolume()
-    {
-        volume = volSlider.value;
-        //audMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
-
-    }
-
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuTitle;
     [SerializeField] GameObject menuPause;
@@ -68,6 +61,7 @@ public class gameManager : MonoBehaviour
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
+        
 
         //if (isStart == true)
         //{
@@ -89,6 +83,10 @@ public class gameManager : MonoBehaviour
             else if (menuActive == menuPause)
             {
                 stateUnpause();
+            }
+            else if (menuActive == menuOptions)
+            {
+                BackButton();
             }
         }
     }
@@ -152,9 +150,15 @@ public class gameManager : MonoBehaviour
 
     public void OptionsScreen()
     {
-        statePause();
+        //statePause();
         menuActive = menuOptions;
         menuActive.SetActive(isPaused);
+    }
+
+    public void BackButton()
+    {
+        menuActive = menuPause;
+        menuPause.SetActive(isPaused);
     }
 
     public void WinScreen()

@@ -21,6 +21,11 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.OptionsScreen();
     }
 
+    public void back()
+    {
+        gameManager.instance.BackButton();
+    }
+
     public void quit()
     {
 #if UNITY_EDITOR
