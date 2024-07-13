@@ -2401,19 +2401,19 @@ MonoBehaviour:
   weaponCol2: {fileID: 1252426605}
   agent: {fileID: 1252426599}
   anim: {fileID: 1252426602}
-  animTranSpeed: 0
-  faceTargetSpeed: 0
-  viewAngle: 0
-  roamDist: 0
-  roamTimer: 0
+  animTranSpeed: 5
+  faceTargetSpeed: 5
+  viewAngle: 45
+  roamDist: 10
+  roamTimer: 3
   bossSpeed: 0
   bHP: 0
   maxBHP: 0
   projectile: {fileID: 8614851398800482592, guid: 2a8d207c70319e045abe481efe041c26, type: 3}
   projPos: {fileID: 1219857552}
-  projRange: 0
-  projRate: 0
-  projAngle: 0
+  projRange: 10
+  projRate: 2
+  projAngle: 45
 --- !u!4 &1252426604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 3de438e70702ebf428d028c739828f43, type: 3}
