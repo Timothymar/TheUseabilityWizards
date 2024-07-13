@@ -11,16 +11,18 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Collider headCol;
     [SerializeField] Collider bodCol;
-    [SerializeField] Collider weaponCol;
-    [SerializeField] GameObject firedBolt;
+    [SerializeField] Collider weaponCol1;
+    [SerializeField] Collider weaponCol2;
 
     [Header("----Movement----")]
     [SerializeField] NavMeshAgent agent;
-    //[SerializeField] Animator anim;
+    [SerializeField] Animator anim;
+    [SerializeField] int animTranSpeed;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int viewAngle;
     [SerializeField] int roamDist;
     [SerializeField] int roamTimer;
+    [SerializeField] int bossSpeed;
 
     bool playerInRange;
     bool destChosen;
@@ -30,10 +32,11 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] int maxBHP;
 
     [Header("----Weapon----")]
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform projPos;
     [SerializeField] float projRange;
     [SerializeField] float projRate;
     [SerializeField] int projAngle;
-    [SerializeField] GameObject projectile;
 
     bool isShooting;
     bool doesDamage;
@@ -61,6 +64,7 @@ public class bossAI : MonoBehaviour, IDamage
         updateBossHealthUI();
 
         float agentSpeed = agent.velocity.normalized.magnitude;
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTranSpeed));        // Lerp(what's being lerp'd, target pos, time)
 
         if (playerInRange && !canSeePlayer())
         {
@@ -157,9 +161,13 @@ public class bossAI : MonoBehaviour, IDamage
     IEnumerator ranged()
     {
         isShooting = true;
-        //anim.SetTrigger("Shoot");
+        anim.SetTrigger("Shoot");
         yield return new WaitForSeconds(projRate);
         isShooting = false;
+    }
+    public void createProjectile()
+    {
+        Instantiate(projectile, projPos.position, transform.rotation);
     }
 
     public void takeDamage(int amt)
@@ -176,12 +184,21 @@ public class bossAI : MonoBehaviour, IDamage
         gameManager.instance.bossHP.fillAmount = (float)bHP / maxBHP;
     }
 
-    public void weaponColOn()
+    public void weaponCol1On()
     {
-        weaponCol.enabled = true;
+        weaponCol1.enabled = true;
     }
-    public void weaponColOff()
+    
+    public void weaponCol2On()
     {
-        weaponCol.enabled = false;
+        weaponCol2.enabled = true;
+    }
+    public void weaponCol1Off()
+    {
+        weaponCol1.enabled = false;
+    }
+    public void weaponCol2Off()
+    {
+        weaponCol2.enabled = false;
     }
 }
