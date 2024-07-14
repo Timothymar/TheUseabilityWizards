@@ -9,7 +9,6 @@ public class bossAI : MonoBehaviour, IDamage
     [Header("----Model/Collision----")]
     [SerializeField] Renderer model;
     [SerializeField] Transform headPos;
-    //[SerializeField] GameObject visionPos;
     [SerializeField] Collider headCol;
     [SerializeField] Collider bodCol;
     [SerializeField] Collider weaponCol1;

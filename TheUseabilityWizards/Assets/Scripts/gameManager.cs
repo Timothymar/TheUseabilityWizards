@@ -11,10 +11,14 @@ public class gameManager : MonoBehaviour
     [Header("---------Audio---------")]
     [SerializeField] public AudioClip[] audMaster;
     [SerializeField] public float audMasterVol;
+    [SerializeField] public float audMusicVol;
+    [SerializeField] public float audSFXVol;
 
     
     //[SerializeField] AudioMixer audMixer;
-    [SerializeField] Slider volSlider;
+    [SerializeField] Slider masterSlider;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider SFXSlider;
 
     float volume;
 
@@ -62,7 +66,7 @@ public class gameManager : MonoBehaviour
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
-        
+
 
         //if (isStart == true)
         //{
@@ -110,6 +114,25 @@ public class gameManager : MonoBehaviour
         menuActive = null;
     }
 
+    public void stateOptions()
+    {
+        stateUnpause();
+        isOptions = !isOptions;
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void stateExOptions()
+    {
+        isOptions = !isOptions;
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        menuActive.SetActive(isOptions);
+        statePause();
+    }
+
     public void updateGameGoal(int amount)
     {
         enemyCount += amount;
@@ -143,15 +166,17 @@ public class gameManager : MonoBehaviour
 
     public void OptionsScreen()
     {
-        //statePause();
+        stateOptions();
+        menuActive = null;
         menuActive = menuOptions;
-        menuActive.SetActive(isPaused);
+        menuActive.SetActive(isOptions);
     }
 
     public void BackButton()
     {
+        stateExOptions();
         menuActive = menuPause;
-        menuPause.SetActive(isPaused);
+        menuActive.SetActive(isPaused);
     }
 
     public void WinScreen()
