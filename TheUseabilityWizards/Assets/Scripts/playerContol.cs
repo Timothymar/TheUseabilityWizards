@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class playerContol : MonoBehaviour, IDamage, IBurnDamage
@@ -60,9 +61,27 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [SerializeField] private int burnDamage;
     [SerializeField] private int fireballHits;
     [SerializeField] private int burningThreshold;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] float audStepsVol;
+    [SerializeField] AudioClip[] audJump;
+    [SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audDeath;
+    [SerializeField] float audDeathVol;
+
+    [Header("----- Fade-Out -----")]
+    [SerializeField] private float fadeDuration;
+    [SerializeField] private Image fadePanel;
+
+    private bool isDead = false;
     private bool isBurning = false;
 
     bool isShooting;
+    bool isPlayingSteps;
+    bool isPlayingHurt;
 
     int jumpCount;
     int HPOriginal;
@@ -86,6 +105,13 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         // Make cursor invisible and lock it to the frame.
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (fadePanel != null)
+        {
+            Color panelColor = fadePanel.color;
+            panelColor.a = 0f;
+            fadePanel.color = panelColor;
+        }
     }
 
     // Update is called once per frame
@@ -147,6 +173,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         {
             if (Stamina > 1)
             {
+                aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
                 jumpCount++;
                 playerVelocity.y = jumpSpeed;
                 Stamina -= 1;
@@ -156,6 +183,11 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
         playerVelocity.y -= gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if (controller.isGrounded && moveDirection.magnitude > 0.3f && !isPlayingSteps)
+        {
+            StartCoroutine(playSteps());
+        }
     }
 
     void Sprint()
@@ -183,9 +215,27 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         }
     }
 
+    IEnumerator playSteps()
+    {
+        isPlayingSteps = true;
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.15f);
+        }
+
+        isPlayingSteps = false;
+    }
+
     IEnumerator shoot()
     {
         isShooting = true;
+
+        aud.PlayOneShot(weaponList[selectedWeapon].shootSound, weaponList[selectedWeapon].shootVol);
 
         arrowsToShoot--;
         
@@ -222,12 +272,51 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     public void takeDamage(int amt)
     {
         HP -= amt;
+
+        if(!isPlayingHurt && HP > 0)
+        {
+            StartCoroutine(isHurtSoundPlaying());
+        }
+
         updatePlayerHeathUI();
 
-        if (HP <= 0)
+        if (HP <= 0 && !isDead)
         {
-            gameManager.instance.LoseScreen();
+            isDead = true;
+            StartCoroutine(FadeOutDeath());
         }
+    }
+
+    IEnumerator FadeOutDeath()
+    {
+        aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
+
+        float fadeProgress = 0f;
+
+        while (fadeProgress < 1f)
+        {
+            fadeProgress += Time.deltaTime / fadeDuration;
+
+            if (fadePanel != null)
+            {
+                Color panelColor = fadePanel.color;
+                panelColor.a = Mathf.Lerp(0,1, fadeProgress);
+                fadePanel.color = panelColor;
+            }
+
+            yield return null;
+        
+        }
+
+        gameManager.instance.LoseScreen();
+    }
+
+    IEnumerator isHurtSoundPlaying()
+    {
+        isPlayingHurt = true;
+        aud.PlayOneShot(audHurt[Random.Range(0, audJump.Length)], audHurtVol);
+        yield return new WaitForSeconds(0.2f);
+        isPlayingHurt = false;
     }
 
     void updatePlayerHeathUI()

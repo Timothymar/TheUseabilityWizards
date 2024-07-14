@@ -16,9 +16,9 @@ MonoBehaviour:
   arrowType: {fileID: 8209462377153511069, guid: e620cd603c726a248bbe60da7a50009c, type: 3}
   reloadSpeed: 1
   shootRate: 1
-  arrowsToShoot: 9
+  arrowsToShoot: 10
   arrowsShootMax: 10
-  arrowsQuiver: 12
+  arrowsQuiver: 20
   arrowsQuiverMax: 20
-  shootSound: {fileID: 0}
-  shootVol: 0
+  shootSound: {fileID: 8300000, guid: c9e3f31ca91ea0547b31db85a4057d84, type: 3}
+  shootVol: 0.2
