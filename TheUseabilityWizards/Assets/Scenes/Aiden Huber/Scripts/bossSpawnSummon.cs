@@ -24,6 +24,7 @@ public class bossSpawnSummon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // For testing purposes.
         if (Input.GetButtonDown("Jump"))
         {
             AudioClip[] audInstMaster = gameManager.instance.audMaster;

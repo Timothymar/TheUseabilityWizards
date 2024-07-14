@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
-    
 
     // HP
     [Header("----- HP -----")]
@@ -29,7 +29,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     // Potions
     [Header("----- Potions -----")]
     [SerializeField] int potionsHeld;
-    List<potions> potionInventory = new List<potions>();
+    [SerializeField] List<potions> potionInventory = new List<potions>();
 
     // Speed
     [Header("----- Speed -----")]
