@@ -41,6 +41,7 @@ public class gameManager : MonoBehaviour
     // ^ Normally serialized, will fix these later. This is also my reminder to do that.   
 
     public GameObject player;
+    public GameObject boss;
     public playerContol playerScript;
 
     int enemyCount;
@@ -48,15 +49,15 @@ public class gameManager : MonoBehaviour
     potions potionPickup;
 
     public bool isPaused = false;
-    public bool isStart = false;
+    public bool isStart = true;
     public bool isBoss = false;
     public bool isOptions = false;
     // Start is called before the first frame update
     void Awake()
     {
-        isStart = true;
         instance = this;
         player = GameObject.FindWithTag("Player");
+        boss = GameObject.FindWithTag("Boss");
         playerScript = player.GetComponent<playerContol>();
 
         updateArrowCount(playerScript.GetArrowsToShoot());
@@ -101,10 +102,6 @@ public class gameManager : MonoBehaviour
 
     public void stateUnpause()
     {
-        if (isStart == true)
-        {
-            isStart = false;
-        }
         isPaused = !isPaused;
         Time.timeScale = 1;
         Cursor.visible = false;

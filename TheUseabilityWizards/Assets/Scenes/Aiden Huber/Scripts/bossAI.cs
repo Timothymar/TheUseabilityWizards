@@ -9,6 +9,7 @@ public class bossAI : MonoBehaviour, IDamage
     [Header("----Model/Collision----")]
     [SerializeField] Renderer model;
     [SerializeField] Transform headPos;
+    //[SerializeField] GameObject visionPos;
     [SerializeField] Collider headCol;
     [SerializeField] Collider bodCol;
     [SerializeField] Collider weaponCol1;
@@ -22,7 +23,6 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] int viewAngle;
     [SerializeField] int roamDist;
     [SerializeField] int roamTimer;
-    [SerializeField] int bossSpeed;
 
     bool playerInRange;
     bool destChosen;
