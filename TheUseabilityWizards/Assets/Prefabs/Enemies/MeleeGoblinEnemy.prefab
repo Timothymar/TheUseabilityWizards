@@ -1599,7 +1599,7 @@ GameObject:
   - component: {fileID: 7935483564145686391}
   m_Layer: 6
   m_Name: MeleeGoblinEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0484ac752c8b43c4f94b2e1d55139017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 2084934084347886187, guid: ba9444785a863ca47881cca5fa874378, type: 3}
+  droppedItemPrefab: {fileID: 2758424228786250562, guid: 099ceb3d792e1d04b829cccb702f677c, type: 3}
   lootList:
   - {fileID: 11400000, guid: a7f1d115f0d44b847848b62cfedeee32, type: 2}
 --- !u!114 &1777087598232011954
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   weaponClub: {fileID: 5496210943998105562}
   attackRate: 1
   attackAngle: 45
-  roamDist: 4
+  roamDist: 0
   roamTimer: 1
 --- !u!95 &6730578612563072989
 Animator:
