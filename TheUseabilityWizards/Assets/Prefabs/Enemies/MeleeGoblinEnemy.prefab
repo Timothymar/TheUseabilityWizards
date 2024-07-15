@@ -1601,7 +1601,7 @@ MonoBehaviour:
   weaponClub: {fileID: 5496210943998105562}
   attackRate: 1
   attackAngle: 45
-  roamDist: 15
+  roamDist: 0
   roamTimer: 2
 --- !u!95 &6730578612563072989
 Animator:

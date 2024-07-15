@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2863320301327505735, guid: 00a2a30d60f7fee4b9984658480fc03c, type: 3}
       propertyPath: m_Name
-      value: UI Variant
+      value: UI Vol & Start & boss HP
       objectReference: {fileID: 0}
     - target: {fileID: 2935799864691027150, guid: 00a2a30d60f7fee4b9984658480fc03c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4686726716399393090, guid: 00a2a30d60f7fee4b9984658480fc03c, type: 3}
       propertyPath: m_SizeDelta.x
