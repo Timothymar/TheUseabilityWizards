@@ -743,45 +743,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 823931496040846785, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_Layer
-      value: 7
+    - target: {fileID: 7064012064572737, guid: 1540511018121b041995dca2d04c676a, type: 3}
+      propertyPath: m_ImplicitTensor
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1580188183632796368, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 7064012064572737, guid: 1540511018121b041995dca2d04c676a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2685400911266819078, guid: 1540511018121b041995dca2d04c676a, type: 3}
       propertyPath: m_Name
       value: Spinning Axe
-      objectReference: {fileID: 0}
-    - target: {fileID: 3166988163499316502, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_Size.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3166988163499316502, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_Size.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3166988163499316502, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3166988163499316502, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5153664157263465300, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: rotationSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943916109911562525, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.024
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943916109911562525, guid: 1540511018121b041995dca2d04c676a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.642
       objectReference: {fileID: 0}
     - target: {fileID: 7751021357989152944, guid: 1540511018121b041995dca2d04c676a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -965,14 +937,6 @@ PrefabInstance:
     - target: {fileID: 1450386038461968549, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
       propertyPath: m_Name
       value: Mage Fire
-      objectReference: {fileID: 0}
-    - target: {fileID: 1450386038461968549, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3414360343726592245, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
-      propertyPath: fireBall
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8689382613005362404, guid: 9bfd7247e96387e4e9c6165993a90986, type: 3}
       propertyPath: m_LocalPosition.x
