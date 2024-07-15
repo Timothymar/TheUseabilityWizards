@@ -11,10 +11,14 @@ public class gameManager : MonoBehaviour
     [Header("---------Audio---------")]
     [SerializeField] public AudioClip[] audMaster;
     [SerializeField] public float audMasterVol;
+    [SerializeField] public float audMusicVol;
+    [SerializeField] public float audSFXVol;
 
     
     //[SerializeField] AudioMixer audMixer;
-    [SerializeField] Slider volSlider;
+    [SerializeField] Slider masterSlider;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider SFXSlider;
 
     float volume;
 
@@ -41,6 +45,7 @@ public class gameManager : MonoBehaviour
     // ^ Normally serialized, will fix these later. This is also my reminder to do that.   
 
     public GameObject player;
+    public GameObject boss;
     public playerContol playerScript;
 
     int enemyCount;
@@ -54,24 +59,26 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        isStart = true;
         instance = this;
         player = GameObject.FindWithTag("Player");
+        boss = GameObject.FindWithTag("Boss");
         playerScript = player.GetComponent<playerContol>();
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
-        
-
-        //if (isStart == true)
-        //{
-        //    TitleScreen();
-        //}
+        //isStart = true;
+        // ^ COMMENT/UNCOMMENT THIS LINE AS NEEDED FOR TESTING
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isStart == true)
+        {
+            TitleScreen();
+        }
+
+
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -101,16 +108,31 @@ public class gameManager : MonoBehaviour
 
     public void stateUnpause()
     {
-        if (isStart == true)
-        {
-            isStart = false;
-        }
         isPaused = !isPaused;
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(isPaused);
         menuActive = null;
+    }
+
+    public void stateOptions()
+    {
+        stateUnpause();
+        isOptions = !isOptions;
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void stateExOptions()
+    {
+        isOptions = !isOptions;
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        menuActive.SetActive(isOptions);
+        statePause();
     }
 
     public void updateGameGoal(int amount)
@@ -139,22 +161,26 @@ public class gameManager : MonoBehaviour
 
     public void TitleScreen()
     {
-        statePause();
         menuActive = menuTitle;
-        menuActive.SetActive(isPaused);
+        menuActive.SetActive(isStart);
+        statePause();
+        isStart = !isStart;
+
     }
 
     public void OptionsScreen()
     {
-        //statePause();
+        stateOptions();
+        menuActive = null;
         menuActive = menuOptions;
-        menuActive.SetActive(isPaused);
+        menuActive.SetActive(isOptions);
     }
 
     public void BackButton()
     {
+        stateExOptions();
         menuActive = menuPause;
-        menuPause.SetActive(isPaused);
+        menuActive.SetActive(isPaused);
     }
 
     public void WinScreen()

@@ -39,6 +39,7 @@ public class TankOrc : MonoBehaviour
     void Start()
     {
         gameManager.instance.updateGameGoal(1);
+        stoppingDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
@@ -96,7 +97,7 @@ public class TankOrc : MonoBehaviour
             }
         }
 
-        agent.stoppingDistance = 0;
+        agent.stoppingDistance = stoppingDistOrig;
         return false;
     }
 

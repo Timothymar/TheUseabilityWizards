@@ -22,7 +22,6 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] int viewAngle;
     [SerializeField] int roamDist;
     [SerializeField] int roamTimer;
-    [SerializeField] int bossSpeed;
 
     bool playerInRange;
     bool destChosen;
