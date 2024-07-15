@@ -17,28 +17,28 @@ public class SpinningAxeTrap : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision detected with: " + other.gameObject.name);
-
         if (other.isTrigger || other.gameObject == this.gameObject)
         {
-            Debug.Log("Ignored collision with trigger or self.");
             return;
         }
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player collision detected.");
-
             IDamage dmg = other.GetComponent<IDamage>();
             if (dmg != null)
             {
-                Debug.Log("Applying damage: " + damageAmount);
                 dmg.takeDamage(damageAmount);
-            }
-            else
-            {
-                Debug.Log("IDamage interface not found on player.");
             }
         }
     }
+
+    //public void weaponColOn()
+    //{
+    //    boxCol.enabled = true;
+    //}
+
+    //public void weaponColOff()
+    //{
+    //    boxCol.enabled = false;
+    //}
 }

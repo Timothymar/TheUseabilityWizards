@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrcAxe : MonoBehaviour
 {
-    [SerializeField] Rigidbody rb;
+    //[SerializeField] Rigidbody rb;
 
     [SerializeField] int damage;
     [SerializeField] Collider weaponCol;

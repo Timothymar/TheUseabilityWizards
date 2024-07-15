@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7751021357989152944}
   - component: {fileID: 5153664157263465300}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Spinning Axe
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  damageAmount: 1
+  damageAmount: 10
   boxCol: {fileID: 3166988163499316502}
 --- !u!1 &5312075246207050382
 GameObject:
