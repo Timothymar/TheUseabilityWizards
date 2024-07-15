@@ -8,8 +8,8 @@ public class weaponStats : ScriptableObject
 {
     public GameObject weaponModel;
     public GameObject arrowType;
-    [Range(0.1f, 3)] public float reloadSpeed;
-    [Range(0.5f, 5)] public float shootRate;
+    [Range(0.01f, 3)] public float reloadSpeed;
+    [Range(0.1f, 5)] public float shootRate;
 
     public int arrowsToShoot;
     public int arrowsShootMax;
