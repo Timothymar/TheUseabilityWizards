@@ -66,7 +66,7 @@ public class gameManager : MonoBehaviour
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
-        isStart = true;
+        //isStart = true;
         // ^ COMMENT/UNCOMMENT THIS LINE AS NEEDED FOR TESTING
     }
 
