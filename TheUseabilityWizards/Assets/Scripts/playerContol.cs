@@ -465,7 +465,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     public void UsePotion()
     {
-        if (potionsHeld > 0)
+        if (potionsHeld > 0 && HP < maxHP)
         {
             potions potion = potionInventory[0];
             HealPlayer(potion.fillAmt);
@@ -487,5 +487,24 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     void updatePotionCountUI()
     {
         gameManager.instance.updatePotionCount(potionsHeld);
+    }
+
+    public void drainHealth(int amount)
+    {
+        HP += amount;
+        if (HP > maxHP)
+        {
+            HP = maxHP;
+        }
+        updatePlayerHeathUI();
+    }
+    public void drainStamina(int amount)
+    {
+        Stamina += amount;
+        if (Stamina > maxStamina)
+        {
+            Stamina = maxStamina;
+        }
+        updatePlayerStaminaUI();
     }
 }

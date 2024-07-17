@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b2ac769591d3b4cae5fb2f2a5f1bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: a4b8c5db1a5e7384691aa53e956b6a3a, type: 2}
+  weapon: {fileID: 11400000, guid: 894d88775e19bde48849c439dbc820cd, type: 2}
 --- !u!33 &2788113391890029216
 MeshFilter:
   m_ObjectHideFlags: 0

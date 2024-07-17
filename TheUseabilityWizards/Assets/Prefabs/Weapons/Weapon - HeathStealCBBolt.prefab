@@ -256,8 +256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7156363852522427783}
-  damage: 50
-  speed: 5
+  damage: 1
+  speed: 15
+  staminaDrain: 0
+  healthDrain: 1
   destroyTime: 3
 --- !u!54 &7156363852522427783
 Rigidbody:
