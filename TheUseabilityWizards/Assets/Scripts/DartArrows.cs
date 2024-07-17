@@ -7,7 +7,8 @@ public class DartArrows : MonoBehaviour
     [SerializeField] Rigidbody body;
     [SerializeField] int damage;
     [SerializeField] float FlySpeed;
-
+    Vector3 directionTowardsPlayer;
+     
     public float projDuration = 5.0f;
 
     private float reloadTime = 0f;
@@ -15,7 +16,8 @@ public class DartArrows : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        directionTowardsPlayer = (gameManager.instance.player.transform.position - transform.position).normalized;
+        body.velocity = directionTowardsPlayer * FlySpeed;
     }
 
     // Update is called once per frame

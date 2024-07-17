@@ -6,7 +6,6 @@ public class DartTrap : MonoBehaviour
 {
 
     [SerializeField] Transform shootPos;
-    [SerializeField] Quaternion shootRot;
     [SerializeField] GameObject projectile;
 
     [SerializeField] TrapTriggerZone triggerzone;
@@ -31,7 +30,7 @@ public class DartTrap : MonoBehaviour
 
             if (shootCooldown >= shootRate)
             {
-                Instantiate(projectile, shootPos.position, shootRot);
+                Instantiate(projectile, shootPos.position, shootPos.rotation);
 
                 shootCooldown = 0;
             }
