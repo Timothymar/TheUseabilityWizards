@@ -462,7 +462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6614104900911581257
 Transform:
   m_ObjectHideFlags: 0
@@ -671,7 +671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1513754100423146960
 Transform:
   m_ObjectHideFlags: 0
@@ -984,6 +984,7 @@ MonoBehaviour:
   staminaSprintDegen: 1
   staminaRecoveryDelay: 5
   potionsHeld: 0
+  potionInventory: []
   speed: 5
   sprintMod: 2
   jumpMax: 2
@@ -1033,7 +1034,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4da51a136c1d9ac48b67dc2eb76fccd8, type: 3}
   - {fileID: 8300000, guid: d7e3098badc4b2a40ae347ee59c1f54b, type: 3}
   audDeathVol: 0.5
-  fadeDuration: 3
+  fadeDuration: 0.5
   fadePanel: {fileID: 0}
 --- !u!143 &7135857837000190061
 CharacterController:

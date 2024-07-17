@@ -283,13 +283,14 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         if (HP <= 0 && !isDead)
         {
             isDead = true;
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
             StartCoroutine(FadeOutDeath());
         }
     }
 
     IEnumerator FadeOutDeath()
     {
-        aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
+        //aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
 
         float fadeProgress = 0f;
 
