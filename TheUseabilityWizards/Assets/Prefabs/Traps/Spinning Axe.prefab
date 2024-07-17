@@ -116,6 +116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6943916109911562525}
+  - component: {fileID: 6100296399397317424}
   - component: {fileID: 3166988163499316502}
   - component: {fileID: 7064012064572737}
   m_Layer: 7
@@ -141,6 +142,20 @@ Transform:
   - {fileID: 9098819919712625734}
   m_Father: {fileID: 7751021357989152944}
   m_LocalEulerAnglesHint: {x: 91.16101, y: 180, z: 0}
+--- !u!114 &6100296399397317424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823931496040846785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71103c7fcb3dc7b44876e291929edb00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  boxCol: {fileID: 3166988163499316502}
 --- !u!65 &3166988163499316502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -236,8 +251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  damageAmount: 10
-  boxCol: {fileID: 3166988163499316502}
 --- !u!1 &5312075246207050382
 GameObject:
   m_ObjectHideFlags: 0
