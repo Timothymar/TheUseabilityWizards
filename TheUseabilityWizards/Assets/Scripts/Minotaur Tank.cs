@@ -48,7 +48,7 @@ public class TankOrc : MonoBehaviour
         playerDir = gameManager.instance.player.transform.position - transform.position;
 
         float agentSpeed = agent.velocity.normalized.magnitude;
-        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
+        //animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
 
         if (isPlayerInRange && !canSeePlayer())
         {
