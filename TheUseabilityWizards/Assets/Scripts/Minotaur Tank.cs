@@ -39,6 +39,7 @@ public class TankOrc : MonoBehaviour
     void Start()
     {
         gameManager.instance.updateGameGoal(1);
+        startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
 
@@ -121,7 +122,7 @@ public class TankOrc : MonoBehaviour
     {
         HP -= amount;
         StartCoroutine(flashDamage());
-
+        agent.SetDestination(gameManager.instance.player.transform.position);
         if (HP <= 0)
         {
             gameManager.instance.updateGameGoal(-1);
