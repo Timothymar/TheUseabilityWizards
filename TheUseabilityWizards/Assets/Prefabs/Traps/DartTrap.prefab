@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4068104046426983735}
   - component: {fileID: 8029732567978998537}
   - component: {fileID: 3879751252151034637}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DartTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPos: {fileID: 6375662878334265618}
-  shootRot: {x: 0, y: 0, z: 0, w: 1}
   projectile: {fileID: 4707544412447893661, guid: 0440925e637aac343a1a9a41e0a1bba3, type: 3}
   triggerzone: {fileID: 6093158140228368209}
   shootRate: 1.5
@@ -140,7 +139,7 @@ GameObject:
   - component: {fileID: 5491544671324598755}
   - component: {fileID: 8333997442985693115}
   - component: {fileID: 4606502184740882851}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6375662878334265618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: launchPOS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +274,7 @@ GameObject:
   - component: {fileID: 7528504804319932831}
   - component: {fileID: 6093158140228368209}
   - component: {fileID: 1164363846077464172}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TriggerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

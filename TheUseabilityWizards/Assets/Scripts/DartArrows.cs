@@ -23,7 +23,7 @@ public class DartArrows : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += FlySpeed * transform.right * Time.deltaTime;
+        //transform.position += FlySpeed * transform.right * Time.deltaTime;
 
         reloadTime += Time.deltaTime;
 
