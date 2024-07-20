@@ -404,11 +404,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 0}
   agent: {fileID: 458606908579462703}
-  animator: {fileID: 0}
+  animator: {fileID: 3513899612759238444}
   headPos: {fileID: 5444160256587014784}
   CastPos: {fileID: 7179656499303535611}
   HP: 1
-  animatorTranSpeed: 0
+  animatorTranSpeed: 10
   faceTargetSpeed: 1
   visionCone: 90
   castRate: 1
@@ -495,7 +495,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 5
+  m_StoppingDistance: 15
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
