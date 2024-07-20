@@ -54,7 +54,7 @@ public class TankOrc : MonoBehaviour
         float agentSpeed = agent.velocity.magnitude;
         animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
 
-        Debug.Log($"Player In Range: {isPlayerInRange}, Can See Player: {canSeePlayer()}, Is Attacking: {isAttacking}");
+        //Debug.Log($"Player In Range: {isPlayerInRange}, Can See Player: {canSeePlayer()}, Is Attacking: {isAttacking}");
 
         if (isPlayerInRange && canSeePlayer())
         {
@@ -98,12 +98,12 @@ public class TankOrc : MonoBehaviour
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
 
-        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z));
+        //Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z));
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
 
             // Check if the player is within the vision cone and not obstructed
             if (hit.collider.CompareTag("Player") && angleToPlayer <= visionCone)
