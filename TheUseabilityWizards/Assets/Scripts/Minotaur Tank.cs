@@ -38,6 +38,7 @@ public class TankOrc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
@@ -49,13 +50,31 @@ public class TankOrc : MonoBehaviour
         playerDir = gameManager.instance.player.transform.position - transform.position;
 
         float agentSpeed = agent.velocity.normalized.magnitude;
-        //animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
+        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
 
-        if (isPlayerInRange && !canSeePlayer())
+        Debug.Log($"Player In Range: {isPlayerInRange}, Can See Player: {canSeePlayer()}, Is Attacking: {isAttacking}");
+
+        if (isPlayerInRange)
         {
-            StartCoroutine(roam());
+            if (canSeePlayer())
+            {
+                StopCoroutine(roam());
+
+                if (!isAttacking && angleToPlayer <= attackAngle && agent.remainingDistance <= stoppingDistOrig)
+                {
+                    StartCoroutine(attack());
+                }
+                else
+                {
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
+            }
+            else
+            {
+                StartCoroutine(roam());
+            }
         }
-        else if (!isPlayerInRange)
+        else
         {
             StartCoroutine(roam());
         }
@@ -134,10 +153,14 @@ public class TankOrc : MonoBehaviour
     IEnumerator attack()
     {
         isAttacking = true;
+        animator.SetBool("Attack", true);
         animator.SetTrigger("Attack");
+
+        Debug.Log("Attacking...");
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
+        animator.SetBool("Attack", false);
     }
 
     IEnumerator flashDamage()
@@ -152,6 +175,7 @@ public class TankOrc : MonoBehaviour
         if (!destChosen && agent.remainingDistance < 0.05f)
         {
             destChosen = true;
+            animator.SetFloat("Speed", 0);
             yield return new WaitForSeconds(roamTimer);
 
             agent.stoppingDistance = 0;

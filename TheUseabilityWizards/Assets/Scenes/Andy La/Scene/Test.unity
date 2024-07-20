@@ -800,46 +800,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
---- !u!1 &2049844719 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4681832520171421080, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
-  m_PrefabInstance: {fileID: 5615240621710130473}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2049844722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049844719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39aeed11c9488814daaed8c6c43b7ca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  weaponCol: {fileID: 2049844723}
---- !u!65 &2049844723
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049844719}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.24659763, y: 1.2177396, z: 1.5589277}
-  m_Center: {x: 0.47867027, y: 1.123175, z: -0.26608574}
 --- !u!1001 &4993714071408871206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -974,10 +934,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1367242547485544918, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2151644480137374686, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
       propertyPath: m_Name
       value: minotaur1
@@ -1023,20 +979,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6523748624483977243, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
-      propertyPath: weaponCol
-      value: 
-      objectReference: {fileID: 2049844723}
+      propertyPath: attackAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149675861922120572, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 9022166625019093487, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4681832520171421080, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 2049844722}
-    - targetCorrespondingSourceObject: {fileID: 4681832520171421080, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2049844723}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bc83d8e7c9f9044b89c4e1b0c9641cc, type: 3}
 --- !u!1001 &6001413843387353324
 PrefabInstance:
