@@ -82,11 +82,6 @@ public class FlyingENemy : MonoBehaviour, IDamage
         playerDirect = gameManager.instance.player.transform.position - shootPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z), transform.forward);
 
-        //see the angle
-        Debug.Log(angleToPlayer);
-
-        Debug.DrawRay(shootPos.position, new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z));
-
         RaycastHit hit;
         if (Physics.Raycast(shootPos.position, playerDirect, out hit))
         {

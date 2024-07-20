@@ -51,11 +51,6 @@ public class StationaryEnemy : MonoBehaviour, IDamage
         playerDirect = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z), transform.forward);
 
-        Debug.Log(angleToPlayer);
-
-        Debug.DrawRay(headPos.position, new Vector3(playerDirect.x, playerDirect.y + 1, playerDirect.z));
-
-
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDirect, out hit))
         {
