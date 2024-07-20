@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuTitle;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuOptions;
+    [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject bossBar;
@@ -56,6 +57,7 @@ public class gameManager : MonoBehaviour
     public bool isStart = false;
     public bool isBoss = false;
     public bool isOptions = false;
+    public bool isCredits = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -166,6 +168,13 @@ public class gameManager : MonoBehaviour
         statePause();
         isStart = !isStart;
 
+    }
+
+    public void CreditScreen()
+    {
+        menuActive = menuCredits;
+        menuActive.SetActive(isStart);
+        statePause();
     }
 
     public void OptionsScreen()
