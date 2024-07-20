@@ -805,7 +805,7 @@ MonoBehaviour:
   weaponCol: {fileID: 6833266219297238400}
   weaponAxe: {fileID: 4681832520171421080}
   attackRate: 1
-  attackAngle: 45
+  attackAngle: 90
   roamDist: 12
   roamTimer: 6
 --- !u!95 &5433389892718902227
@@ -843,9 +843,9 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -2141,7 +2141,7 @@ Transform:
   m_GameObject: {fileID: 4681832520171421080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.596}
+  m_LocalPosition: {x: -0.405, y: 0, z: 0.596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2289,7 +2289,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.24659763, y: 1.2177396, z: 1.5589277}
+  m_Size: {x: 0.6, y: 1.2177396, z: 1.5589277}
   m_Center: {x: 0.47867027, y: 1.123175, z: -0.26608574}
 --- !u!1 &4684765247059644181
 GameObject:

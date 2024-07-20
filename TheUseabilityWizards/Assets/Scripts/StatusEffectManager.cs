@@ -6,6 +6,7 @@ public class StatusEffectManager : MonoBehaviour
 {
 
     public List<int> PoisonTickTimers = new List<int>();
+    public List<int> BurnTickTimers = new List<int>();
 
     public void ApplyPoison(int poisonTicks, Collider other)
     {
@@ -19,8 +20,6 @@ public class StatusEffectManager : MonoBehaviour
             PoisonTickTimers.Add(poisonTicks);
        }
     }
-    
-
 
     IEnumerator Poisoned(Collider other)
     {
@@ -37,4 +36,31 @@ public class StatusEffectManager : MonoBehaviour
         }
     }
 
+    public void ApplyBurn(int burnTicks, int burnDamage, Collider other)
+    {
+        if (BurnTickTimers.Count <= 0)
+        {
+            BurnTickTimers.Add(burnTicks);
+            StartCoroutine(Burned(burnDamage, other));
+        }
+        else
+        {
+            BurnTickTimers.Add(burnTicks);
+        }
+    }
+
+    IEnumerator Burned(int burnDamage, Collider other)
+    {
+        IDamage dmg = other.GetComponent<IDamage>();
+        while (BurnTickTimers.Count > 0)
+        {
+            for (int i = 0; i < BurnTickTimers.Count; i++)
+            {
+                BurnTickTimers[i]--;
+            }
+            dmg.takeDamage(burnDamage);
+            BurnTickTimers.RemoveAll(i => i == 0);
+            yield return new WaitForSeconds(1);
+        }
+    }
 }

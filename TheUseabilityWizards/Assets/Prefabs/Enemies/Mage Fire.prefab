@@ -404,16 +404,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 0}
   agent: {fileID: 458606908579462703}
-  anima: {fileID: 3513899612759238444}
+  animator: {fileID: 0}
   headPos: {fileID: 5444160256587014784}
   CastPos: {fileID: 7179656499303535611}
   HP: 1
-  animTranSpeed: 1
+  animatorTranSpeed: 0
   faceTargetSpeed: 1
   visionCone: 90
   castRate: 1
   castAngle: 45
-  fireBall: {fileID: 0}
+  fireBall: {fileID: 7063276712083259783, guid: 3deda0a8ab0a70e489d7ce4c540d2482, type: 3}
   roamDist: 4
   roamTimer: 1
 --- !u!95 &3513899612759238444
@@ -497,7 +497,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -2035,7 +2035,7 @@ Transform:
   m_GameObject: {fileID: 6617993202849529920}
   serializedVersion: 2
   m_LocalRotation: {x: 0.71122634, y: -0, z: -0, w: 0.7029632}
-  m_LocalPosition: {x: 0.35999992, y: -1.3060036, z: 0.09905134}
+  m_LocalPosition: {x: -0.034, y: -1.305, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

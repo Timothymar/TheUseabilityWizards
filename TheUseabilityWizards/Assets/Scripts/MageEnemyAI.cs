@@ -7,17 +7,17 @@ public class MageEnemyAI : MonoBehaviour
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Animator anima;
+    [SerializeField] Animator animator;
     [SerializeField] Transform headPos;
     [SerializeField] Transform CastPos;
 
     [SerializeField] int HP;
-    [SerializeField] int animTranSpeed;
+    [SerializeField] int animatorTranSpeed;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int visionCone;
 
     [SerializeField] float castRate;
-    [SerializeField] int castAngle;
+    [SerializeField] float castAngle;
     [SerializeField] GameObject fireBall;
 
     [SerializeField] int roamDist;
@@ -36,65 +36,80 @@ public class MageEnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         gameManager.instance.updateGameGoal(1);
+        startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float agentSpeed = agent.velocity.normalized.magnitude;
-        anima.SetFloat("Speed", Mathf.Lerp(anima.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTranSpeed));
+        playerDir = gameManager.instance.player.transform.position - transform.position;
 
-        if (playerInRange && !canSeePlayer())
+        float agentSpeed = agent.velocity.magnitude;
+        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
+
+        //Debug.Log($"Player In Range: {playerInRange}, Can See Player: {canSeePlayer()}, Is Casting: {isCasting}");
+
+        if (playerInRange && canSeePlayer())
         {
-            StartCoroutine(roam());
-        }
-        else if (!playerInRange)
-        {
-            StartCoroutine(roam());
-        }
-    }
+            // Stop roaming
+            StopCoroutine(roam());
 
-    bool canSeePlayer()
-    {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
-        //Debug.Log(angleToPlayer);
-        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z));
-
-        RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
-        {
-            Debug.Log(hit.collider.name);
-
-            // Hey I can see player
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= visionCone)
+            // Check distance to cast
+            if (!isCasting && angleToPlayer <= castAngle && agent.remainingDistance <= stoppingDistOrig)
             {
+                StartCoroutine(cast());
+            }
+            else
+            {
+                // Set the stopping distance back to original
                 agent.stoppingDistance = stoppingDistOrig;
+
+                // Chase the player
                 agent.SetDestination(gameManager.instance.player.transform.position);
-
-                if (agent.remainingDistance < agent.stoppingDistance)
-                {
-                    faceTarget();
-                }
-
-                if (!isCasting && angleToPlayer <= castAngle)
-                {
-                    StartCoroutine(cast());
-                }
-                return true;
             }
         }
+        else
+        {
+            // Reset stopping distance for roaming
+            agent.stoppingDistance = 0;
 
-        agent.stoppingDistance = stoppingDistOrig;
-        return false;
+            // Start roaming if player is not in range or can't see player
+            if (!destChosen) // Prevent multiple calls to StartCoroutine
+            {
+                StartCoroutine(roam());
+            }
+        }
     }
 
     void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+
+    bool canSeePlayer()
+    {
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
+
+        //Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z));
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            //Debug.Log(hit.collider.name);
+
+            // Check if the player is within the vision cone and not obstructed
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= visionCone)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -116,17 +131,14 @@ public class MageEnemyAI : MonoBehaviour
     IEnumerator cast()
     {
         isCasting = true;
-        anima.SetTrigger("Cast");
+        animator.SetBool("Cast", true);
+        animator.SetTrigger("Cast");
 
         Instantiate(fireBall, CastPos.position, transform.rotation);
 
         yield return new WaitForSeconds(castRate);
         isCasting = false;
-    }
-
-    public void createFireBall()
-    {
-        Instantiate(fireBall, CastPos.position, transform.rotation);
+        animator.SetBool("Cast", false);
     }
 
     public void takeDamage(int amount)
@@ -155,9 +167,7 @@ public class MageEnemyAI : MonoBehaviour
             destChosen = true;
             yield return new WaitForSeconds(roamTimer);
 
-            agent.stoppingDistance = 0;
-
-            // Keep his roam area small
+            // Keeps his roam area small
             Vector3 ranPos = Random.insideUnitSphere * roamDist;
             ranPos += startingPos;
 
