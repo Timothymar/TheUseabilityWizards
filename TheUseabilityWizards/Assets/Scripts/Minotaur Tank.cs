@@ -35,6 +35,8 @@ public class TankOrc : MonoBehaviour
     float angleToPlayer;
     float stoppingDistOrig;
 
+    Coroutine roamCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,34 +51,39 @@ public class TankOrc : MonoBehaviour
     {
         playerDir = gameManager.instance.player.transform.position - transform.position;
 
-        float agentSpeed = agent.velocity.normalized.magnitude;
+        float agentSpeed = agent.velocity.magnitude;
         animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animatorTranSpeed));
 
         Debug.Log($"Player In Range: {isPlayerInRange}, Can See Player: {canSeePlayer()}, Is Attacking: {isAttacking}");
 
-        if (isPlayerInRange)
+        if (isPlayerInRange && canSeePlayer())
         {
-            if (canSeePlayer())
+            // Stop roaming
+            if (roamCoroutine != null)
             {
-                StopCoroutine(roam());
+                StopCoroutine(roamCoroutine);
+                roamCoroutine = null;
+            }
 
-                if (!isAttacking && angleToPlayer <= attackAngle && agent.remainingDistance <= stoppingDistOrig)
-                {
-                    StartCoroutine(attack());
-                }
-                else
-                {
-                    agent.SetDestination(gameManager.instance.player.transform.position);
-                }
+            // Check distance to attack
+            if (!isAttacking && angleToPlayer <= attackAngle && agent.remainingDistance <= stoppingDistOrig)
+            {
+                StartCoroutine(attack());
             }
             else
             {
-                StartCoroutine(roam());
+                // Chase the player
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.isStopped = false;
             }
         }
         else
         {
-            StartCoroutine(roam());
+            // Start roaming if player is not in range or can't see player
+            if (roamCoroutine == null)
+            {
+                roamCoroutine = StartCoroutine(roam());
+            }
         }
     }
 
@@ -90,7 +97,7 @@ public class TankOrc : MonoBehaviour
     {
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
-        //Debug.Log(angleToPlayer);
+
         Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z));
 
         RaycastHit hit;
@@ -98,26 +105,13 @@ public class TankOrc : MonoBehaviour
         {
             Debug.Log(hit.collider.name);
 
-            // Hey I can see player
+            // Check if the player is within the vision cone and not obstructed
             if (hit.collider.CompareTag("Player") && angleToPlayer <= visionCone)
             {
-                agent.stoppingDistance = stoppingDistOrig;
-                agent.SetDestination(gameManager.instance.player.transform.position);
-
-                if (agent.remainingDistance < agent.stoppingDistance)
-                {
-                    faceTarget();
-                }
-
-                if (!isAttacking && angleToPlayer <= attackAngle)
-                {
-                    StartCoroutine(attack());
-                }
                 return true;
             }
         }
 
-        agent.stoppingDistance = stoppingDistOrig;
         return false;
     }
 
@@ -155,8 +149,6 @@ public class TankOrc : MonoBehaviour
         isAttacking = true;
         animator.SetBool("Attack", true);
         animator.SetTrigger("Attack");
-
-        Debug.Log("Attacking...");
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
