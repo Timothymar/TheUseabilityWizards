@@ -135,7 +135,7 @@ public class TankOrc : MonoBehaviour, IDamage
     {
         //Debug.Log("TankOrc took damage: " + amount);
         HP -= amount;
-        StartCoroutine(flashDamage());
+        //StartCoroutine(flashDamage());
         agent.SetDestination(gameManager.instance.player.transform.position);
         if (HP <= 0)
         {
