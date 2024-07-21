@@ -1507,7 +1507,7 @@ MonoBehaviour:
     ninj4ext - UnityStore\nFree Characters by Distant Lands - UnityStore            
     Giant Monster Model-Golem by Kevin Iglesias - UnityStore\nBattle Wizard Poly
     Art by Dungeon Mason - UnityStore       Giant Animations FREE by Kevin Iglesias
-    - UnityStore\n\nAxe Stylized by crismas - UnityStore                         
+    - UnityStore\n\n\nAxe Stylized by crismas - UnityStore                         
     Lava Flowing Shader by Moonflower Carnivore - UnityStore                                                                        
     \n3D Low Poly Tables by TridentCorp - UnityStore                            Pack
     Free Textures 3 by Lord Enot - UnityStore\nDungeon Ground Texture by Pixel Indie
@@ -2266,7 +2266,7 @@ MonoBehaviour:
     Weapon
     SFX from
 
-    Background Music from'
+    Background Music by Vertex Studio - UnityStore'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   menuTitle: {fileID: 1979194042615417868}
   menuPause: {fileID: 333392074617461409}
   menuOptions: {fileID: 4743256783540402203}
-  menuCredits: {fileID: 0}
+  menuCredits: {fileID: 2561010290911521277}
   menuWin: {fileID: 3400614065349722722}
   menuLose: {fileID: 4207008305257604466}
   menuPrev: {fileID: 0}
@@ -2823,7 +2823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2876585893039284224
 RectTransform:
   m_ObjectHideFlags: 0
