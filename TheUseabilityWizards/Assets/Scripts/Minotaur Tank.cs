@@ -117,9 +117,15 @@ public class TankOrc : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        Debug.Log("Weapon hit: " + other.name);
+        if (other.CompareTag("Enemy"))
         {
-            isPlayerInRange = true;
+            TankOrc enemy = other.GetComponent<TankOrc>();
+            if (enemy != null)
+            {
+                Debug.Log("Enemy hit: " + enemy.name);
+                enemy.takeDamage(5);
+            }
         }
     }
 
@@ -133,6 +139,7 @@ public class TankOrc : MonoBehaviour
 
     public void takeDamage(int amount)
     {
+        Debug.Log("TankOrc took damage: " + amount);
         HP -= amount;
         StartCoroutine(flashDamage());
         agent.SetDestination(gameManager.instance.player.transform.position);
