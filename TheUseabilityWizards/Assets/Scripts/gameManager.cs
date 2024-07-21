@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class gameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class gameManager : MonoBehaviour
 
     float volume;
 
+    [Header("---------Menus---------")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuTitle;
     [SerializeField] GameObject menuPause;
@@ -31,6 +33,13 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuPrev;
     [SerializeField] GameObject bossBar;
+    [SerializeField] GameObject startFirstBtn;
+    [SerializeField] GameObject pauseFirstBtn;
+    [SerializeField] GameObject optionsFirstBtn;
+    [SerializeField] GameObject startOptionsCloseBtn;
+    [SerializeField] GameObject pauseOptionsCloseBtn;
+    [SerializeField] GameObject winFirstBtn;
+    [SerializeField] GameObject loseFirstBtn;
 
     [SerializeField] TMP_Text enemyCounter;
 
@@ -70,7 +79,7 @@ public class gameManager : MonoBehaviour
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
-        //isStart = true;
+        isStart = true;
         // ^ COMMENT/UNCOMMENT THIS LINE AS NEEDED FOR TESTING
     }
 
@@ -85,10 +94,16 @@ public class gameManager : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel"))
         {
+            if (EventSystem.current.gameObject != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+
             if (menuActive == null)
             {
                 statePause();
                 menuActive = menuPause;
+                EventSystem.current.SetSelectedGameObject(pauseFirstBtn);
                 menuActive.SetActive(isPaused);
             }
             else if (menuActive == menuPause)
@@ -98,6 +113,7 @@ public class gameManager : MonoBehaviour
             else if (menuActive == menuOptions)
             {
                 BackButton();
+                EventSystem.current.SetSelectedGameObject(pauseOptionsCloseBtn);
             }
         }
     }
@@ -122,13 +138,20 @@ public class gameManager : MonoBehaviour
 
     public void stateOptions()
     {
+        if (EventSystem.current.gameObject != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
         if (menuActive == menuTitle)
         {
+            EventSystem.current.SetSelectedGameObject(optionsFirstBtn);
             menuPrev = menuTitle;
             stateUnpause();
         }
         else if (menuActive == menuPause)
         {
+            EventSystem.current.SetSelectedGameObject(optionsFirstBtn);
             menuPrev = menuPause;
             stateUnpause();
         }
@@ -137,6 +160,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        EventSystem.current.SetSelectedGameObject(optionsFirstBtn);
     }
 
     public void stateExOptions()
@@ -198,17 +222,25 @@ public class gameManager : MonoBehaviour
 
     public void BackButton()
     {
+        if (EventSystem.current.gameObject != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
         stateExOptions();
         if (menuPrev == menuPause)
         {
             statePause();
             menuActive = menuPause;
             menuActive.SetActive(isPaused);
+            EventSystem.current.SetSelectedGameObject(pauseOptionsCloseBtn);
             menuPrev = null;
         }
         else if (menuPrev == menuTitle)
         {
-            TitleScreen();
+            EventSystem.current.SetSelectedGameObject(startOptionsCloseBtn);
+            menuActive = menuTitle;
+            menuActive.SetActive(isStart);
             menuPrev = null;
         }
     }
@@ -216,6 +248,7 @@ public class gameManager : MonoBehaviour
     public void WinScreen()
     {
         statePause();
+        EventSystem.current.SetSelectedGameObject(winFirstBtn);
         menuActive = menuWin;
         menuActive.SetActive(isPaused);
 
@@ -224,6 +257,7 @@ public class gameManager : MonoBehaviour
     public void LoseScreen()
     {
         statePause();
+        EventSystem.current.SetSelectedGameObject(loseFirstBtn);
         menuActive = menuLose;
         menuActive.SetActive(isPaused);
     }
