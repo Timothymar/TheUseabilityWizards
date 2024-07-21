@@ -257,7 +257,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
             {
                 Stamina += staminaRecoveryAmount;
                 updatePlayerStaminaUI();
-                Debug.Log("Stamina recovered:" + Stamina);
+                //Debug.Log("Stamina recovered:" + Stamina);
             }
         }
     }

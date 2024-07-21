@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TankOrc : MonoBehaviour
+public class TankOrc : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -133,6 +133,7 @@ public class TankOrc : MonoBehaviour
 
     public void takeDamage(int amount)
     {
+        //Debug.Log("TankOrc took damage: " + amount);
         HP -= amount;
         StartCoroutine(flashDamage());
         agent.SetDestination(gameManager.instance.player.transform.position);

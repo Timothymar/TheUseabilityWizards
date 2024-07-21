@@ -136,6 +136,14 @@ public class gameManager : MonoBehaviour
         menuActive = null;
     }
 
+    public void stateCredits()
+    {
+        isCredits = !isCredits;
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     public void stateOptions()
     {
         if (EventSystem.current.gameObject != null)
@@ -207,9 +215,18 @@ public class gameManager : MonoBehaviour
 
     public void CreditScreen()
     {
-        menuActive = menuCredits;
-        menuActive.SetActive(isStart);
-        statePause();
+        stateCredits();
+        if (isCredits)
+        {
+            menuActive = menuCredits;
+            menuActive.SetActive(isCredits);
+        }
+        else
+        {
+            menuActive.SetActive(false);
+            TitleScreen();
+        }
+
     }
 
     public void OptionsScreen()

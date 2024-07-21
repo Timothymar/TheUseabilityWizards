@@ -1592,7 +1592,7 @@ MonoBehaviour:
   agent: {fileID: 6128769875828287293}
   animator: {fileID: 6730578612563072989}
   headPos: {fileID: 6342858906221553069}
-  HP: 5
+  HP: 10
   animatorTranSpeed: 5
   faceTargetSpeed: 5
   visionCone: 45
