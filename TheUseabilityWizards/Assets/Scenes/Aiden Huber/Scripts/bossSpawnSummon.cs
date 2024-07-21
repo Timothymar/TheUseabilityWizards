@@ -31,20 +31,19 @@ public class bossSpawnSummon : MonoBehaviour
 
             SpawnTrigger();
             aud.PlayOneShot(audInstMaster[Random.Range(0, audInstMaster.Length)]);
+
         }
 
         if (startSpawning && spawnCount < numToSpawn && !isSpawning)
         {
             StartCoroutine(spawn());
+            startSpawning = false;
         }
     }
 
     private void SpawnTrigger()
     {
-        if (summonSound)
-        {
-            startSpawning = true;
-        }
+        startSpawning = true;
     }
 
     IEnumerator spawn()

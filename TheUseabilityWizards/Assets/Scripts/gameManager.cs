@@ -91,7 +91,6 @@ public class gameManager : MonoBehaviour
             TitleScreen();
         }
 
-
         if (Input.GetButtonDown("Cancel"))
         {
             if (EventSystem.current.gameObject != null)
@@ -277,11 +276,6 @@ public class gameManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(loseFirstBtn);
         menuActive = menuLose;
         menuActive.SetActive(isPaused);
-    }
-
-    public void BossHealth()
-    {
-        bossBar.SetActive(isBoss);
     }
 
 }

@@ -171,10 +171,19 @@ public class bossAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amt)
     {
-        bHP -= amt;
-        //firedBolt = gameManager.instance.playerScript.getcomp
-        //    weaponList[selectedWeapon].arrowType
-        //if(gameManager.instance.player.)
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            // Can see the player
+            if (hit.collider == bodCol)
+            {
+                bHP -= amt;
+            }
+            else if (hit.collider == headCol)
+            {
+                bHP -= amt * 2;
+            }
+        }
         updateBossHealthUI();
     }
 
@@ -186,6 +195,7 @@ public class bossAI : MonoBehaviour, IDamage
     public void weaponCol1On()
     {
         weaponCol1.enabled = true;
+        anim.SetTrigger("LFist");
     }
     
     public void weaponCol2On()
@@ -195,9 +205,11 @@ public class bossAI : MonoBehaviour, IDamage
     public void weaponCol1Off()
     {
         weaponCol1.enabled = false;
+        anim.SetTrigger("LFist");
     }
     public void weaponCol2Off()
     {
         weaponCol2.enabled = false;
     }
+
 }

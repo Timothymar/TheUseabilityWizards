@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Boss
   - Audio Manager
+  - Boss Trigger
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Player
   - Player Attack
   - Trap
-  - 
+  - Spawner
   - 
   - 
   - 
