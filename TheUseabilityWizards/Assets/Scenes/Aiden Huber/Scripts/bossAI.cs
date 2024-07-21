@@ -56,10 +56,7 @@ public class bossAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.instance.isBoss == true)
-        {
-            gameManager.instance.BossHealth();
-        } 
+
         updateBossHealthUI();
 
         float agentSpeed = agent.velocity.normalized.magnitude;
