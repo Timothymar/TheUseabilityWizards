@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 299986109809966430}
-  damage: 1
+  damage: 3
   speed: 15
   staminaDrain: 1
   healthDrain: 0
