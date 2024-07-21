@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TankOrc : MonoBehaviour
+public class TankOrc : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -117,15 +117,9 @@ public class TankOrc : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Weapon hit: " + other.name);
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
-            TankOrc enemy = other.GetComponent<TankOrc>();
-            if (enemy != null)
-            {
-                Debug.Log("Enemy hit: " + enemy.name);
-                enemy.takeDamage(5);
-            }
+            isPlayerInRange = true;
         }
     }
 
@@ -139,7 +133,7 @@ public class TankOrc : MonoBehaviour
 
     public void takeDamage(int amount)
     {
-        Debug.Log("TankOrc took damage: " + amount);
+        //Debug.Log("TankOrc took damage: " + amount);
         HP -= amount;
         StartCoroutine(flashDamage());
         agent.SetDestination(gameManager.instance.player.transform.position);
