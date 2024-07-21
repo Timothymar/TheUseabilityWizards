@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuPrev;
     [SerializeField] GameObject bossBar;
 
     [SerializeField] TMP_Text enemyCounter;
@@ -58,6 +59,7 @@ public class gameManager : MonoBehaviour
     public bool isBoss = false;
     public bool isOptions = false;
     public bool isCredits = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -120,7 +122,17 @@ public class gameManager : MonoBehaviour
 
     public void stateOptions()
     {
-        stateUnpause();
+        if (menuActive == menuTitle)
+        {
+            menuPrev = menuTitle;
+            stateUnpause();
+        }
+        else if (menuActive == menuPause)
+        {
+            menuPrev = menuPause;
+            stateUnpause();
+        }
+       
         isOptions = !isOptions;
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -134,7 +146,6 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(isOptions);
-        statePause();
     }
 
     public void updateGameGoal(int amount)
@@ -188,8 +199,18 @@ public class gameManager : MonoBehaviour
     public void BackButton()
     {
         stateExOptions();
-        menuActive = menuPause;
-        menuActive.SetActive(isPaused);
+        if (menuPrev == menuPause)
+        {
+            statePause();
+            menuActive = menuPause;
+            menuActive.SetActive(isPaused);
+            menuPrev = null;
+        }
+        else if (menuPrev == menuTitle)
+        {
+            TitleScreen();
+            menuPrev = null;
+        }
     }
 
     public void WinScreen()
