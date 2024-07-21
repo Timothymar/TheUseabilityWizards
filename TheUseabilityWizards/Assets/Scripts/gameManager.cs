@@ -205,12 +205,6 @@ public class gameManager : MonoBehaviour
 
     }
 
-    public void CreditScreen()
-    {
-        menuActive = menuCredits;
-        menuActive.SetActive(isStart);
-        statePause();
-    }
 
     public void OptionsScreen()
     {

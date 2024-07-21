@@ -16,6 +16,11 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.stateUnpause();
     }
 
+    public void credits()
+    {
+        gameManager.instance.CreditScreen();
+    }
+
     public void options()
     {
         gameManager.instance.OptionsScreen();
