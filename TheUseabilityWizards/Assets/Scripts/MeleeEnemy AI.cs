@@ -38,7 +38,7 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        gameManager.instance.updateGameGoal(1);
+        //gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
@@ -123,7 +123,7 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
         agent.SetDestination(gameManager.instance.player.transform.position);
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            //gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
         }

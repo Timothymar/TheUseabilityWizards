@@ -35,7 +35,7 @@ public class MageFire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager.instance.updateGameGoal(1);
+        //gameManager.instance.updateGameGoal(1);
 
         startingPos = transform.position;
         stoppingDistOrig = mageAgent.stoppingDistance;
@@ -157,7 +157,7 @@ public class MageFire : MonoBehaviour
 
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            //gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
     }

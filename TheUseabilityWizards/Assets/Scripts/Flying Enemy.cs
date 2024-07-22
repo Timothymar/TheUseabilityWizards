@@ -34,7 +34,7 @@ public class FlyingENemy : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        gameManager.instance.updateGameGoal(1);
+        //gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stopDistOrig = enemyAgent.stoppingDistance;
     }
@@ -157,7 +157,7 @@ public class FlyingENemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            //gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
 
