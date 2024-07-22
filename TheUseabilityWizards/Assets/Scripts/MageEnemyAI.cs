@@ -144,7 +144,7 @@ public class MageEnemyAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        StartCoroutine(flashDamage());
+        //StartCoroutine(flashDamage());
 
         if (HP <= 0)
         {

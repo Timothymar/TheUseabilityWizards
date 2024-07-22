@@ -182,7 +182,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         enemyCount += amount;
-        enemyCounter.text = enemyCount.ToString("F0");
+        //enemyCounter.text = enemyCount.ToString("F0");
     }
 
     public void updateArrowCount(int arrowCount)
