@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d717535f7bfacf144a276fa25e3c3591, type: 3}
   m_Name: Weapon - HeavyCBStats
   m_EditorClassIdentifier: 
+  weaponName: Heavy
   weaponModel: {fileID: 8459189277918413064, guid: 2671d4f3b0d53514ea724fe040cfd7d2, type: 3}
   arrowType: {fileID: 8209462377153511069, guid: e620cd603c726a248bbe60da7a50009c, type: 3}
   reloadSpeed: 0.5

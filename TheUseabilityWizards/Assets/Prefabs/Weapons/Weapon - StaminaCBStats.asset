@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d717535f7bfacf144a276fa25e3c3591, type: 3}
   m_Name: Weapon - StaminaCBStats
   m_EditorClassIdentifier: 
+  weaponName: StaminaSteal
   weaponModel: {fileID: 8459189277918413064, guid: b97c65d988da3d043b00daefd67a8a36, type: 3}
   arrowType: {fileID: 56730539700582308, guid: cbe2049af4b6bb24f9fc0c8f348ac541, type: 3}
   reloadSpeed: 0.5

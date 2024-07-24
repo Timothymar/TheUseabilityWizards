@@ -438,6 +438,10 @@ PrefabInstance:
     - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: fadePanel
       value: 
+      objectReference: {fileID: 1431181268}
+    - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: staminaRecoveryDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4048580299805950851, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: m_IsActive
@@ -1385,6 +1389,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313507891}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1431181268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4327580931618444029, guid: 938ecf24883fc0f4794d2fcf455b4f79, type: 3}
+  m_PrefabInstance: {fileID: 146496656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1798352293
 GameObject:
   m_ObjectHideFlags: 0

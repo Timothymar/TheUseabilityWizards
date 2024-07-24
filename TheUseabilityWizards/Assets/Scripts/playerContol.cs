@@ -78,6 +78,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     private bool isDead = false;
     private bool isBurning = false;
+    private bool isReloading = false;
 
     bool isMoving;
     bool isSprintAndMoving;
@@ -239,6 +240,11 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     IEnumerator shoot()
     {
+        if (isReloading)
+        {
+            yield break;
+        }
+
         isShooting = true;
 
         aud.PlayOneShot(weaponList[selectedWeapon].shootSound, weaponList[selectedWeapon].shootVol);
@@ -338,11 +344,17 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     { }
     void ReloadArrows()
     {
+        if (isShooting || isReloading)
+        {
+            return;
+        }
         StartCoroutine(ReloadArrowsCoroutine());
     }
 
     IEnumerator ReloadArrowsCoroutine()
     {
+        isReloading = true;
+
         while (arrowsToShoot < arrowsShootMax && arrowsQuiver > 0)
         {
             arrowsToShoot++;
@@ -353,6 +365,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
             yield return new WaitForSeconds(reloadArrowsSpeed);
         }
 
+        isReloading = false;
     }
 
     public void getWeaponStats(weaponStats weapon)
@@ -390,6 +403,9 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     void changeWeapon()
     {
+        StopCoroutine(ReloadArrowsCoroutine());
+        isReloading = false;
+
         shootRate = weaponList[selectedWeapon].shootRate;
         reloadArrowsSpeed = weaponList[selectedWeapon].reloadSpeed;
         arrowsToShoot = weaponList[selectedWeapon].arrowsToShoot;

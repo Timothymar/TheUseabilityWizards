@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class weaponStats : ScriptableObject
 {
+    public string weaponName;
     public GameObject weaponModel;
     public GameObject arrowType;
     [Range(0.01f, 3)] public float reloadSpeed;

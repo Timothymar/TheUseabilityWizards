@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d717535f7bfacf144a276fa25e3c3591, type: 3}
   m_Name: Weapon - HealthStealCBStats
   m_EditorClassIdentifier: 
+  weaponName: HealthSteal
   weaponModel: {fileID: 8459189277918413064, guid: ebecfed4dd374b94ba83f099d8bcc23a, type: 3}
   arrowType: {fileID: 8209462377153511069, guid: 9fca24b709d333f4cbc69f0e89a894a1, type: 3}
   reloadSpeed: 1
