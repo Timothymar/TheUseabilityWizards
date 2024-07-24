@@ -42,7 +42,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
-    
+
     [Header("----- Weapon -----")]
     [SerializeField] List<weaponStats> weaponList = new List<weaponStats>();
     [SerializeField] GameObject weaponModel;
@@ -162,7 +162,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     void Movement()
     {
-        
+
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -250,7 +250,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         aud.PlayOneShot(weaponList[selectedWeapon].shootSound, weaponList[selectedWeapon].shootVol);
 
         arrowsToShoot--;
-        
+
         updateArrowCountUI();
         updateBoltData();
         Instantiate(weaponList[selectedWeapon].arrowType, Camera.main.transform.position, Camera.main.transform.rotation);
@@ -285,7 +285,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     {
         HP -= amt;
 
-        if(!isPlayingHurt && HP > 0)
+        if (!isPlayingHurt && HP > 0)
         {
             StartCoroutine(isHurtSoundPlaying());
         }
@@ -313,12 +313,12 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
             if (fadePanel != null)
             {
                 Color panelColor = fadePanel.color;
-                panelColor.a = Mathf.Lerp(0,1, fadeProgress);
+                panelColor.a = Mathf.Lerp(0, 1, fadeProgress);
                 fadePanel.color = panelColor;
             }
 
             yield return null;
-        
+
         }
 
         gameManager.instance.LoseScreen();
@@ -370,23 +370,36 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     public void getWeaponStats(weaponStats weapon)
     {
-        weaponList.Add(weapon);
-        selectedWeapon = weaponList.Count - 1;
+        for (int i = 0; i < weaponList.Count; i++)
+        {
+            if (weaponList[i].weaponName == weapon.weaponName)
+            {
+                weaponList[i].arrowsToShoot = weapon.arrowsShootMax;
+                weaponList[i].arrowsQuiver = weapon.arrowsQuiverMax;
+                updateArrowCountUI();
+                updateQuiverCountUI();
+                
+                return;
+            }
+        }
+            weaponList.Add(weapon);
+            selectedWeapon = weaponList.Count - 1;
 
-        shootRate = weapon.shootRate;
-        reloadArrowsSpeed = weapon.reloadSpeed;
-        arrowsToShoot = weaponList[selectedWeapon].arrowsToShoot;
-        arrowsShootMax = weaponList[selectedWeapon].arrowsShootMax;
-        arrowsQuiver = weaponList[selectedWeapon].arrowsQuiver;
-        arrowsQuiverMax = weaponList[selectedWeapon].arrowsQuiverMax;
+            shootRate = weapon.shootRate;
+            reloadArrowsSpeed = weapon.reloadSpeed;
+            arrowsToShoot = weapon.arrowsToShoot;
+            arrowsShootMax = weapon.arrowsShootMax;
+            arrowsQuiver = weapon.arrowsQuiver;
+            arrowsQuiverMax = weapon.arrowsQuiverMax;
 
-        updateArrowCountUI();
-        updateQuiverCountUI();
+            updateArrowCountUI();
+            updateQuiverCountUI();
 
-        weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponModel.GetComponent<MeshFilter>().sharedMesh;
-        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+            weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponModel.GetComponent<MeshFilter>().sharedMesh;
+            weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        
     }
-
     void selectWeapon()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < weaponList.Count - 1)
@@ -403,9 +416,6 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     void changeWeapon()
     {
-        StopCoroutine(ReloadArrowsCoroutine());
-        isReloading = false;
-
         shootRate = weaponList[selectedWeapon].shootRate;
         reloadArrowsSpeed = weaponList[selectedWeapon].reloadSpeed;
         arrowsToShoot = weaponList[selectedWeapon].arrowsToShoot;
@@ -418,6 +428,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[selectedWeapon].weaponModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[selectedWeapon].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+    
+        updateBoltData();
     }
     public int GetArrowsToShoot()
     {
@@ -446,7 +458,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     void updateBoltData()
     {
-        
+
         weaponList[selectedWeapon].arrowsToShoot = arrowsToShoot;
         weaponList[selectedWeapon].arrowsQuiver = arrowsQuiver;
         weaponList[selectedWeapon].arrowsQuiver = arrowsQuiver;
