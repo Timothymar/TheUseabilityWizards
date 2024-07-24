@@ -432,6 +432,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: aud
+      value: 
+      objectReference: {fileID: 1140379848}
+    - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: fadePanel
       value: 
       objectReference: {fileID: 0}
@@ -1270,6 +1274,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7252992be2627f64684b0988c5f2fb4b, type: 3}
+--- !u!82 &1140379848 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4240908355620900465, guid: 7252992be2627f64684b0988c5f2fb4b, type: 3}
+  m_PrefabInstance: {fileID: 1138070197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1313507891
 GameObject:
   m_ObjectHideFlags: 0

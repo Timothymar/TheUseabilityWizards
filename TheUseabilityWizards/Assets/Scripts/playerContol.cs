@@ -79,6 +79,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     private bool isDead = false;
     private bool isBurning = false;
 
+    bool isMoving;
+    bool isSprintAndMoving;
     bool isShooting;
     bool isPlayingSteps;
     bool isPlayingHurt;
@@ -140,7 +142,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
                 UsePotion();
             }
 
-            if (isSprinting)
+            if (isSprinting && isMoving)
             {
                 Stamina -= staminaSprintDegen * Time.deltaTime;
                 if (Stamina <= 0)
@@ -159,6 +161,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     void Movement()
     {
+        
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -168,6 +171,9 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
 
         controller.Move(moveDirection * speed * Time.deltaTime);
+
+        isMoving = moveDirection.magnitude > 0;
+        isSprintAndMoving = isSprinting && isMoving;
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
@@ -253,7 +259,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         while (true)
         {
             yield return new WaitForSeconds(staminaRecoverySpeed);
-            if (!isSprinting && !isShooting && !staminaRecoveryDelayActive && Stamina < maxStamina)
+            if (!isSprintAndMoving && !isShooting && !staminaRecoveryDelayActive && Stamina < maxStamina)
             {
                 Stamina += staminaRecoveryAmount;
                 updatePlayerStaminaUI();
