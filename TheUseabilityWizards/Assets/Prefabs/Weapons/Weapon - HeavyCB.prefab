@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5306209502184785450}
   - component: {fileID: 2788113391890029216}
   - component: {fileID: 5757703104210882615}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Weapon - HeavyCB
   m_TagString: Untagged
   m_Icon: {fileID: 0}

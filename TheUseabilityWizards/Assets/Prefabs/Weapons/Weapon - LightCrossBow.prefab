@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3234537162194544146}
   - component: {fileID: 5721338046544619696}
   - component: {fileID: 5188125831120213359}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Weapon - LightCrossBow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
