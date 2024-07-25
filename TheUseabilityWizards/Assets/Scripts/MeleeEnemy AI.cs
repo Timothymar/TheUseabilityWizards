@@ -147,24 +147,44 @@ public class MeleeEnemyAI : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
-        if (!destChosen && agent.remainingDistance < 0.05f)
+        while (!isPlayerInRange)
         {
-            destChosen = true;
-            yield return new WaitForSeconds(roamTimer);
+            if (!destChosen && agent.remainingDistance < 0.05f)
+            {
+                destChosen = true;
+                yield return new WaitForSeconds(roamTimer);
 
-            agent.stoppingDistance = 0;
+                agent.stoppingDistance = 0;
 
-            // Keep his roam area small
-            Vector3 ranPos = Random.insideUnitSphere * roamDist;
-            ranPos += startingPos;
+                Vector3 ranPos = Random.insideUnitSphere * roamDist;
+                ranPos += startingPos;
 
-            // Keeps on the NavMesh
-            NavMeshHit hit;
-            NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-            agent.SetDestination(hit.position);
+                NavMeshHit hit;
+                NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+                agent.SetDestination(hit.position);
 
-            destChosen = false;
+                destChosen = false;
+            }
+            yield return null;
         }
+        //if (!destChosen && agent.remainingDistance < 0.05f)
+        //{
+        //    destChosen = true;
+        //    yield return new WaitForSeconds(roamTimer);
+
+        //    agent.stoppingDistance = 0;
+
+        //    // Keep his roam area small
+        //    Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        //    ranPos += startingPos;
+
+        //    // Keeps on the NavMesh
+        //    NavMeshHit hit;
+        //    NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        //    agent.SetDestination(hit.position);
+
+        //    destChosen = false;
+        //}
     }
 
     public void createClub()
