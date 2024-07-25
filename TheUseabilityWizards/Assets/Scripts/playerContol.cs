@@ -222,6 +222,11 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
             isSprinting = false;
             StartCoroutine(StaminaRecoverDelay());
         }
+        
+        if (speed != 5)
+        {
+            speed = 5;
+        }
     }
 
     IEnumerator playSteps()

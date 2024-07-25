@@ -1602,7 +1602,7 @@ MonoBehaviour:
   attackRate: 1
   attackAngle: 45
   roamDist: 0
-  roamTimer: 2
+  roamTimer: 0
 --- !u!95 &6730578612563072989
 Animator:
   serializedVersion: 5

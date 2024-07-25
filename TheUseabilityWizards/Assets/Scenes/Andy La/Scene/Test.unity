@@ -130,6 +130,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 30977013095786171, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 510
+      objectReference: {fileID: 0}
+    - target: {fileID: 30977013095786171, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -358
+      objectReference: {fileID: 0}
     - target: {fileID: 3213259404343170847, guid: d792156916dea774c99da4d5bd5c3e66, type: 3}
       propertyPath: HP
       value: 20
@@ -865,10 +873,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1777087598232011954, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
-      propertyPath: roamTimer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8241822001215629623, guid: dad1044dd62e00a4988a82d2ec25380a, type: 3}
       propertyPath: m_Name
       value: MeleeGoblinEnemy
