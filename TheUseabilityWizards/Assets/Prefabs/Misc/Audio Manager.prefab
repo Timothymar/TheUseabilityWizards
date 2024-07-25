@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5832551344952155245}
-  - component: {fileID: 4240908355620900465}
+  - component: {fileID: 1468593131415042966}
   m_Layer: 0
   m_Name: Background Music
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6622602136906306274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &4240908355620900465
+--- !u!82 &1468593131415042966
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4382776618427089128, guid: 9a1c32dec4910ad42a7b2fa2b97ac084, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 33f6c71960b53e0449a5cc5c7643195f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -173,5 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ff0128a2604a34497330c59518a9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgSource: {fileID: 4240908355620900465}
-  background: {fileID: 8300000, guid: 33f6c71960b53e0449a5cc5c7643195f, type: 3}
+  bgSource: {fileID: 1468593131415042966}
+  backgroundTracks:
+  - {fileID: 8300000, guid: 33f6c71960b53e0449a5cc5c7643195f, type: 3}
+  - {fileID: 8300000, guid: 625855aab144f62439b0341a849baf2d, type: 3}
+  - {fileID: 8300000, guid: 68a69d9b57fcdfd46b87a10863ccfb34, type: 3}

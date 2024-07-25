@@ -1040,6 +1040,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1468593131415042966, guid: 7252992be2627f64684b0988c5f2fb4b, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783187675582920318, guid: 7252992be2627f64684b0988c5f2fb4b, type: 3}
+      propertyPath: backgroundTracks.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 33f6c71960b53e0449a5cc5c7643195f, type: 3}
+    - target: {fileID: 3783187675582920318, guid: 7252992be2627f64684b0988c5f2fb4b, type: 3}
+      propertyPath: backgroundTracks.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68a69d9b57fcdfd46b87a10863ccfb34, type: 3}
+    - target: {fileID: 3783187675582920318, guid: 7252992be2627f64684b0988c5f2fb4b, type: 3}
+      propertyPath: backgroundTracks.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 625855aab144f62439b0341a849baf2d, type: 3}
     - target: {fileID: 6622602136906306274, guid: 7252992be2627f64684b0988c5f2fb4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.71276
