@@ -71,6 +71,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     [SerializeField] float audHurtVol;
     [SerializeField] AudioClip[] audDeath;
     [SerializeField] float audDeathVol;
+    [SerializeField] AudioClip[] audReload;
+    [SerializeField] float audReloadVol;
 
     [Header("----- Fade-Out -----")]
     [SerializeField] private float fadeDuration;
@@ -359,6 +361,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         {
             arrowsToShoot++;
             arrowsQuiver--;
+            aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
             updateArrowCountUI();
             updateQuiverCountUI();
             updateBoltData();
