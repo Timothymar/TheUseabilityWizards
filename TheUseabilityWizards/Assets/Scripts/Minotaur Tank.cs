@@ -148,12 +148,12 @@ public class TankOrc : MonoBehaviour, IDamage
     IEnumerator attack()
     {
         isAttacking = true;
-        //animator.SetBool("Attack", true);
+        animator.SetBool("Attack", true);
         animator.SetTrigger("Attack");
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
-        //animator.SetBool("Attack", false);
+        animator.SetBool("Attack", false);
     }
 
     IEnumerator flashDamage()
