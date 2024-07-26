@@ -2261,12 +2261,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player SFX from Project and Portfolio II course from Full Sail University
-
-    Weapon
-    SFX  by enavoElements
-
-    Background Music by Vertex Studio - UnityStore'
+  m_text: "Player SFX from Project and Portfolio II course from Full Sail University\nWeapon
+    SFX  by enavoElements\nBackground Music by Vertex Studio - UnityStore\n Additional
+    BGM by GavinNellist - pixabay\nAdditional BGM by NotProd - pixabay                                        
+    \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2419,7 +2417,7 @@ MonoBehaviour:
   pauseOptionsCloseBtn: {fileID: 6446853479849772286}
   winFirstBtn: {fileID: 617223804943905574}
   loseFirstBtn: {fileID: 5596811328276844255}
-  enemyCounter: {fileID: 0}
+  enemyCounter: {fileID: 6294291699402028198}
   arrowSupply: {fileID: 1659986264115654579}
   arrowInQuiver: {fileID: 1684807233762180646}
   potionSupply: {fileID: 5985112442526941601}
@@ -2823,7 +2821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2876585893039284224
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5678,7 +5676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4679121524245423890
 RectTransform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class DartTrap : MonoBehaviour
     private float shootCooldown = 0f;
 
 
+    Vector3 playerDirec;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,13 +25,15 @@ public class DartTrap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(triggerzone.colliders.Count > 0)
+        playerDirec = (gameManager.instance.player.transform.position - transform.position);
+
+        if (triggerzone.colliders.Count > 0)
         {
             shootCooldown += Time.deltaTime;
 
             if (shootCooldown >= shootRate)
             {
-                Instantiate(projectile, shootPos.position, shootPos.rotation);
+                Instantiate(projectile, shootPos.position, Quaternion.Euler(playerDirec));
 
                 shootCooldown = 0;
             }
