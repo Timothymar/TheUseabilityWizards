@@ -16,10 +16,10 @@ MonoBehaviour:
   weaponModel: {fileID: 8459189277918413064, guid: b97c65d988da3d043b00daefd67a8a36, type: 3}
   arrowType: {fileID: 56730539700582308, guid: cbe2049af4b6bb24f9fc0c8f348ac541, type: 3}
   reloadSpeed: 0.5
-  shootRate: 0.5
-  arrowsToShoot: 10
+  shootRate: 0.4
+  arrowsToShoot: 5
   arrowsShootMax: 10
-  arrowsQuiver: 59
+  arrowsQuiver: 45
   arrowsQuiverMax: 60
   shootSound: {fileID: 8300000, guid: c9e3f31ca91ea0547b31db85a4057d84, type: 3}
   shootVol: 0.5
