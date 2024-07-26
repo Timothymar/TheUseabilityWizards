@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPos: {fileID: 6375662878334265618}
-  projectile: {fileID: 4707544412447893661, guid: 0440925e637aac343a1a9a41e0a1bba3, type: 3}
+  projectile: {fileID: 7990876986533638323, guid: 55a5d4c7f8f18024b89653e3666448a6, type: 3}
   triggerzone: {fileID: 6093158140228368209}
   shootRate: 1.5
 --- !u!33 &4068104046426983735
@@ -82,7 +82,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fb35f1d3e5bc5fe43ac2f56136ea2933, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
