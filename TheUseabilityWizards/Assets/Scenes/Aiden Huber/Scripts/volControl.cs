@@ -15,14 +15,7 @@ public class volControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("volume"))
-        {
-            LoadVolume();
-        }
-        else
-        {
-            SetVolume();
-        }
+        LoadVolume();
     }
 
     public void SetVolume()
@@ -43,45 +36,47 @@ public class volControl : MonoBehaviour
     {
         float volume = masterSlider.value;
         volMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("volume", volume);
-
-        SetMusicVolume();
+        PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
     private void LoadMasterVolume()
     {
-        masterSlider.value = PlayerPrefs.GetFloat("volume");
-
-        SetMasterVolume();
+        if (PlayerPrefs.HasKey("MasterVolume"))
+        {
+            masterSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+            SetMasterVolume();
+        }
     }
 
     public void SetMusicVolume()
     {
         float volume = musicSlider.value;
         volMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("volume", volume);
+        PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 
     private void LoadMusicVolume()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("volume");
-
-        SetMusicVolume();
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+            SetMusicVolume();
+        }
     }
 
     public void SetSFXVolume()
     {
         float volume = sfxSlider.value;
         volMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("volume", volume);
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
     private void LoadSFXVolume()
     {
-        masterSlider.value = PlayerPrefs.GetFloat("volume");
-
-        SetSFXVolume();
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+            SetSFXVolume();
+        }
     }
-
-
 }
