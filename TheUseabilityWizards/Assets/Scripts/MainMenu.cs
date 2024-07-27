@@ -11,16 +11,15 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject loadingInterface;
-    public Image loadingProgressBar;
-
+    
+    public GameObject creditsMenu;
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
 
-   public void StartGame()
+    public void StartGame()
     {
         HideMenu();
-        //ShowLoadingScreen();
+        ShowLoadingScreen();
         scenesToLoad.Add(SceneManager.LoadSceneAsync("Gameplay"));
-        //StartCoroutine(LoadingScreen());
     }
 
     public void HideMenu()
@@ -33,15 +32,14 @@ public class MainMenu : MonoBehaviour
         loadingInterface.SetActive(true);
     }
 
-    IEnumerator LoadingScreen()
+    public void Credits()
     {
-        float totalProgress = 0;
-        for (int i = 0; i < scenesToLoad.Count; i++)
+        if (creditsMenu != null)
         {
-            totalProgress += scenesToLoad[i].progress;
-            loadingProgressBar.fillAmount = totalProgress/scenesToLoad.Count;
-            yield return null;
+            bool isActive = creditsMenu.activeSelf;
+            creditsMenu.SetActive(!isActive);
         }
+
     }
 
     public void ExitGame()

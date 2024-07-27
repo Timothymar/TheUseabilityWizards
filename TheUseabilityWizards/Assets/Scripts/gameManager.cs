@@ -26,19 +26,13 @@ public class gameManager : MonoBehaviour
 
     [Header("---------Menus/UI---------")]
     [SerializeField] GameObject menuActive;
-    [SerializeField] GameObject menuTitle;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuOptions;
-    [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuPrev;
     [SerializeField] GameObject bossBar;
-    [SerializeField] GameObject startFirstBtn;
-    [SerializeField] GameObject pauseFirstBtn;
     [SerializeField] GameObject optionsFirstBtn;
-    [SerializeField] GameObject startOptionsCloseBtn;
-    [SerializeField] GameObject pauseOptionsCloseBtn;
     [SerializeField] GameObject winFirstBtn;
     [SerializeField] GameObject loseFirstBtn;
 
@@ -73,7 +67,7 @@ public class gameManager : MonoBehaviour
     public bool isOptions = false;
     public bool isCredits = false;
 
-    // Start is called before the first frame update
+
     void Awake()
     {
         instance = this;
@@ -85,18 +79,12 @@ public class gameManager : MonoBehaviour
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
-        isStart = true;
+        //isStart = true;
         // ^ COMMENT/UNCOMMENT THIS LINE AS NEEDED FOR TESTING
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isStart == true)
-        {
-            TitleScreen();
-        }
-
         if (Input.GetButtonDown("Cancel"))
         {
             if (EventSystem.current.gameObject != null)
@@ -108,7 +96,6 @@ public class gameManager : MonoBehaviour
             {
                 statePause();
                 menuActive = menuPause;
-                EventSystem.current.SetSelectedGameObject(pauseFirstBtn);
                 menuActive.SetActive(isPaused);
             }
             else if (menuActive == menuPause)
@@ -118,7 +105,6 @@ public class gameManager : MonoBehaviour
             else if (menuActive == menuOptions)
             {
                 BackButton();
-                EventSystem.current.SetSelectedGameObject(pauseOptionsCloseBtn);
             }
         }
     }
@@ -141,14 +127,6 @@ public class gameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void stateCredits()
-    {
-        isCredits = !isCredits;
-        Time.timeScale = 0;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
     public void stateOptions()
     {
         if (EventSystem.current.gameObject != null)
@@ -156,39 +134,39 @@ public class gameManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
         }
 
-        if (menuActive == menuTitle)
-        {
-            EventSystem.current.SetSelectedGameObject(optionsFirstBtn);
-            menuPrev = menuTitle;
-            stateUnpause();
-        }
-        else if (menuActive == menuPause)
+        if (menuActive == menuPause)
         {
             EventSystem.current.SetSelectedGameObject(optionsFirstBtn);
             menuPrev = menuPause;
-            stateUnpause();
+            
         }
-       
-        isOptions = !isOptions;
-        Time.timeScale = 0;
+
+        isOptions = true;
+        Time.timeScale = 0; 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        EventSystem.current.SetSelectedGameObject(optionsFirstBtn);
+        menuActive = menuOptions;
+        menuActive.SetActive(true);
     }
 
     public void stateExOptions()
     {
-        isOptions = !isOptions;
-        Time.timeScale = 1;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(isOptions);
-    }
+        isOptions = false;
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
 
-    public void updateGameGoal(int amount)
-    {
-        enemyCount += amount;
-        //enemyCounter.text = enemyCount.ToString("F0");
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+        }
+
+        menuActive = menuPrev;
+        if (menuActive != null)
+        {
+            menuActive.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 
     public void updateArrowCount(int arrowCount)
@@ -209,31 +187,6 @@ public class gameManager : MonoBehaviour
         potionSupply.text = potionCount.ToString("F0");
     }
 
-    public void TitleScreen()
-    {
-        menuActive = menuTitle;
-        menuActive.SetActive(isStart);
-        statePause();
-        isStart = !isStart;
-
-    }
-
-    public void CreditScreen()
-    {
-        stateCredits();
-        if (isCredits)
-        {
-            menuActive = menuCredits;
-            menuActive.SetActive(isCredits);
-        }
-        else
-        {
-            menuActive.SetActive(false);
-            TitleScreen();
-        }
-
-    }
-
     public void OptionsScreen()
     {
         stateOptions();
@@ -250,21 +203,13 @@ public class gameManager : MonoBehaviour
         }
 
         stateExOptions();
+
         if (menuPrev == menuPause)
         {
-            statePause();
             menuActive = menuPause;
-            menuActive.SetActive(isPaused);
-            EventSystem.current.SetSelectedGameObject(pauseOptionsCloseBtn);
-            menuPrev = null;
+            menuActive.SetActive(true);
         }
-        else if (menuPrev == menuTitle)
-        {
-            EventSystem.current.SetSelectedGameObject(startOptionsCloseBtn);
-            menuActive = menuTitle;
-            menuActive.SetActive(isStart);
-            menuPrev = null;
-        }
+        menuPrev = null;
     }
 
     public void RespawnButton()
