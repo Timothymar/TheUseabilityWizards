@@ -57,15 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.435974
+      value: -18.480501
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 95.60255
+      value: -29.952671
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -332,6 +332,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
@@ -399,19 +403,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3137563089499113407}
   headPos: {fileID: 6406791782834384475}
-  headCol: {fileID: 8322313313321431320}
-  bodCol: {fileID: 6172756704171940157}
-  weaponCol1: {fileID: 6524291848443827971}
-  weaponCol2: {fileID: 8579410680372471606}
   agent: {fileID: 8163156954211400752}
   anim: {fileID: 4772930767771246872}
   animTranSpeed: 10
   faceTargetSpeed: 5
   viewAngle: 45
-  roamDist: 15
-  roamTimer: 3
-  bHP: 10
-  maxBHP: 10
+  roamDist: 0
+  roamTimer: 0
+  bHP: 100
+  maxBHP: 100
   projectile: {fileID: 1010886935488290908, guid: af515a257c850e946859880a366aec7d, type: 3}
   projPos: {fileID: 9039127884117759439}
   projRange: 10
@@ -431,7 +431,7 @@ NavMeshAgent:
   m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 8
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -454,7 +454,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -475,7 +475,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -517,9 +517,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 1.7
@@ -540,9 +540,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 1.7
