@@ -747,14 +747,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GiantModel01 - Golem
       objectReference: {fileID: 0}
-    - target: {fileID: 4778468044928195413, guid: aa7aa222d33c6064f9034472f00494e2, type: 3}
-      propertyPath: roamDist
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4778468044928195413, guid: aa7aa222d33c6064f9034472f00494e2, type: 3}
-      propertyPath: roamTimer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
