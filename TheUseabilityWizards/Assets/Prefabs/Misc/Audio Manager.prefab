@@ -46,7 +46,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -176,5 +176,5 @@ MonoBehaviour:
   bgSource: {fileID: 1468593131415042966}
   backgroundTracks:
   - {fileID: 8300000, guid: 33f6c71960b53e0449a5cc5c7643195f, type: 3}
-  - {fileID: 8300000, guid: 625855aab144f62439b0341a849baf2d, type: 3}
   - {fileID: 8300000, guid: 68a69d9b57fcdfd46b87a10863ccfb34, type: 3}
+  - {fileID: 8300000, guid: 625855aab144f62439b0341a849baf2d, type: 3}
