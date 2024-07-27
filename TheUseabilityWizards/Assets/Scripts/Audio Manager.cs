@@ -29,6 +29,21 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<AudioClip> backgroundTracks;
 
     private int currentTrackIndex = 0;
+    private static AudioManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     private void Start()
     {
