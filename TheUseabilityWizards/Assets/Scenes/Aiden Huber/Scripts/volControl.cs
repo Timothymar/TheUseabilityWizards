@@ -17,6 +17,10 @@ public class volControl : MonoBehaviour
     {
         LoadVolume();
     }
+    private void Update()
+    {
+        LoadVolume();
+    }
 
     public void SetVolume()
     {

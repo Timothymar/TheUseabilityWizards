@@ -72,9 +72,9 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerContol>();
         playerStartPos = player.transform.position;
         boss = GameObject.FindWithTag("Boss");
-        playerScript = player.GetComponent<playerContol>();
         activeCheckPt = null;
 
         updateArrowCount(playerScript.GetArrowsToShoot());
@@ -107,6 +107,11 @@ public class gameManager : MonoBehaviour
                 BackButton();
             }
         }
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        return playerStartPos;
     }
 
     public void statePause()
@@ -214,18 +219,16 @@ public class gameManager : MonoBehaviour
 
     public void RespawnButton()
     {
-        if (activeCheckPt.GetActiveCheckPt() == null)
+        if (activeCheckPt.GetCheckpoint().GetActiveValue())
         {
             player.transform.position = playerStartPos;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            stateUnpause();
             isStart = false;
-            menuActive = null;
-            menuActive.SetActive(isStart);
+            stateUnpause();
         }
-        else if (activeCheckPt.GetActiveCheckPt() != null)
+        else if (activeCheckPt.GetCheckpoint() != null)
         {
-            player.transform.position = activeCheckPt.GetActiveCheckPt();
+            player.transform.position = activeCheckPt.GetCheckpoint().transform.position;
         }
     }
 

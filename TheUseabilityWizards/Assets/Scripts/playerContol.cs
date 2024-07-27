@@ -199,6 +199,11 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         }
     }
 
+    public bool GetDeathStatus()
+    {
+        return isDead;
+    }
+
     void Sprint()
     {
 
