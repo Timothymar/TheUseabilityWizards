@@ -91,11 +91,14 @@ public class bossAI : MonoBehaviour, IDamage
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
 
-        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), Color.red);
+        //Debug.DrawRay(headPos.position, new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), Color.red);
+        //Debug.Log("Angle to Player: " + angleToPlayer); // Add this line
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
+            //Debug.Log("Raycast Hit: " + hit.collider.name); // Add this line
+
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
                 agent.stoppingDistance = stoppingDistOrig;
@@ -129,6 +132,7 @@ public class bossAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
+            //Debug.Log("Player entered range"); // Add this line
             playerInRange = true;
         }
     }
@@ -137,6 +141,7 @@ public class bossAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
+            //Log("Player exited range"); // Add this line
             playerInRange = false;
         }
     }
