@@ -21,10 +21,10 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.RespawnButton();
     }
 
-    public void credits()
-    {
-        gameManager.instance.CreditScreen();
-    }
+    //public void credits()
+    //{
+    //    gameManager.instance.CreditScreen();
+    //}
 
     public void options()
     {
