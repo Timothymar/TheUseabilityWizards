@@ -16,6 +16,11 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.stateUnpause();
     }
 
+    public void respawn()
+    {
+        gameManager.instance.RespawnButton();
+    }
+
     public void credits()
     {
         gameManager.instance.CreditScreen();

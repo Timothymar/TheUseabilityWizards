@@ -454,6 +454,11 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         return potionsHeld;
     }
 
+    public int GetPlayerHP()
+    {
+        return HP;
+    }
+
     void updateArrowCountUI()
     {
         gameManager.instance.updateArrowCount(arrowsToShoot);

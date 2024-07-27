@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class gameManager : MonoBehaviour
 
     float volume;
 
-    [Header("---------Menus---------")]
+    [Header("---------Menus/UI---------")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuTitle;
     [SerializeField] GameObject menuPause;
@@ -53,9 +54,12 @@ public class gameManager : MonoBehaviour
     public Image playerHP;
     public Image playerST;
     public Image bossHP;
-    // ^ Normally serialized, will fix these later. This is also my reminder to do that.   
+    // ^ Normally serialized, will fix these later. This is also my reminder to do that.
 
+    [Header("---------Player/Boss---------")]
+    [SerializeField] checkpoint activeCheckPt;
     public GameObject player;
+    Vector3 playerStartPos;
     public GameObject boss;
     public playerContol playerScript;
 
@@ -74,8 +78,10 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
+        playerStartPos = player.transform.position;
         boss = GameObject.FindWithTag("Boss");
         playerScript = player.GetComponent<playerContol>();
+        activeCheckPt = null;
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
@@ -258,6 +264,23 @@ public class gameManager : MonoBehaviour
             menuActive = menuTitle;
             menuActive.SetActive(isStart);
             menuPrev = null;
+        }
+    }
+
+    public void RespawnButton()
+    {
+        if (activeCheckPt.GetActiveCheckPt() == null)
+        {
+            player.transform.position = playerStartPos;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            stateUnpause();
+            isStart = false;
+            menuActive = null;
+            menuActive.SetActive(isStart);
+        }
+        else if (activeCheckPt.GetActiveCheckPt() != null)
+        {
+            player.transform.position = activeCheckPt.GetActiveCheckPt();
         }
     }
 
