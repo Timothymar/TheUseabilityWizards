@@ -9,6 +9,7 @@ TagManager:
   - Audio Manager
   - Boss Trigger
   - WeaponCam
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
