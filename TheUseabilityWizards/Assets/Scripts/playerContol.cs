@@ -159,8 +159,18 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
             selectWeapon();
         }
+
         Sprint();
         updatePotionCountUI();
+
+        if (arrowsToShoot == 0 && weaponList.Count > 0)
+        {
+            gameManager.instance.showReload.SetActive(true);
+        }
+        else
+        {
+            gameManager.instance.showReload.SetActive(false);
+        }
     }
 
     void Movement()

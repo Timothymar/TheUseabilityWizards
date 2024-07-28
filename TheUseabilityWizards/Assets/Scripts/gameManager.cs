@@ -35,6 +35,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject optionsFirstBtn;
     [SerializeField] GameObject winFirstBtn;
     [SerializeField] GameObject loseFirstBtn;
+    [SerializeField] public GameObject showReload;
 
     [SerializeField] TMP_Text enemyCounter;
 
