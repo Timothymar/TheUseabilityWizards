@@ -112,6 +112,10 @@ public class gameManager : MonoBehaviour
                 BackButton();
             }
         }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            player.transform.position = checkpt;
+        }
     }
 
     public void SetCheckpoint()
