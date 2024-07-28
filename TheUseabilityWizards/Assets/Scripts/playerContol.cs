@@ -81,6 +81,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     private bool isDead = false;
     private bool isBurning = false;
     private bool isReloading = false;
+    private Coroutine reloadCoroutine;
 
     bool isMoving;
     bool isSprintAndMoving;
@@ -254,7 +255,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     {
         if (isReloading)
         {
-            yield break;
+            StopCoroutine(reloadCoroutine);
+            isReloading = false;
         }
 
         isShooting = true;
@@ -360,7 +362,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         {
             return;
         }
-        StartCoroutine(ReloadArrowsCoroutine());
+        reloadCoroutine = StartCoroutine(ReloadArrowsCoroutine());
     }
 
     IEnumerator ReloadArrowsCoroutine()
