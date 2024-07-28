@@ -81,6 +81,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     private bool isDead = false;
     private bool isBurning = false;
     private bool isReloading = false;
+    private Coroutine reloadCoroutine;
+    private Coroutine staminaRecoveryDelayCoroutine;
 
     bool isMoving;
     bool isSprintAndMoving;
@@ -102,7 +104,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     void Start()
     {
         // Sets stamina and health and has a recovery for stamina
-        //HP = maxHP;
+        HP = maxHP;
         Stamina = maxStamina;
         StartCoroutine(RecoverStamina());
         updatePlayerHeathUI();
@@ -158,8 +160,18 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
             selectWeapon();
         }
+
         Sprint();
         updatePotionCountUI();
+
+        if (arrowsToShoot == 0 && weaponList.Count > 0)
+        {
+            gameManager.instance.showReload.SetActive(true);
+        }
+        else
+        {
+            gameManager.instance.showReload.SetActive(false);
+        }
     }
 
     void Movement()
@@ -254,7 +266,8 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
     {
         if (isReloading)
         {
-            yield break;
+            StopCoroutine(reloadCoroutine);
+            isReloading = false;
         }
 
         isShooting = true;
@@ -277,11 +290,20 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         while (true)
         {
             yield return new WaitForSeconds(staminaRecoverySpeed);
+
             if (!isSprintAndMoving && !isShooting && !staminaRecoveryDelayActive && Stamina < maxStamina)
             {
-                Stamina += staminaRecoveryAmount;
-                updatePlayerStaminaUI();
-                //Debug.Log("Stamina recovered:" + Stamina);
+                float recoveryRate = staminaRecoveryAmount / staminaRecoverySpeed;
+                while (Stamina < maxStamina && !isSprintAndMoving && !isShooting && !staminaRecoveryDelayActive)
+                {
+                    Stamina += recoveryRate * Time.deltaTime;
+                    if (Stamina > maxStamina)
+                    {
+                        Stamina = maxStamina;
+                    }
+                    updatePlayerStaminaUI();
+                    yield return null;
+                }
             }
         }
     }
@@ -314,8 +336,6 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
 
     IEnumerator FadeOutDeath()
     {
-        //aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
-
         float fadeProgress = 0f;
 
         while (fadeProgress < 1f)
@@ -360,7 +380,7 @@ public class playerContol : MonoBehaviour, IDamage, IBurnDamage
         {
             return;
         }
-        StartCoroutine(ReloadArrowsCoroutine());
+        reloadCoroutine = StartCoroutine(ReloadArrowsCoroutine());
     }
 
     IEnumerator ReloadArrowsCoroutine()
