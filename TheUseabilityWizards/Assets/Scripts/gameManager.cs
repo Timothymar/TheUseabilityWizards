@@ -16,8 +16,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] public float audMusicVol;
     [SerializeField] public float audSFXVol;
 
-    
-    //[SerializeField] AudioMixer audMixer;
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider SFXSlider;
@@ -51,15 +49,21 @@ public class gameManager : MonoBehaviour
     // ^ Normally serialized, will fix these later. This is also my reminder to do that.
 
     [Header("---------Player/Boss---------")]
-    [SerializeField] checkpoint activeCheckPt;
     public GameObject player;
-    Vector3 playerStartPos;
+    public Vector3 playerStartPos;
     public GameObject boss;
     public playerContol playerScript;
 
     int enemyCount;
     int arrowCount;
     potions potionPickup;
+
+    [Header("---------Checkpoint---------")]
+    [SerializeField] GameObject[] checkptList;
+    public Vector3 checkpt;
+    public Vector3 prevCP;
+    //bool isActive = false;
+    bool hasPrev = false;
 
     public bool isPaused = false;
     public bool isStart = false;
@@ -75,7 +79,8 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerContol>();
         playerStartPos = player.transform.position;
         boss = GameObject.FindWithTag("Boss");
-        activeCheckPt = null;
+        checkptList = GameObject.FindGameObjectsWithTag("Checkpoint");
+        SetCheckpoint();
 
         updateArrowCount(playerScript.GetArrowsToShoot());
         updateQuiverCount(playerScript.GetArrowsQuiver());
@@ -109,9 +114,28 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public Vector3 GetPlayerPosition()
+    public void SetCheckpoint()
     {
-        return playerStartPos;
+        if (checkpt == playerStartPos)
+        {
+            if (!hasPrev)
+            {
+                hasPrev = !hasPrev;
+                prevCP = checkpt;
+                checkpt = player.transform.position;
+            }            
+        }
+        else
+        {
+            if (!hasPrev)
+            {
+                checkpt = playerStartPos;
+            }
+            else
+            {
+                checkpt = player.transform.position;
+            }
+        }
     }
 
     public void statePause()
@@ -129,7 +153,10 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(isPaused);
-        menuActive = null;
+        if (menuActive != null)
+        {
+            menuActive = null;
+        }
     }
 
     public void stateOptions()
@@ -219,17 +246,42 @@ public class gameManager : MonoBehaviour
 
     public void RespawnButton()
     {
-        if (activeCheckPt.GetCheckpoint().GetActiveValue())
+        
+
+        foreach (GameObject cp in checkptList)
         {
-            player.transform.position = playerStartPos;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            isStart = false;
-            stateUnpause();
+            if (cp.transform.position == checkpt)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                stateUnpause();
+                player.transform.position = checkpt;
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                stateUnpause();
+            }
         }
-        else if (activeCheckPt.GetCheckpoint() != null)
-        {
-            player.transform.position = activeCheckPt.GetCheckpoint().transform.position;
-        }
+
+        
+
+
+
+
+
+
+
+        //if (activeCheckPt.GetPos() )
+        //{
+        //    player.transform.position = playerStartPos;
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //    isStart = false;
+        //    stateUnpause();
+        //}
+        //else if (activeCheckPt.GetCheckpoint() != null)
+        //{
+        //    player.transform.position = activeCheckPt.GetCheckpoint().transform.position;
+        //}
     }
 
     public void WinScreen()
